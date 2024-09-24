@@ -7,10 +7,12 @@ public class movement : MonoBehaviour
     float xInput;
     public float speed;
     public float jumpForce;
-    
+    public int jumpAmount = 0;
+
     private Rigidbody2D rb;
     private Vector2 vec2;
     private bool canJump;
+
     
     
     public GameObject groundCheck;
@@ -32,6 +34,7 @@ public class movement : MonoBehaviour
         if (Input.GetKeyDown("space") && canJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // Применение силы для прыжка
+            jumpAmount += 1;
         }
 
         CheckGround();
@@ -43,8 +46,10 @@ public class movement : MonoBehaviour
 
         Collider2D groundCollision = Physics2D.OverlapCircle(groundCheck.transform.position, 0.1f, groundMask);
     
-        if ( groundCollision != null ) { canJump = true; }
+        if ( groundCollision != null || jumpAmount < 1 ) { canJump = true; }
         else { canJump = false; }
+
+        if ( groundCollision != null ) { jumpAmount = 0; }
     }
     
 

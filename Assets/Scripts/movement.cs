@@ -17,7 +17,7 @@ public class movement : MonoBehaviour
     public Animator anim;
     private bool facingRight = true; // Указывает, смотрит ли персонаж вправо
 
-
+    
 
     public GameObject character;
     public GameObject groundCheck;
@@ -64,6 +64,7 @@ public class movement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Обновляем вертикальную скорость для прыжка
         jumpAmount++;
         anim.SetBool("isJumping", true); // Анимация прыжка
+        //Debug.Log(canJump);
         if (jumpAmount >= maxJumps)
         {
             canJump = false; // Отключаем возможность прыгать, если исчерпаны прыжки
@@ -86,6 +87,7 @@ public class movement : MonoBehaviour
         }
 
         anim.SetBool("isJumping", !canJump); // Когда на земле, прыжок выключен
+        //Debug.Log(canJump);
     }
 
     private void Flip()
@@ -94,18 +96,11 @@ public class movement : MonoBehaviour
         facingRight = !facingRight;
 
         // Инвертируем локальную шкалу персонажа по оси X
-        Vector3 theScale = transform.localScale;
+        Vector3 theScale = character.transform.localScale;
         theScale.x *= -1; // Переворачиваем по оси X
-        transform.localScale = theScale;
+        character.transform.localScale = theScale;
     }
 
-    // Опционально: Отображение круга в редакторе для проверки GroundCheck
-    private void OnDrawGizmosSelected()
-    {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
-        }
-    }
+    
+    
 }

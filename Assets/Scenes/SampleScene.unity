@@ -1016,7 +1016,7 @@ MonoBehaviour:
   speed: 10
   jumpForce: 10
   jumpAmount: 0
-  maxJumps: 2
+  maxJumps: 3
   anim: {fileID: 1564958110}
   character: {fileID: 1564958108}
   groundCheck: {fileID: 688700186}

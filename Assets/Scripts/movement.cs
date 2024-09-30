@@ -5,102 +5,151 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
-    float xInput;
-    public float speed;
+    private Vector2 moveVector;
+    public float acceleration;
+    public float deceleration;
+    public float maxSpeed;
+    public float currentspeed;
+
     public float jumpForce;
-    public int jumpAmount = 0;
-    public int maxJumps = 2; // Максимум прыжков для двойного прыжка
+    public int maxJumps = 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    private int jumpAmount = 0;
+
+    public float dashForce;
 
     private Rigidbody2D rb;
     private bool canJump;
 
     public Animator anim;
-    private bool facingRight = true; // Указывает, смотрит ли персонаж вправо
-
-    
+    private bool facingRight = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     public GameObject character;
     public GameObject groundCheck;
     public LayerMask groundMask;
-    public float groundCheckRadius = 0.1f; // Радиус проверки касания земли
+    public float groundCheckRadius = 0.1f; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void FixedUpdate()
+    {
+        Run();
+        CheckGround();
+        currentspeed = rb.velocity.magnitude;
+    }
     void Update()
     {
-        xInput = Input.GetAxis("Horizontal");
+        moveVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        // Перемещение персонажа
-        rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        // Обновление анимаций
-        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // Используем Abs для анимации независимо от направления
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Abs пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         anim.SetFloat("yVelocity", rb.velocity.y);
 
-        // Поворачиваем персонажа
-        if (xInput > 0 && !facingRight)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        if (moveVector.x > 0 && !facingRight)
         {
             Flip();
         }
-        else if (xInput < 0 && facingRight)
+        else if (moveVector.x < 0 && facingRight)
         {
             Flip();
         }
 
-        // Прыжок
+        // пїЅпїЅпїЅпїЅпїЅпїЅ
         if (Input.GetKeyDown("space") && canJump)
         {
             Jump();
         }
 
-        CheckGround();
+
+        if (Input.GetKeyDown("left shift"))
+        {
+            Dash();
+        }
+
     }
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Обновляем вертикальную скорость для прыжка
+        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         jumpAmount++;
-        anim.SetBool("isJumping", true); // Анимация прыжка
+
+        anim.SetBool("isJumping", true); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         //Debug.Log(canJump);
+
         if (jumpAmount >= maxJumps)
         {
-            canJump = false; // Отключаем возможность прыгать, если исчерпаны прыжки
+            canJump = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
+    private void Dash()
+    {
+        //Debug.Log("Dash");
+        rb.AddForce(moveVector.normalized * new Vector2(dashForce, 1.5f * dashForce), ForceMode2D.Impulse);
+    }
+
 
     private void CheckGround()
     {
-        // Проверяем касание с землей с помощью OverlapCircle
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ OverlapCircle
         Collider2D groundCollision = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundMask);
 
-        if (groundCollision != null) // Если персонаж на земле
+        if (groundCollision != null) // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         {
             canJump = true;
-            jumpAmount = 0; // Сбрасываем количество прыжков
-        }
-        else
-        {
-            canJump = false;
+            jumpAmount = 0; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
         }
 
-        anim.SetBool("isJumping", !canJump); // Когда на земле, прыжок выключен
-        //Debug.Log(canJump);
+        anim.SetBool("isJumping", !canJump); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        Debug.Log(canJump);
     }
 
     private void Flip()
     {
-        // Меняем направление движения персонажа
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         facingRight = !facingRight;
 
-        // Инвертируем локальную шкалу персонажа по оси X
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ X
         Vector3 theScale = character.transform.localScale;
-        theScale.x *= -1; // Переворачиваем по оси X
+        theScale.x *= -1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ X
         character.transform.localScale = theScale;
     }
 
-    
-    
+   
+    private void Run()
+    {
+        if (moveVector.x != 0 && Mathf.Abs(rb.velocity.x) < maxSpeed)
+        {
+            float desiredSpeed = moveVector.x * maxSpeed; // Speed the player wants to reach
+            float speedDif = Mathf.Abs((desiredSpeed - rb.velocity.x) / maxSpeed); // Difference between current speed and desired speed
+            rb.AddForce(new Vector2(speedDif * acceleration * moveVector.x, 0)); // Apply force in the direction of movement
+        }
+        
+        else if (moveVector.x == 0)
+        {
+            Decelerate();
+        }
+        
+    }
+
+
+    private void Decelerate()
+    {
+        // Apply force in the opposite direction to current velocity to slow down
+        if (rb.velocity.magnitude > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * deceleration, rb.velocity.y);
+
+            // Stop the rigidbody if the deceleration is very small to avoid sliding
+            if (rb.velocity.magnitude < 0.1f)
+            {
+                rb.velocity = Vector2.zero;
+            }
+        }
+    }
 }

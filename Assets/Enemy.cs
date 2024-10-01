@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public int MaxHealth = 100;
     private int Currenthealth;
 
-
+    public Animator anim;
     void Start()
     {
         Currenthealth = MaxHealth; 
@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage) 
     {
+        anim.SetTrigger("Hurt");
         Currenthealth -= damage;
+
 
         if (Currenthealth < 0) 
         {
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
     }
     void Die() 
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
     
 }

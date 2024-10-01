@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class movement : SoundManager
 {
     float xInput;
     public float speed;
@@ -54,6 +54,7 @@ public class movement : MonoBehaviour
         if (Input.GetKeyDown("space") && canJump)
         {
             Jump();
+            PlaySound(sounds[0], volume: 0.05f);
         }
 
         CheckGround();

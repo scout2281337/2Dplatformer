@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat : SoundManager
 {
     public Animator animator;
     public Transform AttackPoint;
@@ -29,13 +29,24 @@ public class PlayerCombat : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
-
+        PlaySound(sounds[0]);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, enemyLayer);
 
         foreach ( Collider2D enemy in hitEnemies) 
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            Enemy enemyComponent = enemy.GetComponent<Enemy>();
+
+            if (enemyComponent != null) 
+            {
+                enemyComponent.TakeDamage(attackDamage);
+            }
+            else 
+            {
+                Debug.Log("компонент не найден");
+            }
+
+
         
         }
     }

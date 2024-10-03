@@ -5,24 +5,42 @@ using UnityEngine;
 
 public class movement2 : MonoBehaviour
 {
-    private Vector2 moveVector;
-    public float acceleration;
-    public float deceleration;
-    public float maxSpeed;
-    public float currentspeed;
+    [Header("DeBug")]
+    public Vector2 decelerationVector;
+    public Vector2 speed;
 
-    public float jumpForce;
-    public int maxJumps = 2; // �������� ������� ��� �������� ������
+    [Header("Run")]
+    public float acceleration = 40f; 
+    public float runDeceleration = 0.9f;
+    public float maxSpeed = 12f;
+    public Vector2 moveVector;
+
+    [Header("Jump")]
+    public float jumpStartForce = 7;
+    public float jumpForce = 20;
+    public float jumpTime = 0.2f;
+    public int maxJumps = 2;
+    public float jumpDeceleration = 0.3f;
     private int jumpAmount = 0;
+    private float lastTimeJumped = 0;
+    private bool isJumping = false;
+    private bool canJump = true;
 
-    public float dashForce;
+    [Header("Dash")]
+    public float dashForce = 10;
+    public float dashCooldown = 1;
+    public float dashLowerGravityTime = 0.3f;
+    public Vector2 dashDeceleration = new Vector2(0.5f, 0.5f);
+    private float lastTimeDashed;
 
+    [Header("RigidBody")]
     private Rigidbody2D rb;
-    private bool canJump;
 
+    [Header("Animator")]
     public Animator anim;
     private bool facingRight = true; // ���������, ������� �� �������� �����
 
+    [Header("GroundCheck")]
     public GameObject character;
     public GameObject groundCheck;
     public LayerMask groundMask;
@@ -37,7 +55,10 @@ public class movement2 : MonoBehaviour
     {
         Run();
         CheckGround();
-        currentspeed = rb.velocity.magnitude;
+        GravityChange();
+
+        //debug
+        speed = rb.velocity;
     }
     void Update()
     {
@@ -59,39 +80,83 @@ public class movement2 : MonoBehaviour
             Flip();
         }
 
-        // ������
-        if (Input.GetKeyDown("space") && canJump)
+        //Jump
+        if (Input.GetKeyDown("space"))
+        {
+            JumpStart();
+        }
+
+        if (Input.GetKey("space"))
         {
             Jump();
         }
 
+        if (Input.GetKeyUp("space"))
+        {
+            JumpEnd();
+        }
 
+        //Dash
         if (Input.GetKeyDown("left shift"))
         {
             Dash();
         }
+    }
+    private void JumpStart()
+    {
+        if (canJump)
+        {
+            lastTimeJumped = Time.time;
+            isJumping = true;
 
+            anim.SetBool("isJumping", true);
+
+            if (rb.velocity.y < 0)
+            {
+                Decelerate(1, jumpDeceleration);
+            }
+
+            rb.AddForce(new Vector2(0, jumpStartForce), ForceMode2D.Impulse);
+        }
     }
 
     private void Jump()
     {
-        rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse); // ��������� ������������ �������� ��� ������
-        jumpAmount++;
-
-        anim.SetBool("isJumping", true); // �������� ������
-        //Debug.Log(canJump);
-
-        if (jumpAmount >= maxJumps)
+        if (canJump && lastTimeJumped + jumpTime > Time.time)
         {
-            canJump = false; // ��������� ����������� �������, ���� ��������� ������
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Force); // ��������� ������������ �������� ��� ������
+        }
+        else
+        {
+            isJumping = false;
         }
     }
-    private void Dash()
+
+    private void JumpEnd()
     {
-        //Debug.Log("Dash");
-        rb.AddForce(moveVector.normalized * new Vector2(dashForce, 1.5f * dashForce), ForceMode2D.Impulse);
+        if (canJump)
+        {
+            jumpAmount++;
+            isJumping = false;
+
+            if (jumpAmount >= maxJumps)
+            {
+                canJump = false; // ��������� ����������� �������, ���� ��������� ������
+            }
+            anim.SetBool("isJumping", false);
+        }
     }
 
+    private void Dash()
+    {
+        if (lastTimeDashed + dashCooldown < Time.time)
+        {
+            DecelerateByVector(dashDeceleration.x, dashDeceleration.y, moveVector);
+            rb.AddForce(moveVector.normalized * new Vector2(dashForce, dashForce), ForceMode2D.Impulse);
+            lastTimeDashed = Time.time;
+        }
+
+    }
 
     private void CheckGround()
     {
@@ -106,7 +171,7 @@ public class movement2 : MonoBehaviour
         }
 
         anim.SetBool("isJumping", !canJump); // ����� �� �����, ������ ��������
-        Debug.Log(canJump);
+        //Debug.Log(canJump);
     }
 
     private void Flip()
@@ -120,7 +185,6 @@ public class movement2 : MonoBehaviour
         character.transform.localScale = theScale;
     }
 
-   
     private void Run()
     {
         if (moveVector.x != 0 && Mathf.Abs(rb.velocity.x) < maxSpeed)
@@ -129,27 +193,52 @@ public class movement2 : MonoBehaviour
             float speedDif = Mathf.Abs((desiredSpeed - rb.velocity.x) / maxSpeed); // Difference between current speed and desired speed
             rb.AddForce(new Vector2(speedDif * acceleration * moveVector.x, 0)); // Apply force in the direction of movement
         }
-        
+
         else if (moveVector.x == 0)
         {
-            Decelerate();
+            Decelerate(runDeceleration, 1);
         }
-        
+
     }
 
-
-    private void Decelerate()
+    private void DecelerateByVector(float xDeceleration, float yDeceleration, Vector2 actionDir)
     {
-        // Apply force in the opposite direction to current velocity to slow down
+        float dirCoefficient = (Vector2.Dot(rb.velocity.normalized, actionDir.normalized) + 1) / 2;
+
+        Decelerate(Mathf.Lerp(xDeceleration, 1, dirCoefficient), Mathf.Lerp(yDeceleration, 1, dirCoefficient));
+
+        decelerationVector = new Vector2(Mathf.Lerp(xDeceleration, 1, dirCoefficient), Mathf.Lerp(yDeceleration, 1, dirCoefficient));
+    }
+
+    private void Decelerate(float xDeceleration, float yDeceleration)
+    {
+        // multiplying rb.velocity to slow down the player
         if (rb.velocity.magnitude > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x * deceleration, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x * xDeceleration, rb.velocity.y * yDeceleration);
 
             // Stop the rigidbody if the deceleration is very small to avoid sliding
             if (rb.velocity.magnitude < 0.1f)
             {
                 rb.velocity = Vector2.zero;
             }
+        }
+    }
+
+    private void GravityChange()
+    {
+        // for jump
+        if (lastTimeDashed + dashLowerGravityTime > Time.time)
+        {
+            rb.gravityScale = 0;
+        }
+        else if (isJumping)
+        {
+            rb.gravityScale = 1;
+        }
+        else
+        {
+            rb.gravityScale = 2;
         }
     }
 }

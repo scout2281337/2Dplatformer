@@ -9,20 +9,20 @@ public class movement : SoundManager
     public float speed;
     public float jumpForce;
     public int jumpAmount = 0;
-    public int maxJumps = 2; // Максимум прыжков для двойного прыжка
+    public int maxJumps = 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
     private Rigidbody2D rb;
     private bool canJump;
 
     public Animator anim;
-    private bool facingRight = true; // Указывает, смотрит ли персонаж вправо
+    private bool facingRight = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
     
 
     public GameObject character;
     public GameObject groundCheck;
     public LayerMask groundMask;
-    public float groundCheckRadius = 0.1f; // Радиус проверки касания земли
+    public float groundCheckRadius = 0.1f; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     void Start()
     {
@@ -33,14 +33,14 @@ public class movement : SoundManager
     {
         xInput = Input.GetAxis("Horizontal");
 
-        // Перемещение персонажа
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
 
-        // Обновление анимаций
-        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // Используем Abs для анимации независимо от направления
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Abs пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         anim.SetFloat("yVelocity", rb.velocity.y);
 
-        // Поворачиваем персонажа
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (xInput > 0 && !facingRight)
         {
             Flip();
@@ -50,7 +50,7 @@ public class movement : SoundManager
             Flip();
         }
 
-        // Прыжок
+        // пїЅпїЅпїЅпїЅпїЅпїЅ
         if (Input.GetKeyDown("space") && canJump)
         {
             Jump();
@@ -62,43 +62,43 @@ public class movement : SoundManager
 
     private void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Обновляем вертикальную скорость для прыжка
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         jumpAmount++;
-        anim.SetBool("isJumping", true); // Анимация прыжка
+        anim.SetBool("isJumping", true); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         //Debug.Log(canJump);
         if (jumpAmount >= maxJumps)
         {
-            canJump = false; // Отключаем возможность прыгать, если исчерпаны прыжки
+            canJump = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
 
     private void CheckGround()
     {
-        // Проверяем касание с землей с помощью OverlapCircle
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ OverlapCircle
         Collider2D groundCollision = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundMask);
 
-        if (groundCollision != null) // Если персонаж на земле
+        if (groundCollision != null) // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         {
             canJump = true;
-            jumpAmount = 0; // Сбрасываем количество прыжков
+            jumpAmount = 0; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
         else
         {
             canJump = false;
         }
 
-        anim.SetBool("isJumping", !canJump); // Когда на земле, прыжок выключен
+        anim.SetBool("isJumping", !canJump); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         //Debug.Log(canJump);
     }
 
     private void Flip()
     {
-        // Меняем направление движения персонажа
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         facingRight = !facingRight;
 
-        // Инвертируем локальную шкалу персонажа по оси X
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ X
         Vector3 theScale = character.transform.localScale;
-        theScale.x *= -1; // Переворачиваем по оси X
+        theScale.x *= -1; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ X
         character.transform.localScale = theScale;
     }
 

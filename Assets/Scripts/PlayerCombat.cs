@@ -35,7 +35,7 @@ public class PlayerCombat : SoundManager
 
         foreach ( Collider2D enemy in hitEnemies) 
         {
-            Enemy enemyComponent = enemy.GetComponent<Enemy>();
+            EnemyHealth enemyComponent = enemy.GetComponent<EnemyHealth>();
 
             if (enemyComponent != null) 
             {

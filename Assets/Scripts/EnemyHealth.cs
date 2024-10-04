@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     public int MaxHealth = 100;
-    private int Currenthealth;
+    [SerializeField] private int Currenthealth;
 
-    public Animator anim;
+    //public Animator anim;
     void Start()
     {
         Currenthealth = MaxHealth; 
@@ -15,11 +15,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage) 
     {
-        anim.SetTrigger("Hurt");
+        //anim.SetTrigger("Hurt");
         Currenthealth -= damage;
 
 
-        if (Currenthealth < 0) 
+        if (Currenthealth <= 0) 
         {
             Die();
         }

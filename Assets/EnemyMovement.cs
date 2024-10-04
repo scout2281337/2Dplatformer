@@ -9,27 +9,24 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
 
     private Vector3 TargetPoint;
-    
-    
-    
+
     void Start()
     {
         TargetPoint = pointB;
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, TargetPoint, speed * Time.deltaTime);
-        if ( Vector3.Distance(transform.position, TargetPoint) < 0.1f) 
-        {
-            if ( TargetPoint == pointB ) { TargetPoint = pointA; }
-            else { TargetPoint = pointB; }
-        }
-        
-        
 
+        // Увеличим пороговое значение для проверки на малое расстояние
+        if (Vector3.Distance(transform.position, TargetPoint) < 0.05f)
+        {
+            // Меняем цель, когда враг доезжает до текущей
+            TargetPoint = TargetPoint == pointB ? pointA : pointB;
+        }
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

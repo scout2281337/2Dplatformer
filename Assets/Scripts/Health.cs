@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     public int MaxHealth = 100;
     [SerializeField] private int Currenthealth;
@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
         Healthbar.SetMaxHealth(MaxHealth);
     }
 
-
+    
     public void TakeDamage(int damage)
     {
         //anim.SetTrigger("Hurt");
@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     }
     void Die()
     {
-        Destroy(gameObject);
+        Debug.Log("Герой умер");
     }
 
 }

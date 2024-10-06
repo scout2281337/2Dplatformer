@@ -37,7 +37,7 @@ public class movement2 : MonoBehaviour
     private Rigidbody2D rb;
 
     [Header("Animator")]
-    public Animator anim;
+    public Animator animator;
     private bool facingRight = true; // ���������, ������� �� �������� �����
 
     [Header("GroundCheck")]
@@ -53,12 +53,12 @@ public class movement2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //debug
+        speed = rb.velocity;
+
         Run();
         CheckGround();
         GravityChange();
-
-        //debug
-        speed = rb.velocity;
     }
     void Update()
     {
@@ -67,8 +67,8 @@ public class movement2 : MonoBehaviour
         // ����������� ���������
 
         // ���������� ��������
-        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // ���������� Abs ��� �������� ���������� �� �����������
-        anim.SetFloat("yVelocity", rb.velocity.y);
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // ���������� Abs ��� �������� ���������� �� �����������
+        animator.SetFloat("yVelocity", rb.velocity.y);
 
         // ������������ ���������
         if (moveVector.x > 0 && !facingRight)
@@ -109,7 +109,7 @@ public class movement2 : MonoBehaviour
             lastTimeJumped = Time.time;
             isJumping = true;
 
-            anim.SetBool("isJumping", true);
+            animator.SetTrigger("jump");
 
             if (rb.velocity.y < 0)
             {
@@ -124,7 +124,7 @@ public class movement2 : MonoBehaviour
     {
         if (canJump && lastTimeJumped + jumpTime > Time.time)
         {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Force); // ��������� ������������ �������� ��� ������
+            rb.AddForce(new Vector2(0, jumpForce * Time.deltaTime * 100), ForceMode2D.Force); // ��������� ������������ �������� ��� ������
         }
         else
         {
@@ -143,7 +143,6 @@ public class movement2 : MonoBehaviour
             {
                 canJump = false; // ��������� ����������� �������, ���� ��������� ������
             }
-            anim.SetBool("isJumping", false);
         }
     }
 
@@ -169,8 +168,6 @@ public class movement2 : MonoBehaviour
             jumpAmount = 0; // ���������� ���������� �������
 
         }
-
-        anim.SetBool("isJumping", !canJump); // ����� �� �����, ������ ��������
         //Debug.Log(canJump);
     }
 

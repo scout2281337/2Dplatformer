@@ -28,7 +28,7 @@ public class PlayerCombat : SoundManager
 
     private void Attack()
     {
-        animator.SetTrigger("Attack");
+        animator.SetTrigger("attack");
         PlaySound(sounds[0]);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, enemyLayer);
@@ -43,7 +43,7 @@ public class PlayerCombat : SoundManager
             }
             else 
             {
-                Debug.Log("компонент не найден");
+                Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
             }
 
 

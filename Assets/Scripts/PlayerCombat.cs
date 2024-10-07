@@ -33,23 +33,26 @@ public class PlayerCombat : SoundManager
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, enemyLayer);
 
-        foreach ( Collider2D enemy in hitEnemies) 
+        foreach (Collider2D enemy in hitEnemies)
         {
-            EnemyHealth enemyComponent = enemy.GetComponent<EnemyHealth>();
-
-            if (enemyComponent != null) 
+            // Проверяем, что коллайдер не является триггером
+            if (!enemy.isTrigger)
             {
-                enemyComponent.TakeDamage(attackDamage);
-            }
-            else 
-            {
-                Debug.Log("��������� �� ������");
-            }
+                Debug.Log(enemy.name);
+                EnemyHealth enemyComponent = enemy.GetComponent<EnemyHealth>();
 
-
-        
+                if (enemyComponent != null)
+                {
+                    enemyComponent.TakeDamage(attackDamage);
+                }
+                else
+                {
+                    Debug.Log("нет врагов");
+                }
+            }
         }
     }
+
 
     private void OnDrawGizmosSelected()
     {

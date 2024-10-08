@@ -11,6 +11,11 @@ public class PlayerCombat : SoundManager
 
     public float AttackRange;
     public int attackDamage = 20;
+
+    public GameObject sprite;
+    public GameObject shurikenPrefab;  // Префаб сюрикена
+    public Transform firePoint;         // Точка, откуда будет выпущен сюрикен
+    public float shurikenSpeed = 10f;   // Скорость полета сюрикена
     void Start()
     {
         
@@ -23,7 +28,11 @@ public class PlayerCombat : SoundManager
         {
             Attack();
         
-        } 
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ThrowShuriken();
+        }
     }
 
     private void Attack()
@@ -52,7 +61,18 @@ public class PlayerCombat : SoundManager
             }
         }
     }
+    void ThrowShuriken()
+    {
+        PlaySound(sounds[1]);
+        // Создаем сюрикен
+        GameObject shuriken = Instantiate(shurikenPrefab, firePoint.position, Quaternion.identity);
 
+        // Рассчитываем направление, в котором будет лететь сюрикен
+        Vector2 direction = sprite.transform.localScale.x > 0 ? Vector2.right : Vector2.left; // Определяем направление на основе ориентации персонажа
+
+        // Устанавливаем скорость для сюрикена
+        shuriken.GetComponent<Rigidbody2D>().velocity = direction * shurikenSpeed;
+    }
 
     private void OnDrawGizmosSelected()
     {

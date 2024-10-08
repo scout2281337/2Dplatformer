@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject menu;
+    
     void Start()
     {
         
@@ -14,14 +15,32 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "SampleScene"  )
+        if ( Input.GetKeyDown(KeyCode.P) && SceneManager.GetActiveScene().name == "SampleScene"  )
         {
             SceneTransition.SwitchToScene("Mainmenu");
+        }
+        if ( Input.GetKeyDown(KeyCode.Escape)) 
+        {
+
+            menu.SetActive(!menu.activeSelf);
+            
+        
         }
     }
 
     public void GoToGame() 
     {
         SceneTransition.SwitchToScene("Mainmenu");
+    }
+
+    public void ToMainMenu() 
+    {
+        SceneManager.LoadScene(0);
+    
+    }
+
+    public void OpenMenu() 
+    {
+        menu.SetActive(!menu.activeSelf);
     }
 }

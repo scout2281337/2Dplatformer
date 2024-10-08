@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerCombat : SoundManager
 {
@@ -8,31 +9,35 @@ public class PlayerCombat : SoundManager
     public Transform AttackPoint;
     public LayerMask enemyLayer;
 
-
     public float AttackRange;
     public int attackDamage = 20;
 
-    public GameObject sprite;
-    public GameObject shurikenPrefab;  // Префаб сюрикена
-    public Transform firePoint;         // Точка, откуда будет выпущен сюрикен
-    public float shurikenSpeed = 10f;   // Скорость полета сюрикена
-    void Start()
-    {
-        
-    }
+    [Header("Aiming")]
+    public Camera cam;
+    public GameObject hand;
+    private Vector3 mousePos;
+    private Vector3 diractionVector;
 
-    // Update is called once per frame
+    //public GameObject sprite;
+    //public GameObject shurikenPrefab;  // Префаб сюрикена
+    //public Transform firePoint;         // Точка, откуда будет выпущен сюрикен
+    //public float shurikenSpeed = 10f;   // Скорость полета сюрикена
+
+
     void Update()
     {
+        AimAtMouse();
+
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
         
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
-            ThrowShuriken();
+            UseWeapon();
         }
+
     }
 
     private void Attack()
@@ -61,17 +66,18 @@ public class PlayerCombat : SoundManager
             }
         }
     }
-    void ThrowShuriken()
+
+    private void AimAtMouse()
     {
-        PlaySound(sounds[1]);
-        // Создаем сюрикен
-        GameObject shuriken = Instantiate(shurikenPrefab, firePoint.position, Quaternion.identity);
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        diractionVector = mousePos - hand.transform.position;
+        float rotZ = Mathf.Atan2(diractionVector.y, diractionVector.x) * Mathf.Rad2Deg;
+        hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
 
-        // Рассчитываем направление, в котором будет лететь сюрикен
-        Vector2 direction = sprite.transform.localScale.x > 0 ? Vector2.right : Vector2.left; // Определяем направление на основе ориентации персонажа
-
-        // Устанавливаем скорость для сюрикена
-        shuriken.GetComponent<Rigidbody2D>().velocity = direction * shurikenSpeed;
+    private void UseWeapon()
+    {
+        hand.transform.GetChild(0).GetComponent<Weapon>().WeaponAttack(diractionVector, gameObject);
     }
 
     private void OnDrawGizmosSelected()
@@ -81,4 +87,17 @@ public class PlayerCombat : SoundManager
         
         Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
     }
+
+    //void ThrowShuriken()
+    //{
+    //    PlaySound(sounds[1]);
+    //    // Создаем сюрикен
+    //    GameObject shuriken = Instantiate(shurikenPrefab, firePoint.position, Quaternion.identity);
+
+    //    // Рассчитываем направление, в котором будет лететь сюрикен
+    //    Vector2 direction = sprite.transform.localScale.x > 0 ? Vector2.right : Vector2.left; // Определяем направление на основе ориентации персонажа
+
+    //    // Устанавливаем скорость для сюрикена
+    //    shuriken.GetComponent<Rigidbody2D>().velocity = direction * shurikenSpeed;
+    //}
 }

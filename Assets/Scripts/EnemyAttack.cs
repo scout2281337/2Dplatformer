@@ -13,11 +13,11 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) // Проверка, если объект — это игрок
+        if (collision.CompareTag("Player"))
         {
             player = collision.transform;
             canShoot = true;
-            StartCoroutine(Shoot());
+            InvokeRepeating("Shoot", 0f, fireRate); // Запуск стрельбы через интервалы
         }
     }
 
@@ -26,27 +26,22 @@ public class EnemyAttack : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             canShoot = false;
-            StopCoroutine(Shoot());
+            CancelInvoke("Shoot"); // Остановить стрельбу
         }
     }
 
-    IEnumerator Shoot()
+    void Shoot()
     {
-        while (canShoot)
-        {
-            // Создаем снаряд
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        if (!canShoot) return;
 
-            // Рассчитываем направление к игроку
-            Vector2 direction = (player.position - firePoint.position).normalized;
+        // Создаем снаряд
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
-            // Добавляем скорость снаряду
-            projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+        // Рассчитываем направление к игроку
+        Vector2 direction = (player.position - firePoint.position).normalized;
 
-            // Ждем перед следующим выстрелом
-            yield return new WaitForSeconds(fireRate);
-        }
+        // Добавляем скорость снаряду
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.velocity = direction * projectileSpeed;
     }
-
-    
 }

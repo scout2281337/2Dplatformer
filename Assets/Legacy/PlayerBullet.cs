@@ -16,18 +16,11 @@ public class PlayerBullet : MonoBehaviour
         transform.Rotate(0, 0, 1);
     }
 
-
-
-
-
-
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("попали по врагу");
+            Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {

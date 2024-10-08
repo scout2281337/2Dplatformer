@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
     }
     void Die()
     {
-        Debug.Log("Герой умер");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
     }
 
 }

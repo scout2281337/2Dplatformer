@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement2 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("DeBug")]
     public Vector2 decelerationVector;
@@ -44,7 +44,7 @@ public class movement2 : MonoBehaviour
     public GameObject character;
     public GameObject groundCheck;
     public LayerMask groundMask;
-    public float groundCheckRadius = 0.1f; // ������ �������� ������� �����
+    public float groundCheckRadius = 0.1f;
 
     void Start()
     {
@@ -146,12 +146,17 @@ public class movement2 : MonoBehaviour
         }
     }
 
+    public void PlayerAddForce(Vector2 forceVector, float forceStrength)
+    {
+        rb.AddForce(forceVector.normalized * forceStrength, ForceMode2D.Impulse);
+    }
     private void Dash()
     {
         if (lastTimeDashed + dashCooldown < Time.time)
         {
             DecelerateByVector(dashDeceleration.x, dashDeceleration.y, moveVector);
-            rb.AddForce(moveVector.normalized * new Vector2(dashForce, dashForce), ForceMode2D.Impulse);
+            PlayerAddForce(moveVector, dashForce);
+            //rb.AddForce(moveVector.normalized * new Vector2(dashForce, dashForce), ForceMode2D.Impulse);
             lastTimeDashed = Time.time;
         }
 

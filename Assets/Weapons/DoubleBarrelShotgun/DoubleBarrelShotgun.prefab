@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 5597251174798365475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.843864, y: 10.286873, z: 0.082561724}
-  m_LocalScale: {x: 2.27, y: 2.27, z: 2.27}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,9 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea46dc7a8d793541bb987a81c54f060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0
-  damage: 0
-  projectileSpeed: 0
-  projectiletype: {fileID: 0}
-  weaponDiraction: {x: 0, y: 0}
-  amountOfPellets: 0
+  fireRate: 0.3
+  damage: 10
+  projectileSpeed: 40
+  projectiletype: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
+  weaponPickUp: {fileID: 5597251174798365475, guid: 9f0f4f50359d2b947a74f1134dd95bc9, type: 3}
+  selfPrefab: {fileID: 5597251174798365475}
+  recoilStrength: 15

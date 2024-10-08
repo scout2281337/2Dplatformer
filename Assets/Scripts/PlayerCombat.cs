@@ -18,6 +18,9 @@ public class PlayerCombat : SoundManager
     private Vector3 mousePos;
     private Vector3 diractionVector;
 
+    [Header("Weapon")]
+    private GameObject currentWeapon;
+
     //public GameObject sprite;
     //public GameObject shurikenPrefab;  // Префаб сюрикена
     //public Transform firePoint;         // Точка, откуда будет выпущен сюрикен
@@ -28,14 +31,19 @@ public class PlayerCombat : SoundManager
     {
         AimAtMouse();
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        
-        }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetMouseButton(0))
         {
             UseWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Attack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DropCurrentWeapon();
         }
 
     }
@@ -77,7 +85,31 @@ public class PlayerCombat : SoundManager
 
     private void UseWeapon()
     {
-        hand.transform.GetChild(0).GetComponent<Weapon>().WeaponAttack(diractionVector, gameObject);
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetComponent<Weapon>().WeaponAttack(diractionVector, gameObject);
+        }
+
+    }
+
+    private void DropCurrentWeapon()
+    {
+        currentWeapon.GetComponent<Weapon>().DropWeapon();
+    }
+
+    public bool AddWeapon(GameObject newWeapon)
+    {
+        if(currentWeapon == null)
+        {
+            currentWeapon = Instantiate(newWeapon, hand.transform);
+            currentWeapon.transform.localPosition = new Vector3(1, 0, 0);
+            Debug.Log(currentWeapon.GetComponent<Weapon>().selfPrefab);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void OnDrawGizmosSelected()

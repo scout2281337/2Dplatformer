@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoubleBarrelShotgun : Weapon
 {
-    public int amountOfPellets;
+    [Header("DoubleBarrelShotgun")]
     public float recoilStrength;
 
     public override void WeaponAttack(Vector2 diraction, GameObject player)

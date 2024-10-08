@@ -34,7 +34,7 @@ public class Rocket : Projectile
 
     private void Explosion()
     {
-        Debug.Log("explosion");
+        //Debug.Log("explosion");
         Collider2D explosionCollision = Physics2D.OverlapCircle(transform.position, explosionRadius, playerMask);
         if (explosionCollision != null)
         {

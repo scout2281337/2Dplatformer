@@ -27,5 +27,10 @@ public class Falltrigger : MonoBehaviour
             //text.SetActive(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if ( collision.gameObject.tag == "Bullet") 
+        {
+            Destroy(collision.gameObject);
+        
+        }
     }
 }

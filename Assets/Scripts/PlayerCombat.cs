@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -95,15 +96,19 @@ public class PlayerCombat : SoundManager
     private void DropCurrentWeapon()
     {
         currentWeapon.GetComponent<Weapon>().DropWeapon();
+        currentWeapon = null;
     }
 
     public bool AddWeapon(GameObject newWeapon)
     {
         if(currentWeapon == null)
         {
-            currentWeapon = Instantiate(newWeapon, hand.transform);
+            currentWeapon = newWeapon;
+            //Assigning weapons parent to hand
+            currentWeapon.transform.parent = hand.transform; 
+            //Setting default position for weapon in hand
             currentWeapon.transform.localPosition = new Vector3(1, 0, 0);
-            Debug.Log(currentWeapon.GetComponent<Weapon>().selfPrefab);
+            
             return true;
         }
         else

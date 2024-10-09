@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8786869429847274215}
   - component: {fileID: 3148238455211537391}
+  - component: {fileID: 6718691690431724567}
   - component: {fileID: 1676241274347811467}
   m_Layer: 0
   m_Name: DoubleBarrelShotgun
@@ -85,6 +86,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6718691690431724567
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5597251174798365475}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
 --- !u!114 &1676241274347811467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,10 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea46dc7a8d793541bb987a81c54f060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.3
+  fireRate: 0.6
   damage: 10
   projectileSpeed: 40
-  projectiletype: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
-  weaponPickUp: {fileID: 5597251174798365475, guid: 9f0f4f50359d2b947a74f1134dd95bc9, type: 3}
-  selfPrefab: {fileID: 5597251174798365475}
+  projectileType: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
   recoilStrength: 15

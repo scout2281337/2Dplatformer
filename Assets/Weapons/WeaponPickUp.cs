@@ -5,27 +5,23 @@ using UnityEngine;
 public class WeaponPickUp : MonoBehaviour
 {
     public GameObject weapon;
-    public SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        SetWeaponPickUp(weapon);
+        SetWeaponPickUp(transform.GetChild(0).gameObject);
     }
 
     public void SetWeaponPickUp(GameObject newWeapon)
     {
-        if (newWeapon != null)
-        {
-            weapon = newWeapon;
-            spriteRenderer.sprite = weapon.GetComponent<SpriteRenderer>().sprite;
-        }
+        weapon = newWeapon;
+        weapon.transform.parent = transform;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerCombat>().AddWeapon(weapon))
         {
             Destroy(gameObject);
         }
-        
     }
 }

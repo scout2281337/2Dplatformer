@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.XR;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -8,9 +10,7 @@ public abstract class Weapon : MonoBehaviour
     public float fireRate;
     public float damage;
     public float projectileSpeed;
-    public GameObject projectiletype;
-    public GameObject weaponPickUp;
-    public GameObject selfPrefab;
+    public GameObject projectileType;
     protected float lastTimeShot;
     protected bool canFire = true;
 
@@ -19,11 +19,17 @@ public abstract class Weapon : MonoBehaviour
     {
         Debug.Log("WeaponShoot");  
     }
-
     public void DropWeapon()
     {
-        GameObject dropedWeapon = Instantiate(weaponPickUp, transform.position, Quaternion.identity);
-        dropedWeapon.GetComponent<WeaponPickUp>().SetWeaponPickUp(selfPrefab);
-        Destroy(gameObject);
+        transform.parent = null; 
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<PlayerCombat>().AddWeapon(gameObject))
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        }
     }
 }

@@ -165,3 +165,5 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
+  explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}
+  projectileFullSpeed: 40

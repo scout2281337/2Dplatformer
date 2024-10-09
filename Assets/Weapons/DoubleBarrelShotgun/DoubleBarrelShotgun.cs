@@ -12,7 +12,7 @@ public class DoubleBarrelShotgun : Weapon
         if (canFire && lastTimeShot + fireRate < Time.time)
         {
             //shot
-            GameObject bullet = Instantiate(projectiletype, transform.position, Quaternion.identity); //Spawns bullet
+            GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
             bullet.GetComponent<Projectile>().SetProjectile(projectileSpeed, diraction); //Sets bullets mandatory vars
             lastTimeShot = Time.time; // gets time to compare then shooting to preserve firerate
 

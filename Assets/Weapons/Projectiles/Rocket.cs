@@ -6,6 +6,7 @@ using UnityEngine;
 public class Rocket : Projectile
 {
     public LayerMask playerMask;
+    public GameObject explosionPrefab;
     public float projectileFullSpeed;
     private float projectileAcceleration = 0;
     private float explosionRadius;
@@ -34,6 +35,7 @@ public class Rocket : Projectile
 
     private void Explosion()
     {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         //Debug.Log("explosion");
         Collider2D explosionCollision = Physics2D.OverlapCircle(transform.position, explosionRadius, playerMask);
         if (explosionCollision != null)

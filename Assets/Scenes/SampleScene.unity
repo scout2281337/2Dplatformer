@@ -12941,6 +12941,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 8302104495389313648, guid: bd32b3a98fe7cdf43a64574938219245, type: 3}
+    - target: {fileID: 9168879927977722569, guid: aa95aeed3935a9c4681219aab3ae686a, type: 3}
+      propertyPath: NumberOfProjectiles
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13093,6 +13097,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3729720555856715496, guid: 953bc3d1bcfd6db45bbdd4926e6a5612, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769825838517912816, guid: 953bc3d1bcfd6db45bbdd4926e6a5612, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4974621178651032077, guid: 953bc3d1bcfd6db45bbdd4926e6a5612, type: 3}

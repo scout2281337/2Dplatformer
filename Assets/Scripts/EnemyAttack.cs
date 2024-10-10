@@ -19,7 +19,8 @@ public class EnemyAttack : MonoBehaviour
             player = collision.transform;
             canShoot = true;
             //StartShooting(); // Запуск стрельбы
-            AllDirectionShoot();
+            //AllDirectionShoot();
+            RandomShoot();
         }
     }
 
@@ -59,6 +60,35 @@ public class EnemyAttack : MonoBehaviour
         // Добавляем скорость снаряду
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.velocity = direction * projectileSpeed;
+    }
+    
+
+    protected virtual void RandomShoot()
+    {
+        if (!canShoot) return;
+
+        StartCoroutine(ShootWithDelay());
+    }
+
+    private IEnumerator ShootWithDelay()
+    {
+        while (canShoot)
+        {
+            for (int i = 0; i < NumberOfProjectiles; i++)
+            {
+                // Создаем снаряд
+                Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized;
+
+                GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+                Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+
+                // Добавляем скорость снаряду
+                rb.velocity = direction * projectileSpeed;
+            }
+
+            // Ждем 1 секунду перед следующей стрельбой
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     protected virtual void AllDirectionShoot()

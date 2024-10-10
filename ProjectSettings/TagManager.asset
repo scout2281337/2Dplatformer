@@ -14,11 +14,11 @@ TagManager:
   - 
   - Water
   - UI
-  - ground
+  - Ground
   - Enemy
-  - player
-  - 
-  - 
+  - Player
+  - Item
+  - Bullet
   - 
   - 
   - 

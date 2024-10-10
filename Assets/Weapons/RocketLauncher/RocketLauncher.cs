@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RocketLauncher : Weapon
 {
+    [Header("RocketLauncher")]
     public float explosionRadius;
     public float explosionForce;
-    public float projectileFullSpeed;
 
     public override void WeaponAttack(Vector2 diraction, GameObject player)
     {
@@ -14,8 +14,8 @@ public class RocketLauncher : Weapon
         {
             //shot
             GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-            bullet.GetComponent<Rocket>().SetRocket(projectileSpeed, diraction, explosionRadius, explosionForce, projectileFullSpeed); //Sets bullets mandatory vars
-            lastTimeShot = Time.time; // gets time to compare then shooting to preserve firerate
+            bullet.GetComponent<Rocket>().SetRocket(projectileSpeed, diraction, explosionRadius, explosionForce); //Sets bullets mandatory vars
+            lastTimeShot = Time.time; // gets time to compare when shooting to preserve firerate
         }
     }
 }

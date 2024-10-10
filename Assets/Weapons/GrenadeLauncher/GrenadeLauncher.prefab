@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2936370622895546268}
   - component: {fileID: 1307326486165719000}
   - component: {fileID: -3051379610966255900}
-  - component: {fileID: 1520608984341814480}
+  - component: {fileID: -135604638372759230}
   m_Layer: 9
-  m_Name: MachineGun
+  m_Name: GrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 91ea6effe550ab347bca0bf37949f62e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d07fe123048229d4f85156a8358dca81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
---- !u!114 &1520608984341814480
+--- !u!114 &-135604638372759230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,11 +130,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5777016165425731265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 209663e70463fee46bfe96a0d33d3162, type: 3}
+  m_Script: {fileID: 11500000, guid: d101904332307c246807b49f299dcd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.05
-  damage: 2
-  projectileSpeed: 40
-  projectileType: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
-  recoilStrength: 1
+  fireRate: 0.8
+  damage: 20
+  projectileSpeed: 20
+  projectileType: {fileID: 995234572802271142, guid: d05b32a389c49a247a9850bcf4391e56, type: 3}
+  explosionRadius: 10
+  explosionForce: 10

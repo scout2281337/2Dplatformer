@@ -7,10 +7,14 @@ using UnityEngine.XR;
 public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
+    public string WeaponName;
     public float fireRate;
     public float damage;
+    //public int magCapacity;
+    //public float reloadCooldown;
     public float projectileSpeed;
     public GameObject projectileType;
+    public GameObject weaponHandler;
     protected float lastTimeShot;
     protected bool canFire = true;
 
@@ -22,14 +26,15 @@ public abstract class Weapon : MonoBehaviour
     public void DropWeapon()
     {
         transform.parent = null; 
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        weaponHandler.SetActive(true);
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    public void WeaponPickUp(Collider2D collision)
     {
         if (collision.GetComponent<PlayerCombat>().AddWeapon(gameObject))
         {
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            weaponHandler.SetActive(false);
         }
     }
 }

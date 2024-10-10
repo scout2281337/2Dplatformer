@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPushable
 {
     [Header("DeBug")]
     public Vector2 decelerationVector;
@@ -146,16 +146,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void PlayerAddForce(Vector2 forceVector, float forceStrength)
+    public void Push(Vector2 forceVector, float forceStrength)
     {
         rb.AddForce(forceVector.normalized * forceStrength, ForceMode2D.Impulse);
     }
+
     private void Dash()
     {
         if (lastTimeDashed + dashCooldown < Time.time)
         {
             DecelerateByVector(dashDeceleration.x, dashDeceleration.y, moveVector);
-            PlayerAddForce(moveVector, dashForce);
+            Push(moveVector, dashForce);
             //rb.AddForce(moveVector.normalized * new Vector2(dashForce, dashForce), ForceMode2D.Impulse);
             lastTimeDashed = Time.time;
         }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6674175952689313539}
   - component: {fileID: -1637937350344163789}
   - component: {fileID: 7558857642702665274}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 995234572802271142}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.456345, y: 9.37498, z: -0.08100927}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995234572802271142}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -166,4 +166,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}
-  projectileFullSpeed: 40

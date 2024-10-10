@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 455276151908638542}
   - component: {fileID: 7916504507798160553}
   - component: {fileID: 3432692119581076129}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8302104495389313648}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.18009, y: 9.54637, z: -0.07703542}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 0.40000004, z: 0.40000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -162,3 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 455276151908638542}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  explosionPrefab: {fileID: 0}

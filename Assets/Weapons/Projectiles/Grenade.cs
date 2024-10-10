@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Rocket : Projectile
+public class Grenade : Projectile
 {
-    public void SetRocket(float speed, Vector2 diraction, float radius, float force)
+    
+    public void SetGrenade(float speed, Vector2 diraction, float radius, float force)
     {
         SetExplosiveProjectile(speed, diraction, radius, force);
     }

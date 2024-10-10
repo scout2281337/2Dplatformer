@@ -17,15 +17,11 @@ public class PlayerCombat : SoundManager
     public Camera cam;
     public GameObject hand;
     private Vector3 mousePos;
-    private Vector3 diractionVector;
+    private Vector3 directionVector;
 
     [Header("Weapon")]
-    private GameObject currentWeapon;
-
-    //public GameObject sprite;
-    //public GameObject shurikenPrefab;  // Префаб сюрикена
-    //public Transform firePoint;         // Точка, откуда будет выпущен сюрикен
-    //public float shurikenSpeed = 10f;   // Скорость полета сюрикена
+    private int currentWeaponIndex = 0;
+    private GameObject[] weaponInventory = new GameObject[2];  // Array to hold up to 2 weapons
 
 
     void Update()
@@ -47,6 +43,14 @@ public class PlayerCombat : SoundManager
             DropCurrentWeapon();
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            EquipWeapon(0);  // Equip weapon 1
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipWeapon(1);  // Equip weapon 2
+        }
     }
 
     private void Attack()
@@ -79,43 +83,84 @@ public class PlayerCombat : SoundManager
     private void AimAtMouse()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        diractionVector = mousePos - hand.transform.position;
-        float rotZ = Mathf.Atan2(diractionVector.y, diractionVector.x) * Mathf.Rad2Deg;
+        directionVector = (mousePos - hand.transform.position).normalized;
+        float rotZ = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
         hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
     private void UseWeapon()
     {
-        if (currentWeapon != null)
+        if (weaponInventory[currentWeaponIndex] != null) //Check for weapon, because player might not have any
         {
-            currentWeapon.GetComponent<Weapon>().WeaponAttack(diractionVector, gameObject);
+            weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject);
         }
-
     }
 
     private void DropCurrentWeapon()
     {
-        currentWeapon.GetComponent<Weapon>().DropWeapon();
-        currentWeapon = null;
+        if (weaponInventory[currentWeaponIndex] != null) // Check for weapon, because player might not have any
+        {
+            weaponInventory[currentWeaponIndex].GetComponent<Weapon>().DropWeapon();
+            weaponInventory[currentWeaponIndex] = null;
+
+            // Equips first avalable weapon
+            for (int i = weaponInventory.Length - 1; i > - 1; i--)
+            {
+                EquipWeapon(i);
+            }
+        }
+
     }
 
+    //Adds weapon to free weaponInventory slot
     public bool AddWeapon(GameObject newWeapon)
     {
-        if(currentWeapon == null)
+        for (int i = 0; i < weaponInventory.Length; i++)
         {
-            currentWeapon = newWeapon;
-            //Assigning weapons parent to hand
-            currentWeapon.transform.parent = hand.transform; 
-            //Setting default position for weapon in hand
-            currentWeapon.transform.localPosition = new Vector3(1, 0, 0);
-            
-            return true;
+            if (weaponInventory[i] == null)  // Found an empty slot
+            {
+                weaponInventory[i] = newWeapon;
+
+                // Assign the weapon's parent to the hand
+                weaponInventory[i].transform.parent = hand.transform;
+
+                // Set the default position for the weapon in hand
+                weaponInventory[i].transform.localPosition = new Vector3(1, 0, 0);
+
+                // Equips added weapon, so that player could instantly use it
+                EquipWeapon(i);
+
+                return true;  // Successfully added the weapon
+            }
         }
-        else
+
+        // Return false if no empty slot was found after checking all slots
+        return false;
+    }
+
+    // Function to equip a weapon
+    private void EquipWeapon(int index)
+    {
+        if (weaponInventory[index] != null)
         {
-            return false;
+            for (int i = 0; i < weaponInventory.Length; i++)
+            {
+                if (weaponInventory[i] != null)
+                {
+                    if (i == index)
+                    {
+                        weaponInventory[i].SetActive(true);
+                        currentWeaponIndex = index;
+                    }
+                    else
+                    {
+                        weaponInventory[i].SetActive(false);
+                    }
+                }
+            }
         }
     }
+
 
     private void OnDrawGizmosSelected()
     {
@@ -124,17 +169,4 @@ public class PlayerCombat : SoundManager
         
         Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
     }
-
-    //void ThrowShuriken()
-    //{
-    //    PlaySound(sounds[1]);
-    //    // Создаем сюрикен
-    //    GameObject shuriken = Instantiate(shurikenPrefab, firePoint.position, Quaternion.identity);
-
-    //    // Рассчитываем направление, в котором будет лететь сюрикен
-    //    Vector2 direction = sprite.transform.localScale.x > 0 ? Vector2.right : Vector2.left; // Определяем направление на основе ориентации персонажа
-
-    //    // Устанавливаем скорость для сюрикена
-    //    shuriken.GetComponent<Rigidbody2D>().velocity = direction * shurikenSpeed;
-    //}
 }

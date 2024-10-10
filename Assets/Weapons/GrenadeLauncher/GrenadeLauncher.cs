@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineGun : Weapon
+public class GrenadeLauncher : Weapon
 {
-    public float recoilStrength;
+    public float explosionRadius;
+    public float explosionForce;
+
 
     public override void WeaponAttack(Vector2 diraction, GameObject player)
     {
@@ -12,11 +14,8 @@ public class MachineGun : Weapon
         {
             //shot
             GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-            bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, diraction); //Sets bullets mandatory vars
+            bullet.GetComponent<Grenade>().SetGrenade(projectileSpeed, diraction, explosionRadius, explosionForce); //Sets bullets mandatory vars
             lastTimeShot = Time.time; // gets time to compare then shooting to preserve firerate
-
-            //recoil
-            player.GetComponent<IPushable>().Push(-1 * diraction, recoilStrength); // Pushes player in the firaction opposite of shooting
         }
     }
 }

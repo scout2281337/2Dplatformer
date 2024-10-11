@@ -5,9 +5,10 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     [Header("Projectile")]
+    public int projectileDamage;
+    public Rigidbody2D rb;
     protected float projectileSpeed;
     protected Vector2 projectileDiraction;
-    public Rigidbody2D rb;
 
     [Header("ExplosiveProjectile")]
     public LayerMask playerMask;
@@ -16,18 +17,19 @@ public abstract class Projectile : MonoBehaviour
     protected float explosionForce;
 
 
-    public virtual void SetProjectile(float speed, Vector2 diraction)
+    public virtual void SetProjectile(float speed, Vector2 diraction, int damage)
     {
         projectileSpeed = speed;
         projectileDiraction = diraction;
+        projectileDamage = damage;
         float rotZ = Mathf.Atan2(projectileDiraction.y, projectileDiraction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
         rb.velocity = projectileDiraction.normalized * projectileSpeed;
     }
 
-    public virtual void SetExplosiveProjectile(float speed, Vector2 diraction, float radius, float force)
+    public virtual void SetExplosiveProjectile(float speed, Vector2 diraction, int damage, float radius, float force)
     {
-        SetProjectile(speed, diraction);
+        SetProjectile(speed, diraction, damage);
         explosionRadius = radius;
         explosionForce = force;
     }
@@ -50,6 +52,11 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(projectileDamage);
+        }
         Destroy(gameObject);
     }
 }

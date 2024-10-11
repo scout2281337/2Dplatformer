@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR;
 
 public class PlayerCombat : SoundManager
 {
-    public Animator animator;
-    public Transform AttackPoint;
-    public LayerMask enemyLayer;
+    //public Animator animator;
+    //public Transform AttackPoint;
+    //public LayerMask enemyLayer;
 
-    public float AttackRange;
-    public int attackDamage = 20;
+    //public float AttackRange;
+    //public int attackDamage = 20;
 
     [Header("Aiming")]
     public Camera cam;
@@ -21,7 +22,7 @@ public class PlayerCombat : SoundManager
 
     [Header("Weapon")]
     private int currentWeaponIndex = 0;
-    private GameObject[] weaponInventory = new GameObject[2];  // Array to hold up to 2 weapons
+    public GameObject[] weaponInventory = new GameObject[3];  // Array to hold weapons
 
 
     void Update()
@@ -31,11 +32,6 @@ public class PlayerCombat : SoundManager
         if (Input.GetMouseButton(0))
         {
             UseWeapon();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Attack();
         }
 
         if (Input.GetKeyDown(KeyCode.G))
@@ -51,32 +47,9 @@ public class PlayerCombat : SoundManager
         {
             EquipWeapon(1);  // Equip weapon 2
         }
-    }
-
-    private void Attack()
-    {
-        animator.SetTrigger("attack");
-        PlaySound(sounds[0]);
-
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, enemyLayer);
-
-        foreach (Collider2D enemy in hitEnemies)
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            // Проверяем, что коллайдер не является триггером
-            if (!enemy.isTrigger)
-            {
-                Debug.Log(enemy.name);
-                EnemyHealth enemyComponent = enemy.GetComponent<EnemyHealth>();
-
-                if (enemyComponent != null)
-                {
-                    enemyComponent.TakeDamage(attackDamage);
-                }
-                else
-                {
-                    Debug.Log("нет врагов");
-                }
-            }
+            EquipWeapon(2);  // Equip weapon 3
         }
     }
 
@@ -109,7 +82,6 @@ public class PlayerCombat : SoundManager
                 EquipWeapon(i);
             }
         }
-
     }
 
     //Adds weapon to free weaponInventory slot
@@ -124,8 +96,9 @@ public class PlayerCombat : SoundManager
                 // Assign the weapon's parent to the hand
                 weaponInventory[i].transform.parent = hand.transform;
 
-                // Set the default position for the weapon in hand
+                // Set the default position and rotation for the weapon in hand
                 weaponInventory[i].transform.localPosition = new Vector3(1, 0, 0);
+                weaponInventory[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                 // Equips added weapon, so that player could instantly use it
                 EquipWeapon(i);
@@ -138,35 +111,68 @@ public class PlayerCombat : SoundManager
         return false;
     }
 
-    // Function to equip a weapon
+    // Equips a weapon at index if its avalable
     private void EquipWeapon(int index)
     {
-        if (weaponInventory[index] != null)
+        // Ensure the requested weapon is valid before continuing
+        if (weaponInventory[index] == null)
         {
-            for (int i = 0; i < weaponInventory.Length; i++)
+            Debug.Log("Weapon not available in the specified slot.");
+            return;
+        }
+
+        // Loop through all weapons and activate the one at the given index, disable others
+        for (int i = 0; i < weaponInventory.Length; i++)
+        {
+            // Checks if this slot has any weapon, player might not have all slots taken
+            if (weaponInventory[i] == null) continue;
+
+            if (i == index)
             {
-                if (weaponInventory[i] != null)
-                {
-                    if (i == index)
-                    {
-                        weaponInventory[i].SetActive(true);
-                        currentWeaponIndex = index;
-                    }
-                    else
-                    {
-                        weaponInventory[i].SetActive(false);
-                    }
-                }
+                // Activate the selected weapon
+                weaponInventory[i].GetComponent<Weapon>().ActivateWeapon();
+                currentWeaponIndex = index;
+            }
+            else
+            {
+                // Deactivate other weapons
+                weaponInventory[i].GetComponent<Weapon>().DeactivateWeapon();
             }
         }
     }
 
-
-    private void OnDrawGizmosSelected()
-    {
-        if (AttackPoint == null)
-            return;
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (AttackPoint == null)
+    //        return;
         
-        Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
-    }
+    //    Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
+    //}
+
+    //private void Attack()
+    //{
+    //    animator.SetTrigger("attack");
+    //    PlaySound(sounds[0]);
+
+    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, enemyLayer);
+
+    //    foreach (Collider2D enemy in hitEnemies)
+    //    {
+    //        // Проверяем, что коллайдер не является триггером
+    //        if (!enemy.isTrigger)
+    //        {
+    //            Debug.Log(enemy.name);
+    //            EnemyHealth enemyComponent = enemy.GetComponent<EnemyHealth>();
+
+    //            if (enemyComponent != null)
+    //            {
+    //                enemyComponent.TakeDamage(attackDamage);
+    //            }
+    //            else
+    //            {
+    //                Debug.Log("нет врагов");
+    //            }
+    //        }
+    //    }
+    //}
 }

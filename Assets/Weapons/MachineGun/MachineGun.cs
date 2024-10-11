@@ -8,12 +8,13 @@ public class MachineGun : Weapon
 
     public override void WeaponAttack(Vector2 diraction, GameObject player)
     {
-        if (canFire && lastTimeShot + fireRate < Time.time)
+        base.WeaponAttack(diraction, player);
+
+        if (canShoot)
         {
             //shot
             GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-            bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, diraction); //Sets bullets mandatory vars
-            lastTimeShot = Time.time; // gets time to compare then shooting to preserve firerate
+            bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, diraction, damage); //Sets bullets mandatory vars
 
             //recoil
             player.GetComponent<IPushable>().Push(-1 * diraction, recoilStrength); // Pushes player in the firaction opposite of shooting

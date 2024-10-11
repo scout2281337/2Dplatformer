@@ -12,7 +12,9 @@ public class DoubleBarrelShotgun : Weapon
 
     public override void WeaponAttack(Vector2 direction, GameObject player)
     {
-        if (canFire && lastTimeShot + fireRate < Time.time)
+        base.WeaponAttack(direction, player);
+
+        if (canShoot)
         {
             // Calculate the base angle from the shooting direction
             float baseAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -36,11 +38,8 @@ public class DoubleBarrelShotgun : Weapon
 
                 // Instantiate and set up the bullet
                 GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity);
-                bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, pelletDirection);
+                bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, pelletDirection, damage);
             }
-
-            // Update the time the weapon was last fired
-            lastTimeShot = Time.time;
 
             // Apply recoil to the player
             player.GetComponent<IPushable>().Push(-direction, recoilStrength);  // Push player in the opposite direction of shooting

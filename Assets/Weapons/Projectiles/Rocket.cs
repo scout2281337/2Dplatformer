@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Rocket : Projectile
 {
-    public void SetRocket(float speed, Vector2 diraction, float radius, float force)
+    public void SetRocket(float speed, Vector2 diraction, int damage, float radius, float force)
     {
-        SetExplosiveProjectile(speed, diraction, radius, force);
+        SetExplosiveProjectile(speed, diraction, damage, radius, force);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)

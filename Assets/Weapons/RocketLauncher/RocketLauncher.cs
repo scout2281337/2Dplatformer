@@ -10,12 +10,13 @@ public class RocketLauncher : Weapon
 
     public override void WeaponAttack(Vector2 diraction, GameObject player)
     {
-        if (canFire && lastTimeShot + fireRate < Time.time)
+        base.WeaponAttack(diraction, player);
+
+        if (canShoot)
         {
             //shot
             GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-            bullet.GetComponent<Rocket>().SetRocket(projectileSpeed, diraction, explosionRadius, explosionForce); //Sets bullets mandatory vars
-            lastTimeShot = Time.time; // gets time to compare when shooting to preserve firerate
+            bullet.GetComponent<Rocket>().SetRocket(projectileSpeed, diraction, damage, explosionRadius, explosionForce); //Sets bullets mandatory vars
         }
     }
 }

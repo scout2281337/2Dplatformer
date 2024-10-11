@@ -5,20 +5,20 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int MaxHealth = 100;
-    [SerializeField] private int Currenthealth;
+    [SerializeField] protected int Currenthealth;
 
 
     public Healthbar Healthbar;
 
     //public Animator anim;
-    void Start()
+    protected virtual void Start()
     {
         Currenthealth = MaxHealth;
         Healthbar.SetMaxHealth(MaxHealth);
     }
 
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         //anim.SetTrigger("Hurt");
         Currenthealth -= damage;
@@ -31,9 +31,15 @@ public class EnemyHealth : MonoBehaviour
         }
 
     }
-    void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
+    }
+
+    public int GetHealth() 
+    {
+        return Currenthealth;
+    
     }
 
 }

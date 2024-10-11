@@ -70,7 +70,7 @@ public class EnemyAttack : MonoBehaviour
         StartCoroutine(ShootWithDelay());
     }
 
-    private IEnumerator ShootWithDelay()
+    protected IEnumerator ShootWithDelay()
     {
         while (canShoot)
         {
@@ -91,7 +91,7 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    protected virtual void AllDirectionShoot()
+    public virtual void AllDirectionShoot()
     {
         if (!canShoot) return;
 

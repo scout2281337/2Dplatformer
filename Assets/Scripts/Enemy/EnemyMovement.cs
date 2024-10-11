@@ -9,23 +9,23 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     public Transform player;
 
-    private Vector3 previousPosition;
+    protected Vector3 previousPosition;
     public Animator anim;
-    private float speedX;
+    protected float speedX;
 
-    private Vector3 TargetPoint;
-    private bool isChasing;
-    private Rigidbody2D rb;
+    protected Vector3 TargetPoint;
+    protected bool isChasing;
+    protected Rigidbody2D rb;
 
-    private bool facingRight = true; // ќтслеживание направлени€, вправо ли смотрит персонаж
+    protected bool facingRight = true; // ќтслеживание направлени€, вправо ли смотрит персонаж
     public GameObject sprite;
-    void Start()
+    protected virtual void Start()
     {
         TargetPoint = pointB;
         previousPosition = transform.position;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (isChasing)
         {
@@ -55,13 +55,13 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(pointA, pointB);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -69,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -77,7 +77,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void Flip()
+    protected virtual void Flip()
     {
         // »нвертируем направление, мен€€ знак флага facingRight
         facingRight = !facingRight;

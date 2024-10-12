@@ -2033,7 +2033,11 @@ MonoBehaviour:
   damage: 0
   projectileSpeed: 0
   projectileType: {fileID: 0}
+  magCapacity: 0
+  reloadTime: 0
+  currentAmmo: 0
   weaponHandler: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   recoilStrength: 0
   numberOfPellets: 0
   spreadAngle: 0
@@ -2702,10 +2706,6 @@ PrefabInstance:
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5743311128874971841, guid: 4e7eabc75476224438af5e3c6492940e, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 695245828}
-    - target: {fileID: 0}
       propertyPath: player
       value: 
       objectReference: {fileID: 695245828}

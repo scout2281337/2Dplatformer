@@ -131,12 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponName: Machine Gun
-  fireRate: 0.1
+  fireRate: 0.2
   damage: 3
   projectileSpeed: 40
   projectileType: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
-  magCapacity: 30
-  reloadTime: 0.2
+  magCapacity: 10
+  reloadTime: 0.3
   currentAmmo: 0
   weaponHandler: {fileID: 2813944687039979925}
   spriteRenderer: {fileID: 3511798448416765987}

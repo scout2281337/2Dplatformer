@@ -9,8 +9,8 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public string WeaponName;
-    public float fireRate;
     public int damage;
+    public float fireRate;
     public float projectileSpeed;
     public GameObject projectileType;
     protected float lastTimeShot;

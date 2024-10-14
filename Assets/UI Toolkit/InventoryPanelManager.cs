@@ -8,7 +8,6 @@ public class InventoryPanelManager : MonoBehaviour
     public PlayerCombat playerCombat;
     private UIDocument _document;
     private Label[] _slots = new Label[3];
-    public int slot;
 
     private void Start()
     {
@@ -28,6 +27,10 @@ public class InventoryPanelManager : MonoBehaviour
             if (playerCombat.weaponInventory[i] != null)
             {
                 UpdateSlotText(i, playerCombat.weaponInventory[i].GetComponent<Weapon>().currentAmmo.ToString());
+            }
+            else
+            {
+                UpdateSlotText(i, "-");
             }
         }
     }

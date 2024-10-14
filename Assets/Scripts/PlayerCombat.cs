@@ -51,6 +51,11 @@ public class PlayerCombat : SoundManager
         {
             EquipWeapon(2);  // Equip weapon 3
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
     }
 
     private void AimAtMouse()
@@ -81,6 +86,29 @@ public class PlayerCombat : SoundManager
             {
                 EquipWeapon(i);
             }
+        }
+    }
+
+    private void Interact()
+    {
+        // Detect objects within a 2D circle
+        Collider2D[] objectsInCircle = Physics2D.OverlapCircleAll(transform.position, 1);
+
+        if (objectsInCircle.Length > 0)
+        {
+            foreach (Collider2D col in objectsInCircle)
+            {
+                IInteractable interactable = col.gameObject.GetComponent<IInteractable>();
+                if (interactable != null)
+                {
+                    interactable.Interact();
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("No objects detected.");
         }
     }
 

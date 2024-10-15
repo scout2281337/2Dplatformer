@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int MaxHealth = 100;
+    public PlayerStats stat;
+    public int ExpGain = 100;
     [SerializeField] protected int Currenthealth;
 
 
@@ -27,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (Currenthealth <= 0)
         {
+            stat.GainXP(ExpGain);
             Die();
         }
 

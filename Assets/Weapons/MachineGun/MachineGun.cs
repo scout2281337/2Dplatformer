@@ -6,18 +6,17 @@ public class MachineGun : Weapon
 {
     public float recoilStrength;
 
-    public override void WeaponAttack(Vector2 diraction, GameObject player)
+    public override bool WeaponAttack(Vector2 direction, GameObject player)
     {
-        base.WeaponAttack(diraction, player);
+        if (!base.WeaponAttack(direction, player)) return false;
 
-        if (canShoot)
-        {
-            //shot
-            GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-            bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, diraction, damage); //Sets bullets mandatory vars
+        //shot
+        GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
+        bullet.GetComponent<Bullet>().SetBullet(projectileSpeed, direction, damage); //Sets bullets mandatory vars
 
-            //recoil
-            player.GetComponent<IPushable>().Push(-1 * diraction, recoilStrength); // Pushes player in the firaction opposite of shooting
-        }
+        //recoil
+        player.GetComponent<IPushable>().Push(-1 * direction, recoilStrength); // Pushes player in the firaction opposite of shooting
+        
+        return true;
     }
 }

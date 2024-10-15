@@ -316,6 +316,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 348561564}
+    - target: {fileID: 8766651620723566837, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
+      propertyPath: maxSteam
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766651620723566837, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
+      propertyPath: currentSteam
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8424349746961066459, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}

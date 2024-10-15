@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Rocket : Projectile
 {
-    public void SetRocket(float speed, Vector2 diraction, int damage, float radius, float force)
+    public void SetRocket(float speed, Vector2 diraction, float damage, float radius, float force)
     {
         SetExplosiveProjectile(speed, diraction, damage, radius, force);
     }

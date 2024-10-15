@@ -131,13 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponName: Grenade Launcher
-  fireRate: 0.4
   damage: 20
+  fireRate: 1
   projectileSpeed: 20
+  steamCost: 40
+  heatGain: 70
   projectileType: {fileID: 995234572802271142, guid: d05b32a389c49a247a9850bcf4391e56, type: 3}
-  magCapacity: 3
-  reloadTime: 3
-  currentAmmo: 0
   weaponHandler: {fileID: 7086688744447750046}
   spriteRenderer: {fileID: 4373534000466739019}
   explosionRadius: 10

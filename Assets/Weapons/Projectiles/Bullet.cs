@@ -5,7 +5,7 @@ using UnityEngine.XR;
 
 public class Bullet : Projectile
 {
-    public void SetBullet(float speed, Vector2 diraction, int damage)
+    public void SetBullet(float speed, Vector2 diraction, float damage)
     {
         SetProjectile(speed, diraction, damage);
     }

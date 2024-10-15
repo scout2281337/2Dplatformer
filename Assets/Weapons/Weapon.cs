@@ -9,51 +9,37 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public string WeaponName;
-    public int damage;
+    public float damage;
     public float fireRate;
     public float projectileSpeed;
+    public float steamCost;
+    public float heatGain;
     public GameObject projectileType;
+    protected float currentSteam;
     protected float lastTimeShot;
     protected bool canShoot = true;
-
-    [Header("Reload")]
-    public int magCapacity;
-    public float reloadTime;
-    public int currentAmmo;
-    protected bool isReloading = false;
 
     [Header("Modules")]
     public GameObject weaponHandler;
     public GameObject spriteRenderer;
 
-    protected void Start()
-    {
-        // Initialize current ammo to the magazine capacity
-        currentAmmo = magCapacity;
-    }
+    //[Header("Reload")]
+    //public int magCapacity;
+    //public float reloadTime;
+    //public int currentAmmo;
+    //protected bool isReloading = false;
 
-    public virtual void WeaponAttack(Vector2 diraction, GameObject player)
+
+    public virtual bool WeaponAttack(Vector2 diraction, GameObject player)
     {
-        if (currentAmmo > 0 && Time.time > lastTimeShot + fireRate)
+        if (Time.time > lastTimeShot + fireRate)
         {
-
-            if (magCapacity == currentAmmo)
-            {
-                StartReloading();
-            }
-
-            // Deduct one ammo per shot
-            currentAmmo--;
-
-            // Gets time to compare when shooting to preserve firerate
             lastTimeShot = Time.time;
 
-            canShoot = true;
+            return true;
         }
-        else
-        {
-            canShoot = false;
-        }
+        else return false;
+
     }
     public void DropWeapon()
     {
@@ -70,23 +56,6 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    // Method to initiate the reloading process
-    protected void StartReloading()
-    {
-        // Call the FinishReloading method after 'reloadTime' seconds
-        Invoke(nameof(FinishReloading), reloadTime);
-    }
-
-    // Method to complete the reload and reset ammo count
-    protected void FinishReloading()
-    {
-        currentAmmo ++;
-        if (currentAmmo < magCapacity)
-        {
-            StartReloading();
-        }
-    }
-
     public void ActivateWeapon()
     {
         spriteRenderer.SetActive(true);
@@ -96,4 +65,21 @@ public abstract class Weapon : MonoBehaviour
     {
         spriteRenderer.SetActive(false);
     }
+
+    // Method to initiate the reloading process
+    //protected void StartReloading()
+    //{
+    //    // Call the FinishReloading method after 'reloadTime' seconds
+    //    Invoke(nameof(FinishReloading), reloadTime);
+    //}
+
+    // Method to complete the reload and reset ammo count
+    //protected void FinishReloading()
+    //{
+    //    currentAmmo ++;
+    //    if (currentAmmo < magCapacity)
+    //    {
+    //        StartReloading();
+    //    }
+    //}
 }

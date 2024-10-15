@@ -17,8 +17,8 @@ public class WeaponSpawner : MonoBehaviour, IInteractable
 
     private void SpawnWeapon()
     {
-        GameObject weapon = WeaponType[Random.Range(0, WeaponType.Length)];
-        GameObject spawnedWeapon = Instantiate(weapon);
+        GameObject randomWeapon = WeaponType[Random.Range(0, WeaponType.Length)];
+        GameObject spawnedWeapon = Instantiate(randomWeapon);
         Weapon weaponComponent = spawnedWeapon.GetComponent<Weapon>();
 
         int rang = 0;
@@ -26,23 +26,23 @@ public class WeaponSpawner : MonoBehaviour, IInteractable
 
         for (int i = 0; i < pontsAmount; i++)
         {
-            switch (Random.Range(1, amountOfStats))
+            switch (Random.Range(0, amountOfStats))
             {
                 case 0:
-                    weaponComponent.damage *= 2;
+                    weaponComponent.damage *= 1.5f;
                     Debug.Log("damage: " + weaponComponent.damage);
                     break;
                 case 1:
-                    weaponComponent.fireRate /= 2;
+                    weaponComponent.fireRate /= 1.5f;
                     Debug.Log("firerate: " + weaponComponent.fireRate);
                     break;
                 case 2:
-                    weaponComponent.magCapacity *= 2;
-                    Debug.Log("magcapacity: " + weaponComponent.magCapacity);
+                    weaponComponent.steamCost /= 1.5f;
+                    Debug.Log("steamcost: " + weaponComponent.steamCost);
                     break;
                 case 3:
-                    weaponComponent.reloadTime /= 2;
-                    Debug.Log("reloadtime: " + weaponComponent.reloadTime);
+                    weaponComponent.heatGain /= 1.5f;
+                    Debug.Log("heatgain: " + weaponComponent.heatGain);
                     break;
                 case 4:
                     Debug.Log("adadaa");

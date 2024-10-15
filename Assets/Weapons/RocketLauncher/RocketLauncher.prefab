@@ -131,13 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponName: Rocket Launcher
-  fireRate: 0.4
   damage: 25
+  fireRate: 0.4
   projectileSpeed: 15
+  steamCost: 50
+  heatGain: 80
   projectileType: {fileID: 995234572802271142, guid: 480d93b6698e29c48837c4d7715a0088, type: 3}
-  magCapacity: 1
-  reloadTime: 4
-  currentAmmo: 0
   weaponHandler: {fileID: 1486553132318724921}
   spriteRenderer: {fileID: 7311338139089828038}
   explosionRadius: 5

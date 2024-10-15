@@ -21,13 +21,16 @@ public class PlayerCombat : SoundManager
     private Vector3 directionVector;
 
     [Header("Weapon")]
-    private int currentWeaponIndex = 0;
+    public float maxSteam = 100;
+    public float currentSteam = 100;
     public GameObject[] weaponInventory = new GameObject[3];  // Array to hold weapons
+    private int currentWeaponIndex = 0;
 
 
     void Update()
     {
         AimAtMouse();
+        RestoreSteam();
 
         if (Input.GetMouseButton(0))
         {
@@ -66,12 +69,26 @@ public class PlayerCombat : SoundManager
         hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
+    private void RestoreSteam()
+    {
+        if (currentSteam >= maxSteam) return;
+
+        currentSteam += 50 * Time.deltaTime;
+        currentSteam = Mathf.Clamp(currentSteam, 0, maxSteam);
+    }
+
     private void UseWeapon()
     {
-        if (weaponInventory[currentWeaponIndex] != null) //Check for weapon, because player might not have any
-        {
-            weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject);
-        }
+        // Checks
+        if (weaponInventory[currentWeaponIndex] == null) return; //Check for weapon, because player might not have any
+
+        float weaponSteamCost = weaponInventory[currentWeaponIndex].GetComponent<Weapon>().steamCost;
+        if (weaponSteamCost > currentSteam) return;
+
+        // Weapon use
+        if (!weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject)) return;
+
+        currentSteam -= weaponSteamCost;
     }
 
     private void DropCurrentWeapon()

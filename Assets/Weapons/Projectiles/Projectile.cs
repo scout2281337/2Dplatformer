@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     [Header("Projectile")]
-    public int projectileDamage;
+    public float projectileDamage;
     public Rigidbody2D rb;
     protected float projectileSpeed;
     protected Vector2 projectileDiraction;
@@ -17,7 +18,7 @@ public abstract class Projectile : MonoBehaviour
     protected float explosionForce;
 
 
-    public virtual void SetProjectile(float speed, Vector2 diraction, int damage)
+    public virtual void SetProjectile(float speed, Vector2 diraction, float damage)
     {
         projectileSpeed = speed;
         projectileDiraction = diraction;
@@ -27,7 +28,7 @@ public abstract class Projectile : MonoBehaviour
         rb.velocity = projectileDiraction.normalized * projectileSpeed;
     }
 
-    public virtual void SetExplosiveProjectile(float speed, Vector2 diraction, int damage, float radius, float force)
+    public virtual void SetExplosiveProjectile(float speed, Vector2 diraction, float damage, float radius, float force)
     {
         SetProjectile(speed, diraction, damage);
         explosionRadius = radius;
@@ -55,7 +56,7 @@ public abstract class Projectile : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            enemyHealth.TakeDamage(projectileDamage);
+            enemyHealth.TakeDamage(Mathf.RoundToInt(projectileDamage)); //TODO change int in player health
         }
         Destroy(gameObject);
     }

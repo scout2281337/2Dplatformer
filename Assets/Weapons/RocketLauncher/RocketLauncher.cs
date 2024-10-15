@@ -8,15 +8,13 @@ public class RocketLauncher : Weapon
     public float explosionRadius;
     public float explosionForce;
 
-    public override void WeaponAttack(Vector2 diraction, GameObject player)
+    public override bool WeaponAttack(Vector2 direction, GameObject player)
     {
-        base.WeaponAttack(diraction, player);
+        if (!base.WeaponAttack(direction, player)) return false;
 
-        if (canShoot)
-        {
-            //shot
-            GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-            bullet.GetComponent<Rocket>().SetRocket(projectileSpeed, diraction, damage, explosionRadius, explosionForce); //Sets bullets mandatory vars
-        }
+        //shot
+        GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
+        bullet.GetComponent<Rocket>().SetRocket(projectileSpeed, direction, damage, explosionRadius, explosionForce); //Sets bullets mandatory vars
+        return true;
     }
 }

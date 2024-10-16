@@ -7,9 +7,9 @@ public class OptionsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider masterSlider;
 
-    private void Start()
+    public void OnMenuOpened()
     {
-        
+        // Initialize slider when the menu opens
         if (PlayerPrefs.HasKey("Volume"))
         {
             float savedVolume = PlayerPrefs.GetFloat("Volume");
@@ -18,13 +18,14 @@ public class OptionsMenu : MonoBehaviour
         }
         else
         {
-            masterSlider.value = 0.75f; 
+            masterSlider.value = 0.75f;
             SetVolume(0.75f);
         }
 
-        
+        // Add the listener for volume changes
         masterSlider.onValueChanged.AddListener(SetVolume);
     }
+
 
     public void SetVolume(float volume)
     {

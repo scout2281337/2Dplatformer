@@ -139,7 +139,7 @@ MonoBehaviour:
   projectileType: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
   weaponHandler: {fileID: 2957004914732960936}
   spriteRenderer: {fileID: 512178923205875912}
-  recoilStrength: 15
+  recoilStrength: 8
   numberOfPellets: 5
   spreadAngle: 25
 --- !u!1001 &7251932313037086603

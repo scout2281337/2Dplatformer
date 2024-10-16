@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 1056662307763127539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
-  m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4236205072743034997}
@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 6468343837083870399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: -0.746, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -163,37 +163,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4236205072743034997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8424349746961066459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2348597286519164870}
-  m_Layer: 8
-  m_Name: Checker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2348597286519164870
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424349746961066459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -236,7 +205,6 @@ Transform:
   m_Children:
   - {fileID: 3403835863387668949}
   - {fileID: 8386899114834599103}
-  - {fileID: 2348597286519164870}
   - {fileID: 574819538728614784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,7 +268,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6, y: 1.23}
+  m_Size: {x: 0.6, y: 1.4}
   m_Direction: 0
 --- !u!82 &258299305511597613
 AudioSource:
@@ -414,10 +382,10 @@ MonoBehaviour:
   speed: {x: 0, y: 0}
   acceleration: 40
   runDeceleration: 0.9
-  maxSpeed: 15
+  maxSpeed: 11.5
   moveVector: {x: 0, y: 0}
-  jumpStartForce: 7
-  jumpForce: 12
+  jumpStartForce: 4
+  jumpForce: 13
   jumpTime: 0.2
   maxJumps: 2
   jumpDeceleration: 0.3
@@ -446,15 +414,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - {fileID: 8300000, guid: 44f81fdff5f21f740bddf8382d521965, type: 3}
-  animator: {fileID: 4602005544895208457}
-  AttackPoint: {fileID: 2348597286519164870}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  AttackRange: 1
-  attackDamage: 20
   cam: {fileID: 0}
   hand: {fileID: 6996936957341358647}
+  maxSteam: 100
+  currentSteam: 100
+  weaponInventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6498806014859955906
 MonoBehaviour:
   m_ObjectHideFlags: 0

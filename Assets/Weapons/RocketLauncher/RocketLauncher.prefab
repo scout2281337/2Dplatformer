@@ -140,7 +140,7 @@ MonoBehaviour:
   weaponHandler: {fileID: 1486553132318724921}
   spriteRenderer: {fileID: 7311338139089828038}
   explosionRadius: 5
-  explosionForce: 25
+  explosionForce: 15
 --- !u!1001 &6416541481441722394
 PrefabInstance:
   m_ObjectHideFlags: 0

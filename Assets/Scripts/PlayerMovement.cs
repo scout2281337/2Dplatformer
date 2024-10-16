@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour, IPushable
 
     [Header("Animator")]
     public Animator animator;
-    private bool facingRight = true; // ���������, ������� �� �������� �����
+    private bool facingRight = true;
 
     [Header("GroundCheck")]
     public GameObject character;
@@ -64,13 +64,10 @@ public class PlayerMovement : MonoBehaviour, IPushable
     {
         moveVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        // ����������� ���������
-
-        // ���������� ��������
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // ���������� Abs ��� �������� ���������� �� �����������
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("yVelocity", rb.velocity.y);
 
-        // ������������ ���������
+
         if (moveVector.x > 0 && !facingRight)
         {
             Flip();
@@ -124,7 +121,7 @@ public class PlayerMovement : MonoBehaviour, IPushable
     {
         if (canJump && lastTimeJumped + jumpTime > Time.time)
         {
-            rb.AddForce(new Vector2(0, jumpForce * Time.deltaTime * 100), ForceMode2D.Force); // ��������� ������������ �������� ��� ������
+            rb.AddForce(new Vector2(0, jumpForce * Time.deltaTime * 100), ForceMode2D.Force);
         }
         else
         {
@@ -134,16 +131,15 @@ public class PlayerMovement : MonoBehaviour, IPushable
 
     private void JumpEnd()
     {
-        if (canJump)
-        {
-            jumpAmount++;
-            isJumping = false;
+        if (!canJump) return;
 
-            if (jumpAmount >= maxJumps)
-            {
-                canJump = false; // ��������� ����������� �������, ���� ��������� ������
-            }
-        }
+        jumpAmount++;
+        isJumping = false;
+
+        if (jumpAmount < maxJumps) return;
+
+        canJump = false;
+
     }
 
     public void Push(Vector2 forceVector, float forceStrength)
@@ -165,13 +161,12 @@ public class PlayerMovement : MonoBehaviour, IPushable
 
     private void CheckGround()
     {
-        // ��������� ������� � ������ � ������� OverlapCircle
         Collider2D groundCollision = Physics2D.OverlapCircle(groundCheck.transform.position, groundCheckRadius, groundMask);
 
-        if (groundCollision != null) // ���� �������� �� �����
+        if (groundCollision != null)
         {
             canJump = true;
-            jumpAmount = 0; // ���������� ���������� �������
+            jumpAmount = 0;
 
         }
         //Debug.Log(canJump);
@@ -179,12 +174,11 @@ public class PlayerMovement : MonoBehaviour, IPushable
 
     private void Flip()
     {
-        // ������ ����������� �������� ���������
+
         facingRight = !facingRight;
 
-        // ����������� ��������� ����� ��������� �� ��� X
         Vector3 theScale = character.transform.localScale;
-        theScale.x *= -1; // �������������� �� ��� X
+        theScale.x *= -1;
         character.transform.localScale = theScale;
     }
 
@@ -196,12 +190,10 @@ public class PlayerMovement : MonoBehaviour, IPushable
             float speedDif = Mathf.Abs((desiredSpeed - rb.velocity.x) / maxSpeed); // Difference between current speed and desired speed
             rb.AddForce(new Vector2(speedDif * acceleration * moveVector.x, 0)); // Apply force in the direction of movement
         }
-
         else if (moveVector.x == 0)
         {
             Decelerate(runDeceleration, 1);
         }
-
     }
 
     private void DecelerateByVector(float xDeceleration, float yDeceleration, Vector2 actionDir)

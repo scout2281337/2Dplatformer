@@ -66,7 +66,7 @@ MonoBehaviour:
   - {fileID: 5232340799989928011, guid: 9bdf6c95d17ea65479a548465cd4cdcd, type: 3}
   - {fileID: 8210672721812307026, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
   - {fileID: 6358470020859451336, guid: 520cbd983820bcd4aa3a11acab4a0e08, type: 3}
-  wall: {fileID: 0}
+  wall: {fileID: 3458023264603601946, guid: bc46e67b2e2a03340878fa1289de4d20, type: 3}
 --- !u!1001 &3642352071507326050
 PrefabInstance:
   m_ObjectHideFlags: 0

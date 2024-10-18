@@ -115,6 +115,7 @@ public class LevelGenerator : MonoBehaviour
     private GameObject GetRandomRoom(Vector2Int position)
     {
         GameObject room = rooms[0];
+        takenRooms.Add(position);  // Mark this position as taken
 
         // Check if the room can be placed without intersections
         switch (UnityEngine.Random.Range(0, 4))
@@ -122,7 +123,6 @@ public class LevelGenerator : MonoBehaviour
             case 0: // 1x1 room
                 {
                     room = rooms[0];
-                    takenRooms.Add(position);  // Mark this position as taken
                 }
                 break;
 
@@ -130,7 +130,6 @@ public class LevelGenerator : MonoBehaviour
                 if (!takenRooms.Contains(position + Vector2Int.up))
                 {
                     room = rooms[1];
-                    takenRooms.Add(position);
                     takenRooms.Add(position + Vector2Int.up);  // Mark both positions as taken
                 }
                 break;
@@ -139,7 +138,6 @@ public class LevelGenerator : MonoBehaviour
                 if (!takenRooms.Contains(position + Vector2Int.right))
                 {
                     room = rooms[2];
-                    takenRooms.Add(position);
                     takenRooms.Add(position + Vector2Int.right);  // Mark both positions as taken
                 }
                 break;
@@ -150,7 +148,6 @@ public class LevelGenerator : MonoBehaviour
                     !takenRooms.Contains(position + Vector2Int.right + Vector2Int.up))
                 {
                     room = rooms[3];
-                    takenRooms.Add(position);
                     takenRooms.Add(position + Vector2Int.up);
                     takenRooms.Add(position + Vector2Int.right);
                     takenRooms.Add(position + Vector2Int.right + Vector2Int.up);  // Mark all 4 positions as taken

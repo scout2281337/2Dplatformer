@@ -1,11 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/InventoryStyles.uss?fileID=7433441132597879392&amp;guid=34c8bb45b9e3645489957cb63c739235&amp;type=3#InventoryStyles" />
     <ui:VisualElement name="WeaponMenu" class="WeaponMenu" style="flex-grow: 1;">
-        <ui:ProgressBar value="0" title="Steam" name="SteamAmount" />
+        <ui:ProgressBar value="0" title="Steam" name="SteamAmount" style="margin-top: 1%; margin-right: 1%; margin-bottom: 1%; margin-left: 1%; font-size: 24px;" />
         <ui:VisualElement name="Inventory" class="Inventory">
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot0" class="Slot" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot1" class="Slot" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot2" class="Slot" />
+            <ui:VisualElement name="Slot0" class="Slot" />
+            <ui:VisualElement name="Slot1" class="Slot" />
+            <ui:VisualElement name="Slot2" class="Slot" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

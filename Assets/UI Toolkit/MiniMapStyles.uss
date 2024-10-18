@@ -1,0 +1,30 @@
+.Frame {
+    height: 24%;
+    width: 15%;
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    align-self: flex-end;
+    background-image: url("project://database/Assets/UI%20Toolkit/MiniMapTextire.renderTexture?fileID=8400000&guid=86ebcabc6668c3a4a80cdfd561fc2f72&type=2#MiniMapTextire");
+    background-color: rgb(161, 161, 161);
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    transition-duration: 0.4s;
+}
+
+.Frame:hover {
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+    opacity: 0;
+}

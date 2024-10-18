@@ -1,30 +1,35 @@
 .WeaponMenu {
     position: absolute;
-    height: 8%;
-    width: 16%;
+    height: 150px;
+    width: 420px;
     background-color: rgba(0, 0, 0, 0.64);
     left: 0;
     bottom: 0;
-    padding-top: 0.3%;
-    padding-right: 0.3%;
-    padding-bottom: 0.3%;
-    padding-left: 0.3%;
 }
 
 .Inventory {
     width: auto;
     height: auto;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: stretch;
+    align-self: stretch;
+    flex-grow: 1;
 }
 
 .Slot {
-    background-color: rgba(255, 255, 255, 0.37);
+    background-color: rgb(63, 63, 63);
     flex-grow: 1;
-    -unity-text-align: middle-center;
-    font-size: 20px;
+    background-image: url("project://database/Assets/UI/Micro%20Icon%20Pack/Browser/9.%20Close%20or%20Multiply.png?fileID=2800000&guid=2962eada2f030b84ba3a61117ed44e3f&type=3#9. Close or Multiply");
+    align-self: stretch;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.unity-progress-bar__container {
+    max-height: 36px;
 }

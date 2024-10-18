@@ -1,20 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    #region vars
     public int gridSize;
     public int pathLength;
     public int iterationNumber;
-    public GameObject[] rooms = new GameObject[4];
+
+    public GameObject[] roomSmall = new GameObject[1];
+    public GameObject[] roomTall = new GameObject[1];
+    public GameObject[] roomLong = new GameObject[1];
+    public GameObject[] roomBig = new GameObject[1];
+    private GameObject[][] rooms = new GameObject[4][];
+
+
     public GameObject wall;
     private HashSet<Vector2Int> takenRooms = new HashSet<Vector2Int> {Vector2Int.zero};
+    #endregion
 
     private void Start()
     {
+        rooms[0] = roomSmall;
+        rooms[1] = roomTall;
+        rooms[2] = roomLong;
+        rooms[3] = roomBig;
+
         GenrateLevel();
         GenerateWalls();
     }
@@ -114,22 +129,19 @@ public class LevelGenerator : MonoBehaviour
 
     private GameObject GetRandomRoom(Vector2Int position)
     {
-        GameObject room = rooms[0];
+        GameObject room = rooms[0][UnityEngine.Random.Range(0, rooms[0].Length)];
         takenRooms.Add(position);  // Mark this position as taken
 
         // Check if the room can be placed without intersections
         switch (UnityEngine.Random.Range(0, 4))
         {
             case 0: // 1x1 room
-                {
-                    room = rooms[0];
-                }
                 break;
 
             case 1: // 1x2 room
                 if (!takenRooms.Contains(position + Vector2Int.up))
                 {
-                    room = rooms[1];
+                    room = rooms[1][UnityEngine.Random.Range(0, rooms[1].Length)];
                     takenRooms.Add(position + Vector2Int.up);  // Mark both positions as taken
                 }
                 break;
@@ -137,7 +149,7 @@ public class LevelGenerator : MonoBehaviour
             case 2: // 2x1 room
                 if (!takenRooms.Contains(position + Vector2Int.right))
                 {
-                    room = rooms[2];
+                    room = rooms[2][UnityEngine.Random.Range(0, rooms[2].Length)];
                     takenRooms.Add(position + Vector2Int.right);  // Mark both positions as taken
                 }
                 break;
@@ -147,7 +159,7 @@ public class LevelGenerator : MonoBehaviour
                     !takenRooms.Contains(position + Vector2Int.right) &&
                     !takenRooms.Contains(position + Vector2Int.right + Vector2Int.up))
                 {
-                    room = rooms[3];
+                    room = rooms[3][UnityEngine.Random.Range(0, rooms[3].Length)];
                     takenRooms.Add(position + Vector2Int.up);
                     takenRooms.Add(position + Vector2Int.right);
                     takenRooms.Add(position + Vector2Int.right + Vector2Int.up);  // Mark all 4 positions as taken

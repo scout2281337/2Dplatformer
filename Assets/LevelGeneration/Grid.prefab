@@ -59,12 +59,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 15
-  pathLength: 5
+  pathLength: 6
   iterationNumber: 6
-  rooms:
+  roomSmall:
   - {fileID: 1768226010046320366, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+  - {fileID: 1768226010046320366, guid: 28e7e28e37ce4624f9c7146c24265f94, type: 3}
+  roomTall:
   - {fileID: 5232340799989928011, guid: 9bdf6c95d17ea65479a548465cd4cdcd, type: 3}
+  roomLong:
   - {fileID: 8210672721812307026, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+  roomBig:
   - {fileID: 6358470020859451336, guid: 520cbd983820bcd4aa3a11acab4a0e08, type: 3}
   wall: {fileID: 3458023264603601946, guid: bc46e67b2e2a03340878fa1289de4d20, type: 3}
 --- !u!1001 &3642352071507326050

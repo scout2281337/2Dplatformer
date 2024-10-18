@@ -23447,6 +23447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewBasicEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8965807684401963386, guid: ba0d2c9ca03f0714fbcc7002d5c11ad2, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
+using System;
 using UnityEngine;
-using UnityEngine.XR;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -12,35 +8,42 @@ public abstract class Weapon : MonoBehaviour
     public float damage;
     public float fireRate;
     public float projectileSpeed;
+    public GameObject projectileType;
+    protected float lastTimeShot;
+
     public float steamCost;
     public float heatGain;
-    public GameObject projectileType;
-    protected float currentSteam;
-    protected float lastTimeShot;
-    protected bool canShoot = true;
+
+    public float currentHeat;
+    public float jamTime = 2f;
+    private bool isJamed = false;
+    public event Action OnWeaponJam;
+    public event Action OnWeaponUnJam;
 
     [Header("Modules")]
     public GameObject weaponHandler;
     public GameObject spriteRenderer;
 
-    //[Header("Reload")]
-    //public int magCapacity;
-    //public float reloadTime;
-    //public int currentAmmo;
-    //protected bool isReloading = false;
 
+    private void Update()
+    {
+        DecreaseHeat();
+    }
 
     public virtual bool WeaponAttack(Vector2 diraction, GameObject player)
     {
-        if (Time.time > lastTimeShot + fireRate)
+        if (!isJamed && Time.time > lastTimeShot + fireRate)
         {
             lastTimeShot = Time.time;
+
+            AddHeat();
 
             return true;
         }
         else return false;
 
     }
+
     public void DropWeapon()
     {
         transform.parent = null; 
@@ -66,6 +69,49 @@ public abstract class Weapon : MonoBehaviour
         spriteRenderer.SetActive(false);
     }
 
+    private void AddHeat()
+    {
+        currentHeat += heatGain;
+        if (currentHeat > 100)
+        {
+            JamWeapon();
+        }
+    }
+
+    private void DecreaseHeat()
+    {
+        if (currentHeat <= 0) return;
+
+        currentHeat -= 100 * Time.deltaTime;
+        currentHeat = Mathf.Clamp(currentHeat, 0, 100);
+
+    }
+
+    private void JamWeapon()
+    {
+        isJamed = true;
+        Invoke("UnJamWeapon", jamTime);
+
+        Debug.Log("jam");
+        OnWeaponJam();
+    }
+
+    private void UnJamWeapon()
+    {
+        isJamed = false;
+
+        Debug.Log("unjam");
+        OnWeaponUnJam();
+    }
+
+
+    #region Legacy
+    //[Header("Reload")]
+    //public int magCapacity;
+    //public float reloadTime;
+    //public int currentAmmo;
+    //protected bool isReloading = false;
+
     // Method to initiate the reloading process
     //protected void StartReloading()
     //{
@@ -82,4 +128,5 @@ public abstract class Weapon : MonoBehaviour
     //        StartReloading();
     //    }
     //}
+    #endregion
 }

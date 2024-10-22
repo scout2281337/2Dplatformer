@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
+using System;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class PlayerCombat : SoundManager
 {
@@ -24,8 +20,15 @@ public class PlayerCombat : SoundManager
     public float steamMax = 100;
     public float steamCurrent = 100;
     public float steamRegen;
-    public GameObject[] weaponInventory = new GameObject[3];  // Array to hold weapons
+
+    public event Action<int, GameObject> OnWeaponAdd;
+    public event Action<int, GameObject> OnWeaponDrop;
+
+    [Header("Inventory")]
+    public GameObject[] weaponInventory = new GameObject[3];
     public int currentWeaponIndex = 0;
+
+    public event Action<int> OnWeaponEquip;
 
 
     void Update()
@@ -62,22 +65,6 @@ public class PlayerCombat : SoundManager
         }
     }
 
-    private void AimAtMouse()
-    {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        directionVector = (mousePos - hand.transform.position).normalized;
-        float rotZ = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
-        hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
-    }
-
-    private void RestoreSteam()
-    {
-        if (steamCurrent >= steamMax) return;
-
-        steamCurrent += steamRegen * Time.deltaTime;
-        steamCurrent = Mathf.Clamp(steamCurrent, 0, steamMax);
-    }
-
     private void UseWeapon()
     {
         // Checks
@@ -90,21 +77,6 @@ public class PlayerCombat : SoundManager
         if (!weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject)) return;
 
         steamCurrent -= weaponSteamCost;
-    }
-
-    private void DropCurrentWeapon()
-    {
-        if (weaponInventory[currentWeaponIndex] != null) // Check for weapon, because player might not have any
-        {
-            weaponInventory[currentWeaponIndex].GetComponent<Weapon>().DropWeapon();
-            weaponInventory[currentWeaponIndex] = null;
-
-            // Equips first avalable weapon
-            for (int i = weaponInventory.Length - 1; i > - 1; i--)
-            {
-                EquipWeapon(i);
-            }
-        }
     }
 
     private void Interact()
@@ -130,12 +102,30 @@ public class PlayerCombat : SoundManager
         }
     }
 
+    private void AimAtMouse()
+    {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        directionVector = (mousePos - hand.transform.position).normalized;
+        float rotZ = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
+        hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
+
+    private void RestoreSteam()
+    {
+        if (steamCurrent >= steamMax) return;
+
+        steamCurrent += steamRegen * Time.deltaTime;
+        steamCurrent = Mathf.Clamp(steamCurrent, 0, steamMax);
+    }
+
     //Adds weapon to free weaponInventory slot
     public bool AddWeapon(GameObject newWeapon)
     {
+        // Search for an empty slot
         for (int i = 0; i < weaponInventory.Length; i++)
         {
-            if (weaponInventory[i] == null)  // Found an empty slot
+            // Found an empty slot
+            if (weaponInventory[i] == null)
             {
                 weaponInventory[i] = newWeapon;
 
@@ -149,12 +139,33 @@ public class PlayerCombat : SoundManager
                 // Equips added weapon, so that player could instantly use it
                 EquipWeapon(i);
 
+                // Calls an Event
+                OnWeaponAdd(i, weaponInventory[i]);
+
                 return true;  // Successfully added the weapon
             }
         }
 
         // Return false if no empty slot was found after checking all slots
         return false;
+    }
+
+    private void DropCurrentWeapon()
+    {
+        // Check for weapon, because player might not have any
+        if (weaponInventory[currentWeaponIndex] == null) return;
+
+        OnWeaponDrop(currentWeaponIndex, weaponInventory[currentWeaponIndex]);
+
+        weaponInventory[currentWeaponIndex].GetComponent<Weapon>().DropWeapon();
+        weaponInventory[currentWeaponIndex] = null;
+
+        // Equips first avalable weapon
+        for (int i = weaponInventory.Length - 1; i > - 1; i--)
+        {
+            EquipWeapon(i);
+        }
+        
     }
 
     // Equips a weapon at index if its avalable
@@ -177,7 +188,10 @@ public class PlayerCombat : SoundManager
             {
                 // Activate the selected weapon
                 weaponInventory[i].GetComponent<Weapon>().ActivateWeapon();
+
                 currentWeaponIndex = index;
+
+                OnWeaponEquip(i);
             }
             else
             {

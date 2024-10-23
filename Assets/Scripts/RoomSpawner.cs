@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding; // Не забудьте добавить это, если используете A* Pathfinding
+using Pathfinding;
 
 public class RoomSpawner : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class RoomSpawner : MonoBehaviour
     public Transform[] spawnPoints;
 
     private float timePassed;
-     
+    private bool hasSpawned = false; // Локальный флаг для каждой комнаты
 
     private void Update()
     {
@@ -21,10 +21,14 @@ public class RoomSpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
+        if (hasSpawned) return; // Проверка на уже заспавненных врагов в комнате
+
         for (int i = 0; i < numberOfEnemies; i++)
         {
             SpawnEnemy();
         }
+
+        hasSpawned = true; // Устанавливаем флаг после спавна врагов
     }
 
     private void SpawnEnemy()
@@ -48,14 +52,11 @@ public class RoomSpawner : MonoBehaviour
         GameObject enemyToSpawn = selectedArray[Random.Range(0, selectedArray.Length)];
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        // Спавн врага
         GameObject spawnedEnemy = Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
 
-        // Поиск игрока по тегу "Player"
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            // Назначаем игрока как цель для компонента AIDestinationSetter у врага
             AIDestinationSetter destinationSetter = spawnedEnemy.GetComponent<AIDestinationSetter>();
             if (destinationSetter != null)
             {
@@ -66,9 +67,9 @@ public class RoomSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !hasSpawned)
         {
-            SpawnEnemies();
+            SpawnEnemies(); // Спавним врагов, если это ещё не было сделано
         }
     }
 }

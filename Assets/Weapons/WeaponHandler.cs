@@ -1,15 +1,16 @@
+using System;
 using TMPro;
 using UnityEngine;
 
-public class WeaponHandler : MonoBehaviour
+public class WeaponHandler : MonoBehaviour, IInteractable
 {
     public TextMeshPro textMeshPro;
+    public Action OnAddWeapon;
 
     private void OnEnable()
     {
         SetWeaponHandler(transform.parent.gameObject);
     }
-
 
     public void SetWeaponHandler(GameObject Weapon)
     {
@@ -17,12 +18,18 @@ public class WeaponHandler : MonoBehaviour
         textMeshPro.text = name;
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    private void AddWeaponToPlayer(GameObject player)
     {
-        PlayerCombat playercombat = collision.GetComponent<PlayerCombat>();
-        if (playercombat != null)
+        if (player.GetComponent<PlayerCombat>().AddWeapon(transform.parent.gameObject))
         {
-            transform.parent.GetComponent<Weapon>().WeaponPickUp(collision);
+            gameObject.SetActive(false);
+
+            OnAddWeapon?.Invoke();
         }
+    }
+
+    void IInteractable.Interact(GameObject player)
+    {
+        AddWeaponToPlayer(player);
     }
 }

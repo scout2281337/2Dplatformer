@@ -1,25 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
-public class WeaponSpawner : MonoBehaviour, IInteractable
+public class WeaponSpawner : MonoBehaviour
 {
     public int amountOfStats;
-
     public GameObject[] WeaponType = new GameObject[4];
 
+    private GameObject weapon;
 
-    public void Interact()
-    {
-        SpawnWeapon();
-    }
 
-    private void SpawnWeapon()
+    public GameObject SpawnWeapon()
     {
         GameObject randomWeapon = WeaponType[Random.Range(0, WeaponType.Length)];
-        GameObject spawnedWeapon = Instantiate(randomWeapon);
-        Weapon weaponComponent = spawnedWeapon.GetComponent<Weapon>();
+        weapon = Instantiate(randomWeapon);
+        Weapon weaponComponent = weapon.GetComponent<Weapon>();
 
         int rang = 0;
         int pontsAmount = 4 + rang * 2;
@@ -50,7 +43,8 @@ public class WeaponSpawner : MonoBehaviour, IInteractable
             }
         }
 
-        spawnedWeapon.transform.position = transform.position;
+        weapon.transform.position = transform.position;
+        return weapon;
     }
 }
 

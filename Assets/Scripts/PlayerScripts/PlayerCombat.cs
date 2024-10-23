@@ -18,7 +18,7 @@ public class PlayerCombat : SoundManager
 
     [Header("Weapon")]
     public float steamMax = 100;
-    public float steamCurrent = 100;
+    public float steamCurrent { get; private set; } = 100;
     public float steamRegen;
 
     public event Action<int, GameObject> OnWeaponAdd;
@@ -34,7 +34,7 @@ public class PlayerCombat : SoundManager
     void Update()
     {
         AimAtMouse();
-        RestoreSteam();
+        RestoreSteam(steamRegen * Time.deltaTime);
 
         if (Input.GetMouseButton(0))
         {
@@ -91,7 +91,7 @@ public class PlayerCombat : SoundManager
                 IInteractable interactable = col.gameObject.GetComponent<IInteractable>();
                 if (interactable != null)
                 {
-                    interactable.Interact();
+                    interactable.Interact(gameObject);
                     break;
                 }
             }
@@ -110,11 +110,11 @@ public class PlayerCombat : SoundManager
         hand.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
-    private void RestoreSteam()
+    public void RestoreSteam(float steam)
     {
         if (steamCurrent >= steamMax) return;
 
-        steamCurrent += steamRegen * Time.deltaTime;
+        steamCurrent += steam;
         steamCurrent = Mathf.Clamp(steamCurrent, 0, steamMax);
     }
 
@@ -139,7 +139,6 @@ public class PlayerCombat : SoundManager
                 // Equips added weapon, so that player could instantly use it
                 EquipWeapon(i);
 
-                // Calls an Event
                 OnWeaponAdd(i, weaponInventory[i]);
 
                 return true;  // Successfully added the weapon

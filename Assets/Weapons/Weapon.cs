@@ -28,7 +28,7 @@ public abstract class Weapon : MonoBehaviour
 
     private void Update()
     {
-        DecreaseHeat();
+        DecreaseHeat(100 * Time.deltaTime);
     }
 
     public virtual bool WeaponAttack(Vector2 diraction, GameObject player)
@@ -52,14 +52,6 @@ public abstract class Weapon : MonoBehaviour
         weaponHandler.SetActive(true);
     }
 
-    public void WeaponPickUp(Collider2D collision)
-    {
-        if (collision.GetComponent<PlayerCombat>().AddWeapon(gameObject))
-        {
-            weaponHandler.SetActive(false);
-        }
-    }
-
     public void ActivateWeapon()
     {
         spriteRenderer.SetActive(true);
@@ -70,17 +62,18 @@ public abstract class Weapon : MonoBehaviour
         spriteRenderer.SetActive(false);
     }
 
+    #region Heat Handling
     private void AddHeat()
     {
         currentHeat += heatGain;
         if (currentHeat > maxHeat) JamWeapon();
     }
 
-    private void DecreaseHeat()
+    public void DecreaseHeat(float heatDecrease)
     {
         if (currentHeat <= 0) return;
 
-        currentHeat -= 100 * Time.deltaTime;
+        currentHeat -= heatDecrease;
         currentHeat = Mathf.Clamp(currentHeat, 0, 100);
 
     }
@@ -101,30 +94,5 @@ public abstract class Weapon : MonoBehaviour
         Debug.Log("unjam");
         OnWeaponUnJam();
     }
-
-
-    #region Legacy
-    //[Header("Reload")]
-    //public int magCapacity;
-    //public float reloadTime;
-    //public int currentAmmo;
-    //protected bool isReloading = false;
-
-    // Method to initiate the reloading process
-    //protected void StartReloading()
-    //{
-    //    // Call the FinishReloading method after 'reloadTime' seconds
-    //    Invoke(nameof(FinishReloading), reloadTime);
-    //}
-
-    // Method to complete the reload and reset ammo count
-    //protected void FinishReloading()
-    //{
-    //    currentAmmo ++;
-    //    if (currentAmmo < magCapacity)
-    //    {
-    //        StartReloading();
-    //    }
-    //}
     #endregion
 }

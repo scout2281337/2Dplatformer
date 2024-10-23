@@ -5,6 +5,10 @@
     background-color: rgba(0, 0, 0, 0.64);
     left: 0;
     bottom: 0;
+    transition-duration: 0.4s;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    transition-delay: 0.2s;
 }
 
 .Inventory {
@@ -32,4 +36,11 @@
 
 .unity-progress-bar__container {
     max-height: 36px;
+}
+
+.WeaponMenu:hover {
+    transition-duration: 0.2s;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+    opacity: 0.3;
 }

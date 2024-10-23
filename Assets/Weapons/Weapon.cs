@@ -12,9 +12,10 @@ public abstract class Weapon : MonoBehaviour
     protected float lastTimeShot;
 
     public float steamCost;
-    public float heatGain;
 
+    public float heatGain;
     public float currentHeat;
+    public float maxHeat = 100;
     public float jamTime = 2f;
     private bool isJamed = false;
     public event Action OnWeaponJam;
@@ -72,7 +73,7 @@ public abstract class Weapon : MonoBehaviour
     private void AddHeat()
     {
         currentHeat += heatGain;
-        if (currentHeat > 100)
+        if (currentHeat > maxHeat)
         {
             JamWeapon();
         }

@@ -19,6 +19,7 @@
     transition-property: opacity;
     transition-timing-function: ease-in;
     transition-duration: 0.4s;
+    transition-delay: 0.2s;
 }
 
 .Frame:hover {

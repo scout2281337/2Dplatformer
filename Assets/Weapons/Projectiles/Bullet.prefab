@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b31bb79103eb14aa198fb981b7e350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileDamage: 0
   rb: {fileID: 455276151908638542}
   playerMask:
     serializedVersion: 2

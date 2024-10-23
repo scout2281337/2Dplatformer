@@ -15,8 +15,8 @@ public abstract class Weapon : MonoBehaviour
 
     public float heatGain;
     public float currentHeat;
-    public float maxHeat = 100;
-    public float jamTime = 2f;
+    private float maxHeat = 100;
+    private float jamTime = 2f;
     private bool isJamed = false;
     public event Action OnWeaponJam;
     public event Action OnWeaponUnJam;
@@ -73,10 +73,7 @@ public abstract class Weapon : MonoBehaviour
     private void AddHeat()
     {
         currentHeat += heatGain;
-        if (currentHeat > maxHeat)
-        {
-            JamWeapon();
-        }
+        if (currentHeat > maxHeat) JamWeapon();
     }
 
     private void DecreaseHeat()

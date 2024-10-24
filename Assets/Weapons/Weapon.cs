@@ -5,18 +5,18 @@ public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public string WeaponName;
-    [SerializeField] private float damage;
-    [SerializeField] private float fireRate;
-    [SerializeField] private float projectileSpeed;
-    [SerializeField] private GameObject projectileType;
+    public float damage;
+    public float fireRate;
+    public float projectileSpeed;
+    public GameObject projectileType;
     protected float lastTimeShot;
 
-    [SerializeField] private float steamCost;
+    public float steamCost;
 
-    [SerializeField] private float heatGain;
-    [SerializeField] private float currentHeat;
-    [SerializeField] private float maxHeat = 100;
-    [SerializeField] private float jamTime = 2f;
+    public float heatGain;
+    public float currentHeat;
+    private float maxHeat = 100;
+    private float jamTime = 2f;
     private bool isJamed = false;
     public event Action OnWeaponJam;
     public event Action OnWeaponUnJam;

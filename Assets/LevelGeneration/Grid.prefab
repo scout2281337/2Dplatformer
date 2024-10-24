@@ -62,13 +62,16 @@ MonoBehaviour:
   pathLength: 6
   iterationNumber: 6
   roomSmall:
-  - {fileID: 1768226010046320366, guid: 28e7e28e37ce4624f9c7146c24265f94, type: 3}
+  - {fileID: 7711290182059080197, guid: 1f6c6ae053c7dad498d3dcf0c3cca58c, type: 3}
+  - {fileID: 7711290182059080197, guid: e818f4a25bd50b046b46ac3c6cde37af, type: 3}
   roomTall:
   - {fileID: 7819669971196886726, guid: 7dbe57a16e836f945875accc1b98f14f, type: 3}
+  - {fileID: 7819669971196886726, guid: 90809a82006946a4cbbd86fd97fcdaf1, type: 3}
   roomLong:
   - {fileID: 3294986469282402709, guid: 9ebda9aadd3959b4a88ea45cd6089d7f, type: 3}
+  - {fileID: 3294986469282402709, guid: a4a55986b749f7348bc66f5f5bf845a6, type: 3}
   roomBig:
-  - {fileID: 6358470020859451336, guid: b0baf1ae9a1a81749b8abf547ff53067, type: 3}
+  - {fileID: 4095826272436476311, guid: 20de18a165bf4ed4ab1a195712a0346f, type: 3}
   wall: {fileID: 3458023264603601946, guid: bc46e67b2e2a03340878fa1289de4d20, type: 3}
 --- !u!1001 &7171617645755681714
 PrefabInstance:

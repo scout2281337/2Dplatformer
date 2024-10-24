@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 7707708883075913584}
   - component: {fileID: 8766651620723566837}
   - component: {fileID: 6498806014859955906}
+  - component: {fileID: 3966801777668697263}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -416,12 +417,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 44f81fdff5f21f740bddf8382d521965, type: 3}
   cam: {fileID: 0}
   hand: {fileID: 6996936957341358647}
-  maxSteam: 100
-  currentSteam: 100
+  steamMax: 100
+  steamRegen: 25
   weaponInventory:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  currentWeaponIndex: 0
 --- !u!114 &6498806014859955906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,3 +439,27 @@ MonoBehaviour:
   MaxHealth: 100
   Currenthealth: 0
   Healthbar: {fileID: 0}
+--- !u!114 &3966801777668697263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621883539737778079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23312fb74560964ab051733d2c0e187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 1
+  currentXP: 0
+  xpToNextLevel: 100
+  xpBar: {fileID: 0}
+  tmptext: {fileID: 0}
+  SkillMenu: {fileID: 0}
+  Skill1: {fileID: 0}
+  Skill2: {fileID: 0}
+  Skill3: {fileID: 0}
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  button3: {fileID: 0}

@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        xpBar.value = (float)currentXP / xpToNextLevel;
+        xpBar.value = currentXP;
         tmptext.text = "Level: " + currentLevel;
     }
 
@@ -64,7 +64,7 @@ public class PlayerStats : MonoBehaviour
         currentLevel++;
         currentXP = currentXP - xpToNextLevel;
         xpToNextLevel += 50; // Increase XP required for each new level
-
+        xpBar.maxValue = xpToNextLevel;
         ShowMenu();
     }
 

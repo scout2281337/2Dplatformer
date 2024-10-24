@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class WeaponSpawner : MonoBehaviour
 {
-    public int amountOfStats;
-    public GameObject[] WeaponType = new GameObject[4];
+    [SerializeField] private int amountOfStats;
+    [SerializeField] private GameObject[] WeaponType = new GameObject[4];
 
     private GameObject weapon;
 
 
     public GameObject SpawnWeapon()
     {
+        if (weapon != null)
+        {
+            Destroy(weapon);
+        }
+
         GameObject randomWeapon = WeaponType[Random.Range(0, WeaponType.Length)];
         weapon = Instantiate(randomWeapon);
         Weapon weaponComponent = weapon.GetComponent<Weapon>();
@@ -44,7 +49,15 @@ public class WeaponSpawner : MonoBehaviour
         }
 
         weapon.transform.position = transform.position;
+
+        weaponComponent.weaponHandler.GetComponent<WeaponHandler>().OnAddWeapon += WeaponDetach;
+
         return weapon;
+    }
+
+    private void WeaponDetach()
+    {
+        weapon = null;
     }
 }
 

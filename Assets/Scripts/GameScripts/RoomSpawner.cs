@@ -65,7 +65,17 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
+    // Изменяем метод для проверки триггера в дочерних объектах
     private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && !hasSpawned)
+        {
+            SpawnEnemies(); // Спавним врагов, если это ещё не было сделано
+        }
+    }
+
+    // Метод для проверки столкновения на дочернем объекте
+    private void OnTriggerEnterChild2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !hasSpawned)
         {

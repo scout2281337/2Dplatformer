@@ -43,4 +43,16 @@ public class MenuManager : MonoBehaviour
     {
         menu.SetActive(!menu.activeSelf);
     }
+
+    public void StartGame()
+    {
+        SceneTransition.SwitchToScene("TestRoom");
+
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+
+    }
 }

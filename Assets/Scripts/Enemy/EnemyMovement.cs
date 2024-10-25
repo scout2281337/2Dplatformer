@@ -4,87 +4,87 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Vector3 pointA;
-    public Vector3 pointB;
     public float speed;
     public Transform player;
-
-    protected Vector3 previousPosition;
     public Animator anim;
-    protected float speedX;
-
-    protected Vector3 TargetPoint;
-    protected bool isChasing;
-    protected Rigidbody2D rb;
-
-    protected bool facingRight = true; // Отслеживание направления, вправо ли смотрит персонаж
     public GameObject sprite;
-    protected virtual void Start()
+
+    private bool isChasing;
+    private bool facingRight = true;
+    private Rigidbody2D rb;
+
+    public LayerMask groundLayer;
+    public Transform groundCheck;
+    public float checkDistance = 0.5f; // Расстояние для проверки платформы
+
+    private void Start()
     {
-        TargetPoint = pointB;
-        previousPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Update()
+    private void Update()
     {
         if (isChasing)
         {
-            Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, 0).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            ChasePlayer();
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, TargetPoint, speed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, TargetPoint) < 0.05f)
-            {
-                TargetPoint = TargetPoint == pointB ? pointA : pointB;
-            }
+            Patrol();
         }
 
-        speedX = (transform.position.x - previousPosition.x) / Time.deltaTime;
-        previousPosition = transform.position;
+        // Запуск анимации в зависимости от скорости
+        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+    }
 
-        // Устанавливаем скорость для анимации с использованием Mathf.Abs()
-        anim.SetFloat("xVelocity", Mathf.Abs(speedX));
+    private void ChasePlayer()
+    {
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
+    }
 
-        // Проверка направления движения и вызов Flip() при необходимости
-        if ((speedX > 0 && !facingRight) || (speedX < 0 && facingRight))
+    private void Patrol()
+    {
+        // Проверка наличия земли впереди
+        bool isGroundAhead = Physics2D.Raycast(groundCheck.position, Vector2.down, checkDistance, groundLayer);
+
+        if (!isGroundAhead)
         {
             Flip();
         }
+
+        // Движение в текущем направлении
+        rb.velocity = new Vector2(facingRight ? speed : -speed, rb.velocity.y);
     }
 
-    protected virtual void OnDrawGizmos()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(pointA, pointB);
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             isChasing = true;
         }
     }
 
-    protected virtual void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             isChasing = false;
         }
     }
 
-    protected virtual void Flip()
+    private void Flip()
     {
-        // Инвертируем направление, меняя знак флага facingRight
         facingRight = !facingRight;
 
         // Инвертируем масштаб персонажа по оси X
         Vector3 theScale = sprite.transform.localScale;
         theScale.x *= -1;
         sprite.transform.localScale = theScale;
+    }
+    private void OnDrawGizmos()
+    {
+        Vector3 DownLine = new Vector3(groundCheck.position.x, groundCheck.position.y - checkDistance, groundCheck.position.z);
+        Gizmos.DrawLine(groundCheck.position, DownLine);
     }
 }

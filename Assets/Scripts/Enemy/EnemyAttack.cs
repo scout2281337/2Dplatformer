@@ -18,9 +18,10 @@ public class EnemyAttack : MonoBehaviour
         {
             player = collision.transform;
             canShoot = true;
-            //StartShooting(); // Запуск стрельбы
+            StartShooting(); // Запуск стрельбы
             //AllDirectionShoot();
             RandomShoot();
+            Debug.Log($"игрок в триггере");
         }
     }
 

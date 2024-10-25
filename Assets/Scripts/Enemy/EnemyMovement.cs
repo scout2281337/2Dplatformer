@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
 
     public LayerMask groundLayer;
     public Transform groundCheck;
-    public float checkDistance = 0.5f; // Расстояние для проверки платформы
+    public float checkDistance = 0.5f; // Distance for checking the platform
 
     private void Start()
     {
@@ -33,19 +33,35 @@ public class EnemyMovement : MonoBehaviour
             Patrol();
         }
 
-        // Запуск анимации в зависимости от скорости
+        // Launch animation based on speed
         anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
     }
 
     private void ChasePlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
+        // Check if there is a platform ahead
+        bool isGroundAhead = Physics2D.Raycast(groundCheck.position, Vector2.down, checkDistance, groundLayer);
+
+        if (!isGroundAhead)
+        {
+            // If there is no ground ahead, stop to avoid falling
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            return;
+        }
+
+        Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, 0).normalized;
         rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
+
+        // Check if we need to flip the character
+        if ((direction.x > 0 && !facingRight) || (direction.x < 0 && facingRight))
+        {
+            Flip();
+        }
     }
 
     private void Patrol()
     {
-        // Проверка наличия земли впереди
+        // Check if there is ground ahead
         bool isGroundAhead = Physics2D.Raycast(groundCheck.position, Vector2.down, checkDistance, groundLayer);
 
         if (!isGroundAhead)
@@ -53,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
             Flip();
         }
 
-        // Движение в текущем направлении
+        // Move in the current direction
         rb.velocity = new Vector2(facingRight ? speed : -speed, rb.velocity.y);
     }
 
@@ -77,14 +93,15 @@ public class EnemyMovement : MonoBehaviour
     {
         facingRight = !facingRight;
 
-        // Инвертируем масштаб персонажа по оси X
+        // Invert character scale on the X-axis
         Vector3 theScale = sprite.transform.localScale;
         theScale.x *= -1;
         sprite.transform.localScale = theScale;
     }
+
     private void OnDrawGizmos()
     {
-        Vector3 DownLine = new Vector3(groundCheck.position.x, groundCheck.position.y - checkDistance, groundCheck.position.z);
-        Gizmos.DrawLine(groundCheck.position, DownLine);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * checkDistance);
     }
 }

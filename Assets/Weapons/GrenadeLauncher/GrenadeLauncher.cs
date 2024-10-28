@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GrenadeLauncher : Weapon
 {
+    [Header("GrenadeLauncher")]
+    public float explosionDamage;
     public float explosionRadius;
     public float explosionForce;
 
@@ -13,8 +15,11 @@ public class GrenadeLauncher : Weapon
         if (!base.WeaponAttack(direction, player)) return false;
 
         //shot
-        GameObject bullet = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-        bullet.GetComponent<Grenade>().SetGrenade(projectileSpeed, direction, damage, explosionRadius, explosionForce); //Sets bullets mandatory vars
+        GameObject projectile = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
+        IProjectile iprojectile = projectile.GetComponent<IProjectile>();
+
+        iprojectile.SetProjectile(projectileSpeed, direction, damage); //Sets bullets mandatory vars
+        iprojectile.AddExplosionComponent(explosionDamage, explosionRadius, explosionForce);
         
         return true;
     }

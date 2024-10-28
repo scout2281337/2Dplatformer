@@ -134,12 +134,14 @@ MonoBehaviour:
   damage: 25
   fireRate: 0.4
   projectileSpeed: 15
+  projectileType: {fileID: 995234572802271142, guid: 480d93b6698e29c48837c4d7715a0088, type: 3}
   steamCost: 50
   heatGain: 80
-  projectileType: {fileID: 995234572802271142, guid: 480d93b6698e29c48837c4d7715a0088, type: 3}
+  currentHeat: 0
   weaponHandler: {fileID: 1486553132318724921}
   spriteRenderer: {fileID: 7311338139089828038}
-  explosionRadius: 5
+  explosionDamage: 50
+  explosionRadius: 2.5
   explosionForce: 15
 --- !u!1001 &6416541481441722394
 PrefabInstance:

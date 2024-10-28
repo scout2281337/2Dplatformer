@@ -45,6 +45,8 @@ public abstract class Weapon : MonoBehaviour
 
     }
 
+
+
     public void DropWeapon()
     {
         transform.parent = null; 

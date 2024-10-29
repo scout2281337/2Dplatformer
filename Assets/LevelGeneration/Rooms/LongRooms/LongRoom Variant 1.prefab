@@ -1861,9 +1861,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+      propertyPath: easyEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+      propertyPath: hardEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+      propertyPath: mediumEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+      propertyPath: easyEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
+    - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+      propertyPath: hardEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
     - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
@@ -1884,6 +1904,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[4]
       value: 
       objectReference: {fileID: 4002696829709751546}
+    - target: {fileID: 6116869959830270082, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
+      propertyPath: mediumEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
     - target: {fileID: 8210672721812307026, guid: db5fefbcf1e5921449347e180f5dc92d, type: 3}
       propertyPath: m_Name
       value: LongRoom Variant 1

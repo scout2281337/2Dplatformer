@@ -1,122 +1,55 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Префаб снаряда
-    public Transform firePoint;         // Точка, из которой будет вылетать снаряд
-    public float fireRate = 1f;         // Скорость стрельбы
-    public float projectileSpeed = 5f;  // Скорость полета снаряда
-    public int NumberOfProjectiles; // количество снарядов
-    protected Transform player;         // Ссылка на игрока
-    protected bool canShoot = false;    // Может ли враг стрелять
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+    public float fireRate = 1f;
+    public float projectileSpeed = 5f;
+    public int numberOfProjectiles;
+    private Transform player;
+    private bool canShoot = false;
 
-    // Метод для включения режима атаки
+    // Список стратегий атаки
+    private List<IAttackStrategy> attackStrategies = new List<IAttackStrategy>();
+
+    private void Start()
+    {
+        // Инициализируем стратегии
+        attackStrategies.Add(new SingleShootStrategy());
+        //attackStrategies.Add(new RandomShootStrategy());
+        //attackStrategies.Add(new AllDirectionShootStrategy());
+
+        // Запускаем стрельбу по таймеру
+        InvokeRepeating(nameof(Shoot), 0f, fireRate);
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             player = collision.transform;
             canShoot = true;
-            StartShooting(); // Запуск стрельбы
-            //AllDirectionShoot();
-            RandomShoot();
-            Debug.Log($"игрок в триггере");
         }
     }
 
-    // Метод для отключения режима атаки
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             canShoot = false;
-            //StopShooting(); // Остановить стрельбу
         }
     }
 
-    // Начало стрельбы с интервалом
-    protected virtual void StartShooting()
-    {
-        InvokeRepeating("Shoot", 0f, fireRate);
-    }
-
-    // Остановка стрельбы
-    protected virtual void StopShooting()
-    {
-        CancelInvoke("Shoot");
-    }
-
-    // Основная логика стрельбы
     protected virtual void Shoot()
     {
         if (!canShoot) return;
 
-        // Создаем снаряд
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
-        // Рассчитываем направление к игроку
-        Vector2 direction = (player.position - firePoint.position).normalized;
-
-        // Добавляем скорость снаряду
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = direction * projectileSpeed;
-    }
-    
-
-    protected virtual void RandomShoot()
-    {
-        if (!canShoot) return;
-
-        StartCoroutine(ShootWithDelay());
-    }
-
-    protected IEnumerator ShootWithDelay()
-    {
-        while (canShoot)
+        foreach (var strategy in attackStrategies)
         {
-            for (int i = 0; i < NumberOfProjectiles; i++)
-            {
-                // Создаем снаряд
-                Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(0f, 1f)).normalized;
-
-                GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-                Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-
-                // Добавляем скорость снаряду
-                rb.velocity = direction * projectileSpeed;
-            }
-
-            // Ждем 1 секунду перед следующей стрельбой
-            yield return new WaitForSeconds(1f);
+            // Выполняем каждую стратегию атаки
+            strategy.ExecuteAttack(firePoint, projectilePrefab, player, projectileSpeed, numberOfProjectiles);
         }
     }
-
-    public virtual void AllDirectionShoot()
-    {
-        if (!canShoot) return;
-
-        float angleStep = 180f / (NumberOfProjectiles - 1);  // Угол между снарядами
-        float angle = -90f;  // Начинаем от угла -90 (вверх), и будем двигаться вправо
-
-        for (int i = 0; i < NumberOfProjectiles; i++)
-        {
-            // Рассчитываем направление на основе угла
-            float projectileDirXPosition = Mathf.Sin((angle * Mathf.PI) / 180f);
-            float projectileDirYPosition = Mathf.Cos((angle * Mathf.PI) / 180f);
-
-            Vector2 direction = new Vector2(projectileDirXPosition, projectileDirYPosition).normalized;
-
-            // Создаем снаряд
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-
-            // Добавляем скорость снаряду
-            rb.velocity = direction * projectileSpeed;
-
-            // Увеличиваем угол для следующего снаряда
-            angle += angleStep;
-        }
-    }
-
 }

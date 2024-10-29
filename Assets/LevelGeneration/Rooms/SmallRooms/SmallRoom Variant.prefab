@@ -1489,6 +1489,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+      propertyPath: easyEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+      propertyPath: hardEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+      propertyPath: mediumEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+      propertyPath: easyEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
+    - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+      propertyPath: hardEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
+    - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 3939689327065385140}
@@ -1504,6 +1524,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[3]
       value: 
       objectReference: {fileID: 7387948016278197036}
+    - target: {fileID: 1441821943264699191, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
+      propertyPath: mediumEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
     - target: {fileID: 1768226010046320366, guid: af71cfdd65b25824c981a6befa286c03, type: 3}
       propertyPath: m_Name
       value: SmallRoom Variant

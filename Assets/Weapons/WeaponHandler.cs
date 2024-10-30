@@ -14,7 +14,7 @@ public class WeaponHandler : MonoBehaviour, IInteractable
 
     public void SetWeaponHandler(GameObject Weapon)
     {
-        string name = Weapon.GetComponent<Weapon>().WeaponName;
+        string name = Weapon.GetComponent<Weapon>().weaponStats.WeaponName;
         textMeshPro.text = name;
     }
 

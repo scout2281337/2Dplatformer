@@ -12,14 +12,14 @@ public class GrenadeLauncher : Weapon
 
     public override bool WeaponAttack(Vector2 direction, GameObject player)
     {
-        if (!base.WeaponAttack(direction, player)) return false;
+        if (!base.WeaponAttack(direction, player)) 
+            return false;
 
         //shot
-        GameObject projectile = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
+        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); //Spawns bullet
         IProjectile iprojectile = projectile.GetComponent<IProjectile>();
 
-        iprojectile.SetProjectile(projectileSpeed, direction, damage); //Sets bullets mandatory vars
-        iprojectile.AddExplosionComponent(explosionDamage, explosionRadius, explosionForce);
+        iprojectile.SetProjectile(weaponStats, direction); //Sets bullets mandatory 
         
         return true;
     }

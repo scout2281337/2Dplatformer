@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6941862539690988680}
   - component: {fileID: -6674175952689313539}
   - component: {fileID: -1637937350344163789}
-  - component: {fileID: 7558857642702665274}
+  - component: {fileID: -5260541084750695636}
   m_Layer: 10
   m_Name: Rocket
   m_TagString: Untagged
@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.16, y: 0.16}
   m_Direction: 1
---- !u!114 &7558857642702665274
+--- !u!114 &-5260541084750695636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,11 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 995234572802271142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de47d2974786f654ca144feebf9d8f7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f4d258c87f5701428897cd2d3f90f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -6674175952689313539}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}

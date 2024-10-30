@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3473f2182bc8d64a94ffa5c82e02826, type: 3}
+  m_Name: RocketLauncher_Stats
+  m_EditorClassIdentifier: 
+  WeaponName: Rocket Launcher
+  fireRate: 1.5
+  projectileSpeed: 40
+  steamCost: 50
+  heatGain: 70
+  projectileType: {fileID: 995234572802271142, guid: 480d93b6698e29c48837c4d7715a0088, type: 3}
+  projectileComponents:
+  - {fileID: 5099592933390865989, guid: 8e092df508ba60144b4fdf9f0bbe5f64, type: 3}
+  - {fileID: 4904933078286723542, guid: 573df0146756041418feab59db983ac0, type: 3}

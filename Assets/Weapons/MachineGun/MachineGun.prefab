@@ -130,13 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209663e70463fee46bfe96a0d33d3162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: Machine Gun
-  damage: 3
-  fireRate: 0.2
-  projectileSpeed: 40
-  steamCost: 2
-  heatGain: 10
+  weaponStats: {fileID: 11400000, guid: 1f125665305e4a741949e9acf97686d1, type: 2}
   projectileType: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
+  currentHeat: 0
   weaponHandler: {fileID: 2813944687039979925}
   spriteRenderer: {fileID: 3511798448416765987}
   recoilStrength: 2

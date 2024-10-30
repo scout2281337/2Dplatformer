@@ -35,10 +35,10 @@ public class DoubleBarrelShotgun : Weapon
             Vector2 pelletDirection = new Vector2(projectileDirX, projectileDirY).normalized;
 
             // Instantiate and set up the 
-            GameObject projectile = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
+            GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); //Spawns bullet
             IProjectile iprojectile = projectile.GetComponent<IProjectile>();
 
-            iprojectile.SetProjectile(projectileSpeed, pelletDirection, damage); //Sets bullets mandatory vars
+            iprojectile.SetProjectile(weaponStats, pelletDirection); //Sets bullets mandatory vars
         }
 
         // Apply recoil to the player

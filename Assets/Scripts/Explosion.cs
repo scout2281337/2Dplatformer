@@ -6,8 +6,6 @@ public class Explosion : SoundManager
 
     void Start()
     {
-
-
         PlaySound(sounds[0]);
         // ���������� ������ ����� 1 ������� ����� ������ ��������
         Destroy(gameObject, 0.5f); // ��������� ����� � ����������� �� ����� ����� ��������

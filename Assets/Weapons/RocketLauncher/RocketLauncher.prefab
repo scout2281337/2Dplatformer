@@ -130,13 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0d732d2097b7744a1346aad536d85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: Rocket Launcher
-  damage: 25
-  fireRate: 0.4
-  projectileSpeed: 15
-  projectileType: {fileID: 995234572802271142, guid: 480d93b6698e29c48837c4d7715a0088, type: 3}
-  steamCost: 50
-  heatGain: 80
+  weaponStats: {fileID: 11400000, guid: 14201b0b0e467e340afb1ef59424e0cd, type: 2}
   currentHeat: 0
   weaponHandler: {fileID: 1486553132318724921}
   spriteRenderer: {fileID: 7311338139089828038}

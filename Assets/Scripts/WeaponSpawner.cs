@@ -27,20 +27,20 @@ public class WeaponSpawner : MonoBehaviour
             switch (Random.Range(0, amountOfStats))
             {
                 case 0:
-                    weaponComponent.damage *= 1.5f;
-                    Debug.Log("damage: " + weaponComponent.damage);
+                    //weaponComponent.weaponStats.damage *= 1.5f;
+                    //Debug.Log("damage: " + weaponComponent.weaponStats.damage);
                     break;
                 case 1:
-                    weaponComponent.fireRate /= 1.5f;
-                    Debug.Log("firerate: " + weaponComponent.fireRate);
+                    weaponComponent.weaponStats.fireRate /= 1.5f;
+                    Debug.Log("firerate: " + weaponComponent.weaponStats.fireRate);
                     break;
                 case 2:
-                    weaponComponent.steamCost /= 1.5f;
-                    Debug.Log("steamcost: " + weaponComponent.steamCost);
+                    weaponComponent.weaponStats.steamCost /= 1.5f;
+                    Debug.Log("steamcost: " + weaponComponent.weaponStats.steamCost);
                     break;
                 case 3:
-                    weaponComponent.heatGain /= 1.5f;
-                    Debug.Log("heatgain: " + weaponComponent.heatGain);
+                    weaponComponent.weaponStats.heatGain /= 1.5f;
+                    Debug.Log("heatgain: " + weaponComponent.weaponStats.heatGain);
                     break;
                 case 4:
                     Debug.Log("adadaa");

@@ -70,7 +70,7 @@ public class PlayerCombat : SoundManager
         // Checks
         if (weaponInventory[currentWeaponIndex] == null) return; //Check for weapon, because player might not have any
 
-        float weaponSteamCost = weaponInventory[currentWeaponIndex].GetComponent<Weapon>().steamCost;
+        float weaponSteamCost = weaponInventory[currentWeaponIndex].GetComponent<Weapon>().weaponStats.steamCost;
         if (weaponSteamCost > steamCurrent) return;
 
         // Weapon use

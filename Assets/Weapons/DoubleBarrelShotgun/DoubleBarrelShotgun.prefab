@@ -130,13 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea46dc7a8d793541bb987a81c54f060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: Double Barrel Shotgun
-  damage: 4
-  fireRate: 1
-  projectileSpeed: 40
-  steamCost: 20
-  heatGain: 50
+  weaponStats: {fileID: 11400000, guid: 50f920a493673a94d855381ad4940764, type: 2}
   projectileType: {fileID: 8302104495389313648, guid: f3d437f835affa342a01fdd0c058d4c9, type: 3}
+  currentHeat: 0
   weaponHandler: {fileID: 2957004914732960936}
   spriteRenderer: {fileID: 512178923205875912}
   recoilStrength: 8

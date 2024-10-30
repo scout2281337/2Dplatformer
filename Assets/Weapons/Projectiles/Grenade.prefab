@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6941862539690988680}
   - component: {fileID: -6674175952689313539}
   - component: {fileID: -702276971823762713}
-  - component: {fileID: 2819438567037558600}
+  - component: {fileID: 1081720786805195767}
   m_Layer: 10
   m_Name: Grenade
   m_TagString: Untagged
@@ -149,7 +149,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &2819438567037558600
+--- !u!114 &1081720786805195767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,11 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 995234572802271142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93c86a722532fb48b79e85f2b9856f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f4d258c87f5701428897cd2d3f90f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -6674175952689313539}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}

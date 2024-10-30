@@ -4,20 +4,14 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
-    public string WeaponName;
-    public float damage;
-    public float fireRate;
-    public float projectileSpeed;
-    public GameObject projectileType;
+    public WeaponStats_SO weaponStats;
+
     protected float lastTimeShot;
-
-    public float steamCost;
-
-    public float heatGain;
     public float currentHeat;
     private float maxHeat = 100;
     private float jamTime = 2f;
     private bool isJamed = false;
+
     public event Action OnWeaponJam;
     public event Action OnWeaponUnJam;
 
@@ -33,7 +27,7 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual bool WeaponAttack(Vector2 diraction, GameObject player)
     {
-        if (!isJamed && Time.time > lastTimeShot + fireRate)
+        if (!isJamed && Time.time > lastTimeShot + weaponStats.fireRate)
         {
             lastTimeShot = Time.time;
 
@@ -44,8 +38,6 @@ public abstract class Weapon : MonoBehaviour
         else return false;
 
     }
-
-
 
     public void DropWeapon()
     {
@@ -67,7 +59,7 @@ public abstract class Weapon : MonoBehaviour
     #region Heat Handling
     private void AddHeat()
     {
-        currentHeat += heatGain;
+        currentHeat += weaponStats.heatGain;
         if (currentHeat > maxHeat) JamWeapon();
     }
 

@@ -4,21 +4,13 @@ using UnityEngine;
 
 public class RocketLauncher : Weapon
 {
-    [Header("RocketLauncher")]
-    public float explosionDamage;
-    public float explosionRadius;
-    public float explosionForce;
-
     public override bool WeaponAttack(Vector2 direction, GameObject player)
     {
         if (!base.WeaponAttack(direction, player)) return false;
 
         //shot
-        GameObject projectile = Instantiate(projectileType, transform.position, Quaternion.identity); //Spawns bullet
-        IProjectile iprojectile = projectile.GetComponent<IProjectile>();
-
-        iprojectile.SetProjectile(projectileSpeed, direction, damage); //Sets bullets mandatory vars
-        iprojectile.AddExplosionComponent(explosionDamage, explosionRadius, explosionForce); 
+        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); //Spawns bullet
+        projectile.GetComponent<IProjectile>()?.SetProjectile(weaponStats, direction); //Sets bullets mandatory vars-
         
         return true;
     }

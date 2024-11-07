@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ImpactExplosiveComponent : MonoBehaviour, IProjectileImpactable
+[CreateAssetMenu(fileName = "ImpactExplosiveComponent", menuName = "ScriptableObjects/ImpactComponents/ImpactExplosiveComponent", order = 1)]
+public class ImpactExplosiveComponent : BaseImpactComponent
 {
     public float explosionDamage;
     public float explosionRadius;
     public float explosionForce;
-    public GameObject explosionPrefab;
 
+    [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private LayerMask explosionLayerMask; // Specify layers for the explosion
 
-    public void ProjectileImpact(GameObject other)
+    public override void ProjectileImpact(GameObject other, Transform transform)
     {
+
         // Instantiate explosion effect
         GameObject explosionFX = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         explosionFX.transform.localScale *= 2 * explosionRadius;
-        Debug.Log(gameObject.layer);
+
         // Use OverlapCircleAll with a layer mask
         Collider2D[] explosionCollisions = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionLayerMask);
 
@@ -28,7 +30,7 @@ public class ImpactExplosiveComponent : MonoBehaviour, IProjectileImpactable
         foreach (var collision in explosionCollisions)
         {
             // Apply explosion force
-            Push(collision);
+            Push(collision, transform);
 
             // Damage enemies
             DamageEnemy(collision);
@@ -37,21 +39,39 @@ public class ImpactExplosiveComponent : MonoBehaviour, IProjectileImpactable
 
     private void DamageEnemy(Collider2D collision)
     {
-        EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
-        if (enemyHealth != null)
-        {
-            Debug.Log("Enemy hit by explosion");
-            enemyHealth.TakeDamage((int)explosionDamage);
-        }
+        if (!collision.TryGetComponent<EnemyHealth>(out var enemyHealth))
+            return;
+
+        enemyHealth.TakeDamage((int)explosionDamage);
     }
 
-    private void Push(Collider2D collision)
+    private void Push(Collider2D collision, Transform transform)
     {
-        IPushable pushable = collision.GetComponent<IPushable>();
-        if (pushable != null)
-        {
-            Vector2 pushVector = (collision.transform.position - transform.position).normalized;
-            pushable.Push(pushVector, explosionForce);
-        }
+        if (!collision.TryGetComponent<IPushable>(out var pushable))
+            return;
+        
+        Vector2 pushVector = (collision.transform.position - transform.position).normalized;
+        pushable.Push(pushVector, explosionForce);
+        
+    }
+
+    public override float SetRandomStats(float min, float max)
+    {
+        explosionDamage *= GetModifier(min, max);
+        explosionRadius *= GetModifier(min, max);
+
+        return GetAvarageModifier();
+    }
+
+    public override BaseProjectileComponent CloneComponent()
+    {
+        ImpactExplosiveComponent newComponent = ScriptableObject.CreateInstance<ImpactExplosiveComponent>();
+        newComponent.explosionDamage = explosionDamage;
+        newComponent.explosionRadius = explosionRadius;
+        newComponent.explosionForce = explosionForce;
+        newComponent.explosionPrefab = explosionPrefab;
+        newComponent.explosionLayerMask = explosionLayerMask;
+
+        return newComponent;
     }
 }

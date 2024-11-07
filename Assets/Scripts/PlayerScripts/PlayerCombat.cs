@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class PlayerCombat : SoundManager
 {
-    //public Animator animator;
-    //public Transform AttackPoint;
-    //public LayerMask enemyLayer;
-
-    //public float AttackRange;
-    //public int attackDamage = 20;
-
     [Header("Aiming")]
     public Camera cam;
     public GameObject hand;
@@ -200,38 +193,4 @@ public class PlayerCombat : SoundManager
         }
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    if (AttackPoint == null)
-    //        return;
-        
-    //    Gizmos.DrawWireSphere(AttackPoint.position, AttackRange);
-    //}
-
-    //private void Attack()
-    //{
-    //    animator.SetTrigger("attack");
-    //    PlaySound(sounds[0]);
-
-    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, enemyLayer);
-
-    //    foreach (Collider2D enemy in hitEnemies)
-    //    {
-    //        // Проверяем, что коллайдер не является триггером
-    //        if (!enemy.isTrigger)
-    //        {
-    //            Debug.Log(enemy.name);
-    //            EnemyHealth enemyComponent = enemy.GetComponent<EnemyHealth>();
-
-    //            if (enemyComponent != null)
-    //            {
-    //                enemyComponent.TakeDamage(attackDamage);
-    //            }
-    //            else
-    //            {
-    //                Debug.Log("нет врагов");
-    //            }
-    //        }
-    //    }
-    //}
 }

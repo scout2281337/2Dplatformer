@@ -10,11 +10,7 @@ public class MachineGun : Weapon
     {
         if (!base.WeaponAttack(direction, player)) return false;
 
-        //shot
-        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); //Spawns bullet
-        IProjectile iprojectile = projectile.GetComponent<IProjectile>();
-
-        iprojectile.SetProjectile(weaponStats, direction); //Sets bullets mandatory vars
+        SpawnProjectile(direction);
 
         //recoil
         player.GetComponent<IPushable>().Push(-1 * direction, recoilStrength); // Pushes player in the firaction opposite of shooting

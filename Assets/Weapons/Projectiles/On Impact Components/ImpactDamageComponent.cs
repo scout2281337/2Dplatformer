@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
-[System.Serializable]
-public class ImpactDamageComponent : MonoBehaviour, IProjectileImpactable
+[CreateAssetMenu(fileName = "ImpactDamageComponent", menuName = "ScriptableObjects/ImpactComponents/ImpactDamageComponent", order = 1)]
+public class ImpactDamageComponent : BaseImpactComponent
 {
-    public float damage;
+    public float damage = 10f;
 
-    public void ProjectileImpact(GameObject other)
+    public override void ProjectileImpact(GameObject other, Transform t)
     {
-        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
-        if (enemyHealth != null)
-        {
-            enemyHealth.TakeDamage(Mathf.RoundToInt(damage)); //TODO change int in player health
-        }
+        other.GetComponent<EnemyHealth>()?.TakeDamage((int)damage);
+    }
+
+    public override BaseProjectileComponent CloneComponent()
+    {
+        ImpactDamageComponent newComponent = ScriptableObject.CreateInstance<ImpactDamageComponent>();
+        newComponent.damage = damage;
+
+        return newComponent;
+    }
+
+    public override float SetRandomStats(float min, float max)
+    {
+        damage *= GetModifier(min, max);
+
+        return GetAvarageModifier();
     }
 }

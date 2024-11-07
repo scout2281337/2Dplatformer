@@ -17,7 +17,7 @@ MonoBehaviour:
   projectileSpeed: 40
   steamCost: 35
   heatGain: 50
+  cost: 25
   projectileType: {fileID: 995234572802271142, guid: d05b32a389c49a247a9850bcf4391e56, type: 3}
   projectileComponents:
-  - {fileID: 5099592933390865989, guid: d31308e7d24ac424fb3cc290c8e79bed, type: 3}
-  - {fileID: 4904933078286723542, guid: 020a55dbb0a85284ab2df2db12340329, type: 3}
+  - {fileID: 11400000, guid: 233063087bb233c49adf0cb12e6e9564, type: 2}

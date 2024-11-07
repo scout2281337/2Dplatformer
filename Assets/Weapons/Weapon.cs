@@ -1,15 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public WeaponStats_SO weaponStats;
+    public float currentHeat;
 
     protected float lastTimeShot;
-    public float currentHeat;
-    private float maxHeat = 100;
-    private float jamTime = 2f;
+    private float maxHeat = 100f;
+    private const float jamTime = 2f;
     private bool isJamed = false;
 
     public event Action OnWeaponJam;
@@ -35,8 +37,18 @@ public abstract class Weapon : MonoBehaviour
 
             return true;
         }
+
         else return false;
 
+    }
+
+    /// <summary>
+    /// Instantiates and sets the projectile
+    /// </summary>
+    protected void SpawnProjectile(Vector2 direction)
+    {
+        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); // Spawns bullet
+        projectile.GetComponent<IProjectile>()?.SetProjectile(weaponStats, direction); // Sets bullets mandatory vars
     }
 
     public void DropWeapon()

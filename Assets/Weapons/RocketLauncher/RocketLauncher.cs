@@ -9,9 +9,9 @@ public class RocketLauncher : Weapon
         if (!base.WeaponAttack(direction, player)) return false;
 
         //shot
-        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); //Spawns bullet
-        projectile.GetComponent<IProjectile>()?.SetProjectile(weaponStats, direction); //Sets bullets mandatory vars-
-        
+        SpawnProjectile(direction);
+
         return true;
     }
+
 }

@@ -7,7 +7,7 @@ public class WeaponHandler : MonoBehaviour, IInteractable
     public TextMeshPro textMeshPro;
     public Action OnAddWeapon;
 
-    private void OnEnable()
+    private void Start()
     {
         SetWeaponHandler(transform.parent.gameObject);
     }

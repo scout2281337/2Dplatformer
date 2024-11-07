@@ -15,11 +15,7 @@ public class GrenadeLauncher : Weapon
         if (!base.WeaponAttack(direction, player)) 
             return false;
 
-        //shot
-        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); //Spawns bullet
-        IProjectile iprojectile = projectile.GetComponent<IProjectile>();
-
-        iprojectile.SetProjectile(weaponStats, direction); //Sets bullets mandatory 
+        SpawnProjectile(direction);
         
         return true;
     }

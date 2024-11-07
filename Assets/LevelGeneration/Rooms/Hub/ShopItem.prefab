@@ -129,7 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c019dd72c82eb654b82e1a95c7d82aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minModifier: 0.5
+  maxModifier: 2
   amountOfStats: 4
+  impactComponents:
+  - {fileID: 4763495576939644268, guid: 0ce4e04bfa0c6df4aa436843d8f0e7e7, type: 3}
+  - {fileID: 5643803762959782345, guid: 8eb2a07959e3478498d1c56e3f147935, type: 3}
   WeaponType:
   - {fileID: 5597251174798365475, guid: c1f9645f02b4c424c81f06b802bec1bf, type: 3}
   - {fileID: 7931470309659921511, guid: 699b101f15421f443be9b575c72bf7c7, type: 3}

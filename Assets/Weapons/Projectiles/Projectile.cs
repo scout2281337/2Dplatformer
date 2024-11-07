@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour, IProjectile
     protected Vector2 projectileDiraction;
 
 
-    public virtual void SetProjectile(WeaponStats_SO newWeaponStats, Vector2 diraction)
+    public void SetProjectile(WeaponStats_SO newWeaponStats, Vector2 diraction)
     {
         weaponStats = newWeaponStats;
         projectileDiraction = diraction;
@@ -22,13 +22,11 @@ public class Projectile : MonoBehaviour, IProjectile
     }
 
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        foreach (var component in weaponStats.projectileComponents)
+        foreach (BaseImpactComponent component in weaponStats.projectileComponents)
         {
-            GameObject projectile = Instantiate(component, transform);
-
-            projectile.GetComponent<IProjectileImpactable>()?.ProjectileImpact(other.gameObject);
+            component.ProjectileImpact(other.gameObject, transform);
         }
 
         Destroy(gameObject);

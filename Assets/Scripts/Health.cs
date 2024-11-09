@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +7,13 @@ public class Health : MonoBehaviour
     public GameObject DeathPanel;
     public int MaxHealth = 100;
     [SerializeField] private int Currenthealth;
-
     public Healthbar Healthbar;
 
-
     private PlayerMovement playerMovement;
+
+    // Для неуязвимости
+    public float invincibilityDuration = 1.0f; 
+    private bool isInvincible = false; 
     void Start()
     {
         Currenthealth = MaxHealth;
@@ -22,13 +23,29 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        
+        if (isInvincible)
+            return;
+
+        // Наносим урон
         Currenthealth -= damage;
         Healthbar.SetHealth(Currenthealth);
 
+        
+        StartCoroutine(Invincibility());
+
         if (Currenthealth <= 0)
         {
-            StartCoroutine(RestartLevel()); // Вызов корутины
+            StartCoroutine(RestartLevel()); 
         }
+    }
+
+    
+    IEnumerator Invincibility()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration); 
+        isInvincible = false; 
     }
 
     IEnumerator RestartLevel()

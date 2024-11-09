@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    public GameObject explosionPrefab; // Префаб анимации взрыва
+    public GameObject explosionPrefab; 
+    public int damage = 10; 
 
     void Update()
     {
@@ -13,30 +14,30 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Попадание в игрока");
-            Explode(); // Воспроизводим анимацию взрыва
+            // Попадание в игрока
+            Health playerHealth = other.GetComponent<Health>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage); 
+            }
+
+            Explode(); 
         }
         else if (other.gameObject.layer == 6)
         {
-            
-            Explode(); // Воспроизводим анимацию взрыва
-            
+            Explode(); 
         }
     }
 
     private void Explode()
     {
         
-        // Создайте эффект взрыва в позиции текущего объекта
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
         
-        // Уничтожьте пулю
         Destroy(gameObject);
-
     }
-    
-
 }

@@ -5,13 +5,17 @@ using UnityEngine;
 public class AttackLogic : MonoBehaviour
 {
     public GameObject explosionPrefab;
-    public float Damage;
+    public int Damage;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ( collision.gameObject.tag == "Player") 
         {
-            Debug.Log("Попадание в игрока");
+            Health playerHealth = collision.gameObject.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(Damage);
+            }
             Explode(); // Воспроизводим анимацию взрыва
         }
     }

@@ -35,10 +35,8 @@ public class PlayerStats : MonoBehaviour
         // Инициализация перков
         allPerks.Add(new Perk("Increase Health", "Increase max health by 20", IncreaseHealth));
         allPerks.Add(new Perk("Increase Attack", "Increase attack by 10%", IncreaseAttack));
-        allPerks.Add(new Perk("Increase Speed", "Increase movement speed by 10%", IncreaseSpeed));
-        allPerks.Add(new Perk("Double Jump", "Allows double jump", EnableDoubleJump));
         allPerks.Add(new Perk("Regeneration", "Regenerate health over time", EnableRegeneration));
-
+        //allPerks.Add(new Perk("Invincible", "Inviincible for 2 seconds after hit", EnableInvincible));
         // Можно добавить больше перков
         pm = GetComponent<PlayerMovement>();
     }
@@ -131,23 +129,16 @@ public class PlayerStats : MonoBehaviour
         // Логика для увеличения атаки
 
     }
-
-    private void IncreaseSpeed()
+    private void EnableInvincible()
     {
-        Debug.Log("Increased Speed by 10%");
-        // Логика для увеличения скорости
-        pm.maxSpeed = pm.maxSpeed * 3f;
-    }
+        Debug.Log("Inviincible for 2 seconds after hit");
+        
 
-    private void EnableDoubleJump()
-    {
-        Debug.Log("Double Jump enabled");
-        // Логика для активации двойного прыжка
     }
 
     private void EnableRegeneration()
     {
         Debug.Log("Health Regeneration enabled");
-        // Логика для регенерации здоровья
+        
     }
 }

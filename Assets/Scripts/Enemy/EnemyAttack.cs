@@ -31,6 +31,7 @@ public class EnemyAttack : MonoBehaviour
         {
             player = collision.transform;
             canShoot = true;
+            Debug.Log("игрока видно");
         }
     }
 

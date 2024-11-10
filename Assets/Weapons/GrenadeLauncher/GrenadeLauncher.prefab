@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2936370622895546268}
-  - component: {fileID: -135604638372759230}
+  - component: {fileID: 4495069143671914298}
   m_Layer: 9
   m_Name: GrenadeLauncher
   m_TagString: Untagged
@@ -118,7 +118,7 @@ Transform:
   - {fileID: 3721992233739473605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-135604638372759230
+--- !u!114 &4495069143671914298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,16 +127,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5777016165425731265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d101904332307c246807b49f299dcd77, type: 3}
+  m_Script: {fileID: 11500000, guid: 96ff3f7beae0c1f44b0cd20b5caf5d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponStats: {fileID: 11400000, guid: 3fae9b4122691c64984c4734c33d41a9, type: 2}
   currentHeat: 0
   weaponHandler: {fileID: 7086688744447750046}
   spriteRenderer: {fileID: 4373534000466739019}
-  explosionDamage: 30
-  explosionRadius: 1.7
-  explosionForce: 10
 --- !u!1001 &3455834951104052413
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -61,13 +61,17 @@ public class PlayerCombat : SoundManager
     private void UseWeapon()
     {
         // Checks
-        if (weaponInventory[currentWeaponIndex] == null) return; //Check for weapon, because player might not have any
+        //Check for weapon, because player might not have any
+        if (weaponInventory[currentWeaponIndex] == null)
+            return;
 
         float weaponSteamCost = weaponInventory[currentWeaponIndex].GetComponent<Weapon>().weaponStats.steamCost;
-        if (weaponSteamCost > steamCurrent) return;
+        if (weaponSteamCost > steamCurrent)
+            return;
 
         // Weapon use
-        if (!weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject)) return;
+        if (!weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject.GetComponent<PlayerMovement>()))
+            return;
 
         steamCurrent -= weaponSteamCost;
     }

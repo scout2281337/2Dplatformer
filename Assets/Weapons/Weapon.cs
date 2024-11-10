@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [Header("Weapon")]
     public WeaponStats_SO weaponStats;
     public float currentHeat;
 
     protected float lastTimeShot;
-    private float maxHeat = 100f;
+    private const float maxHeat = 100f;
     private const float jamTime = 2f;
     private bool isJamed = false;
 
@@ -27,28 +27,18 @@ public abstract class Weapon : MonoBehaviour
         DecreaseHeat(100 * Time.deltaTime);
     }
 
-    public virtual bool WeaponAttack(Vector2 diraction, GameObject player)
+    public virtual bool WeaponAttack(Vector2 diraction, PlayerMovement playerMovement)
     {
-        if (!isJamed && Time.time > lastTimeShot + weaponStats.fireRate)
-        {
-            lastTimeShot = Time.time;
+        if (isJamed)
+            return false;
+        if (Time.time < lastTimeShot + weaponStats.fireRate)
+            return false;
+        
+        weaponStats.shotTypeComponent.Shoot(diraction, transform.position, weaponStats, playerMovement);
+        lastTimeShot = Time.time;
+        AddHeat();
 
-            AddHeat();
-
-            return true;
-        }
-
-        else return false;
-
-    }
-
-    /// <summary>
-    /// Instantiates and sets the projectile
-    /// </summary>
-    protected void SpawnProjectile(Vector2 direction)
-    {
-        GameObject projectile = Instantiate(weaponStats.projectileType, transform.position, Quaternion.identity); // Spawns bullet
-        projectile.GetComponent<IProjectile>()?.SetProjectile(weaponStats, direction); // Sets bullets mandatory vars
+        return true;
     }
 
     public void DropWeapon()
@@ -87,7 +77,7 @@ public abstract class Weapon : MonoBehaviour
     private void JamWeapon()
     {
         isJamed = true;
-        Invoke("UnJamWeapon", jamTime);
+        Invoke(nameof(UnJamWeapon), jamTime);
 
         Debug.Log("jam");
         OnWeaponJam();

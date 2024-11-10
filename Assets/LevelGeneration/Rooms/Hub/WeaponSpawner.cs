@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class WeaponSpawner : MonoBehaviour
 {
-    public float minModifier;
-    public float maxModifier;
-
-    [SerializeField] private List<GameObject> impactComponents;
     [SerializeField] private GameObject[] WeaponType = new GameObject[4];
 
+    private float minModifier;
+    private float maxModifier;
     private GameObject weaponObject;
     private Weapon weapon;
     private WeaponHandler weaponHandler;
@@ -18,8 +16,11 @@ public class WeaponSpawner : MonoBehaviour
     /// <summary>
     /// Instantiates weapon, proceduraly generates random stats
     /// </summary>
-    public GameObject SpawnWeapon()
+    public GameObject SpawnWeapon(float minMod, float maxMod)
     {
+        minModifier = minMod;
+        maxModifier = maxMod;
+
         // For weapon rerol
         if (weaponObject != null)
         {
@@ -31,32 +32,49 @@ public class WeaponSpawner : MonoBehaviour
         weaponObject = Instantiate(randomWeapon, transform.position, Quaternion.identity, transform);
         weapon = weaponObject.GetComponent<Weapon>();
         weaponHandler = weapon.weaponHandler.GetComponent<WeaponHandler>();
-        weaponObject.GetComponent<Weapon>().weaponStats = GetNewRandomStats(weapon.weaponStats);
+
+        weapon.weaponStats = GetNewRandomStats(weapon.weaponStats);
 
         return weaponObject;
     }
+
     /// <summary>
     /// Clones weaponStats and sets random stats
     /// </summary>
     private WeaponStats_SO GetNewRandomStats(WeaponStats_SO weaponStats)
     {
-        WeaponStats_SO newStats = (WeaponStats_SO)weaponStats.Clone();
+        WeaponStats_SO newStats = weaponStats.CloneStats();
 
         List<float> costMods = new();
-        for (int i = 0; i < newStats.projectileComponents.Count; i++)
+
+        costMods.Add(newStats.shotTypeComponent.SetRandomStats(minModifier, maxModifier));
+       
+        foreach (BaseFireComponent component in newStats.fireComponents)
         {
-            costMods.Add(newStats.projectileComponents[i].SetRandomStats(minModifier, maxModifier));
+            costMods.Add(component.SetRandomStats(minModifier, maxModifier));
         }
+
+        foreach (BaseActiveComponent component in newStats.activeComponents)
+        {
+            costMods.Add(component.SetRandomStats(minModifier, maxModifier));
+        }
+
+        foreach (BaseImpactComponent component in newStats.impactComponents)
+        {
+            costMods.Add(component.SetRandomStats(minModifier, maxModifier));
+        }
+
         SetBaseWeaponStats(costMods, newStats);
 
         weaponHandler.OnAddWeapon += WeaponDetach;
 
         return newStats;
     }
+
     /// <summary>
     /// Uses random range from min to max to randomly set the weapon, also sets cost with costMods
     /// </summary>
-    public void SetBaseWeaponStats(List<float> costMods, WeaponStats_SO weaponStats)
+    private void SetBaseWeaponStats(List<float> costMods, WeaponStats_SO weaponStats)
     {
         float fireRateMod = Random.Range(minModifier, maxModifier);
         weaponStats.fireRate /= fireRateMod;
@@ -67,6 +85,7 @@ public class WeaponSpawner : MonoBehaviour
         costMods.Add((fireRateMod + steamCostMod) / 2);
         weaponStats.cost = (int)(weaponStats.cost * (costMods.Sum() / costMods.Count()));
     }
+
     //private void AddRandomComponent(WeaponStats_SO stats)
     //{
     //    GameObject randomImpactComponent = Instantiate(impactComponents[Random.Range(0, impactComponents.Count)]);

@@ -19,5 +19,8 @@ MonoBehaviour:
   heatGain: 70
   cost: 25
   projectileType: {fileID: 995234572802271142, guid: 480d93b6698e29c48837c4d7715a0088, type: 3}
-  projectileComponents:
+  shotTypeComponent: {fileID: 11400000, guid: d73b5e0aaad5df943a097d7447da5135, type: 2}
+  fireComponents: []
+  activeComponents: []
+  impactComponents:
   - {fileID: 11400000, guid: a37892a0be773f74ab77bd3fcfa9e91f, type: 2}

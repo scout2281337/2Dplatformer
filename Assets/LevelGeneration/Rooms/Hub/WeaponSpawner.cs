@@ -5,30 +5,33 @@ using UnityEngine;
 
 public class WeaponSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] WeaponType = new GameObject[4];
-
+    private ComponentsList_SO componentsList;
     private float minModifier;
     private float maxModifier;
     private GameObject weaponObject;
     private Weapon weapon;
     private WeaponHandler weaponHandler;
 
-    /// <summary>
-    /// Instantiates weapon, proceduraly generates random stats
-    /// </summary>
-    public GameObject SpawnWeapon(float minMod, float maxMod)
+    public void SetWeaponSpawner(float minMod, float maxMod, ComponentsList_SO newComponentsList)
     {
         minModifier = minMod;
         maxModifier = maxMod;
+        componentsList = newComponentsList;
+    }
 
-        // For weapon rerol
+    /// <summary>
+    /// Instantiates weapon, proceduraly generates random stats
+    /// </summary>
+    public GameObject SpawnWeapon()
+    {
+        // For weapon reroll
         if (weaponObject != null)
         {
             Destroy(weaponObject);
         }
 
         // Instantiate random weapon
-        GameObject randomWeapon = WeaponType[Random.Range(0, WeaponType.Length)];
+        GameObject randomWeapon = componentsList.weapons[Random.Range(0, componentsList.weapons.Count)];
         weaponObject = Instantiate(randomWeapon, transform.position, Quaternion.identity, transform);
         weapon = weaponObject.GetComponent<Weapon>();
         weaponHandler = weapon.weaponHandler.GetComponent<WeaponHandler>();
@@ -85,14 +88,6 @@ public class WeaponSpawner : MonoBehaviour
         costMods.Add((fireRateMod + steamCostMod) / 2);
         weaponStats.cost = (int)(weaponStats.cost * (costMods.Sum() / costMods.Count()));
     }
-
-    //private void AddRandomComponent(WeaponStats_SO stats)
-    //{
-    //    GameObject randomImpactComponent = Instantiate(impactComponents[Random.Range(0, impactComponents.Count)]);
-    //    randomImpactComponent.GetComponent<IProjectileComponent>()?.SetRandomStats(minModifier, maxModifier);
-
-    //    stats.projectileComponents.Add(randomImpactComponent);
-    //}
 
     private void WeaponDetach()
     {

@@ -488,10 +488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252a06742522b1b469f0621b8d5bb42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 30
-  ExpGain: 20
-  Currenthealth: 0
-  Healthbar: {fileID: 29824235355561843}
+  maxHealth: 100
+  expGain: 100
+  currentHealth: 0
+  healthBar: {fileID: 29824235355561843}
 --- !u!114 &6585073003231328396
 MonoBehaviour:
   m_ObjectHideFlags: 0

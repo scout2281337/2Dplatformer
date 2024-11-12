@@ -4,50 +4,40 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int MaxHealth = 100;
-    private PlayerStats stat; // Компонент для ссылок на PlayerStats
-    private GameObject player; // Переменная для ссылки на игрока
-    public int ExpGain = 100;
-    [SerializeField] protected int Currenthealth;
+    public float maxHealth = 100f;
+    public int expGain = 100;
+    private PlayerStats stats;
+    private GameObject player;
+    [SerializeField] protected float currentHealth;
 
-    public Healthbar Healthbar;
+    public HealthBar healthBar;
 
     protected virtual void Start()
     {
-        // Устанавливаем здоровье и здоровье на healthbar
-        Currenthealth = MaxHealth;
-        Healthbar.SetMaxHealth(MaxHealth);
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
-        // Находим игрока по тегу
         player = GameObject.FindGameObjectWithTag("Player");
 
-        // Если игрок найден, то получаем его компонент PlayerStats
         if (player != null)
         {
-            stat = player.GetComponent<PlayerStats>();
+            stats = player.GetComponent<PlayerStats>();
         }
         else
         {
-            Debug.LogError("Игрок не найден. Проверьте тег 'Player'.");
+            Debug.LogError("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 'Player'.");
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
-        // Уменьшаем здоровье
-        Currenthealth -= damage;
+        currentHealth -= damage;
 
-        // Обновляем healthbar
-        Healthbar.SetHealth(Currenthealth);
+        healthBar.SetHealth(currentHealth);
 
-        // Проверяем, если здоровье <= 0, враг умирает
-        if (Currenthealth <= 0)
+        if (currentHealth <= 0)
         {
-            // Если компонент PlayerStats найден, добавляем опыт
-            if (stat != null)
-            {
-                stat.GainXP(ExpGain);
-            }
+            stats.GainXP(expGain);
             Die();
         }
     }
@@ -55,10 +45,5 @@ public class EnemyHealth : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(gameObject);
-    }
-
-    public int GetHealth()
-    {
-        return Currenthealth;
     }
 }

@@ -8,10 +8,12 @@ public class Shop : MonoBehaviour, IInteractable
 {
     [SerializeField] private float minModifier;
     [SerializeField] private float maxModifier;
-    [SerializeField] private WeaponSpawner[] _weaponSpawner = new WeaponSpawner[3];
+    [SerializeField] private ComponentsList_SO componentsList;
+    [SerializeField] private WeaponSpawner[] _weaponSpawners = new WeaponSpawner[3];
 
     private void Start()
     {
+        SetAllWeaponSpawners();
         RerollItems();
     }
 
@@ -22,9 +24,17 @@ public class Shop : MonoBehaviour, IInteractable
 
     private void RerollItems()
     {
-        foreach (var item in _weaponSpawner)
+        foreach (var spawner in _weaponSpawners)
         {
-            item.SpawnWeapon(minModifier,maxModifier);
+            spawner.SpawnWeapon();
+        }
+    }
+
+    private void SetAllWeaponSpawners()
+    {
+        foreach (var spawner in _weaponSpawners)
+        {
+            spawner.SetWeaponSpawner(minModifier, maxModifier, componentsList);
         }
     }
 }

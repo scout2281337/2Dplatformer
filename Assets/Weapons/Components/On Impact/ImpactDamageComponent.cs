@@ -8,7 +8,7 @@ public class ImpactDamageComponent : BaseImpactComponent
 
     public override void ProjectileImpact(GameObject other, Transform t)
     {
-        other.GetComponent<EnemyHealth>()?.TakeDamage((int)damage);
+        other.GetComponent<EnemyHealth>()?.TakeDamage(damage);
     }
 
     public override BaseWeaponComponent CloneComponent()

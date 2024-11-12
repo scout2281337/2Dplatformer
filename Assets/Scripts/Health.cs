@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public GameObject DeathPanel;
     public int MaxHealth = 100;
     [SerializeField] private int Currenthealth;
-    public Healthbar Healthbar;
+    public HealthBar Healthbar;
     public float RegenerationSpeedTime = 1;
     private PlayerMovement playerMovement;
 

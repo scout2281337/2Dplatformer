@@ -49,12 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d208a6801056542a53de83149e53b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponSpawner:
+  minModifier: 0.5
+  maxModifier: 2
+  componentsList: {fileID: 11400000, guid: 17455955514743a4f9a04e2f158803ba, type: 2}
+  _weaponSpawners:
   - {fileID: 5502266803317064773}
   - {fileID: 706024357073557895}
   - {fileID: 6001681093556322743}
-  minModifier: 0.5
-  maxModifier: 2
 --- !u!58 &3110420259133557955
 CircleCollider2D:
   m_ObjectHideFlags: 0

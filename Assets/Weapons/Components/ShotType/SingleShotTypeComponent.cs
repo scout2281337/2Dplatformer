@@ -16,6 +16,8 @@ public class SingleShotTypeComponent : BaseShotTypeComponent
         Vector2 inaccurateDirection = Quaternion.Euler(0, 0, angleOffset) * direction;
 
         // Spawn and set up the projectile with the inaccurate direction
+        GameObject projectile = Instantiate(weaponStats.projectileType, position, Quaternion.identity);
+        projectile.GetComponent<Projectile>()?.SetProjectile(weaponStats, inaccurateDirection, playerMovement);
     }
 
     public override BaseWeaponComponent CloneComponent()

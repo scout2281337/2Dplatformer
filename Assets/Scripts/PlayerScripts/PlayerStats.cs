@@ -26,7 +26,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("ForSkills")]
     private PlayerMovement pm;
-
+    private Health health;
     // List of all perks
     private List<Perk> allPerks = new List<Perk>();
 
@@ -35,10 +35,11 @@ public class PlayerStats : MonoBehaviour
         // Инициализация перков
         allPerks.Add(new Perk("Increase Health", "Increase max health by 20", IncreaseHealth));
         allPerks.Add(new Perk("Increase Attack", "Increase attack by 10%", IncreaseAttack));
-        allPerks.Add(new Perk("Regeneration", "Regenerate health over time", EnableRegeneration));
+        allPerks.Add(new Perk("Regeneration", "Increase regeneration speed", EnableRegeneration));
         //allPerks.Add(new Perk("Invincible", "Inviincible for 2 seconds after hit", EnableInvincible));
         // Можно добавить больше перков
         pm = GetComponent<PlayerMovement>();
+        health = GetComponent<Health>();
     }
 
     private void Update()
@@ -139,6 +140,6 @@ public class PlayerStats : MonoBehaviour
     private void EnableRegeneration()
     {
         Debug.Log("Health Regeneration enabled");
-        
+        health.RegenerationSpeedTime /= 1.5f;
     }
 }

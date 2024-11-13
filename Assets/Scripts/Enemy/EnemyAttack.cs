@@ -8,8 +8,8 @@ public class EnemyAttack : MonoBehaviour
     public float fireRate = 1f;
     public float projectileSpeed = 5f;
     public int numberOfProjectiles;
-    private Transform player;
-    private bool canShoot = false;
+    protected Transform player;
+    protected bool canShoot = false;
 
     // Список стратегий атаки
     private List<IAttackStrategy> attackStrategies = new List<IAttackStrategy>();

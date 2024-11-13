@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private int xpGain = 100;
-    private float currentHealth;
+    public float maxHealth = 100f;
+    public int xpGain = 100;
+    public float currentHealth;
 
     public HealthBar healthBar;
 

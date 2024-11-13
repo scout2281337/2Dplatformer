@@ -3,23 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : Singleton<MenuManager>
 {
-    public static MenuManager Instance { get; private set; } // Singleton Instance
     public GameObject menu;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            //DontDestroyOnLoad(gameObject); // Save when we load new scene
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy, if we have copy
-        }
-    }
 
     private void Update()
     {

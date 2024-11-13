@@ -4,15 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    public GameObject DeathPanel;
-    public int MaxHealth = 100;
-    [SerializeField] private int Currenthealth;
-    public HealthBar Healthbar;
-    public float RegenerationSpeedTime = 1;
+    public float regenerationSpeedTime = 1;
+    private int currentHealth;
+    [SerializeField] private int maxHealth = 100;
+
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private GameObject deathPanel;
     private PlayerMovement playerMovement;
 
     // Для неуязвимости
-    public float invincibilityDuration = 1.0f;
+    [SerializeField] private float invincibilityDuration = 1.0f;
     private bool isInvincible = false;
 
     // Переменная для отслеживания корутины регенерации
@@ -20,8 +21,8 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        Currenthealth = MaxHealth;
-        Healthbar.SetMaxHealth(MaxHealth);
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         playerMovement = GetComponent<PlayerMovement>();
         healingCoroutine = StartCoroutine(Healing());
     }
@@ -32,8 +33,8 @@ public class Health : MonoBehaviour
             return;
 
         // Наносим урон
-        Currenthealth -= damage;
-        Healthbar.SetHealth(Currenthealth);
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
 
         // Останавливаем корутину регенерации, если получаем урон
         if (healingCoroutine != null)
@@ -46,7 +47,7 @@ public class Health : MonoBehaviour
         StartCoroutine(Invincibility());
 
         // Проверка на смерть
-        if (Currenthealth <= 0)
+        if (currentHealth <= 0)
         {
             StartCoroutine(RestartLevel());
         }
@@ -67,18 +68,18 @@ public class Health : MonoBehaviour
     IEnumerator RestartLevel()
     {
         playerMovement.enabled = false;
-        DeathPanel.SetActive(true);
+        deathPanel.SetActive(true);
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator Healing()
     {
-        while (Currenthealth < MaxHealth)
+        while (currentHealth < maxHealth)
         {
-            Currenthealth++;
-            Healthbar.SetHealth(Currenthealth);
-            yield return new WaitForSeconds(RegenerationSpeedTime);
+            currentHealth++;
+            healthBar.SetHealth(currentHealth);
+            yield return new WaitForSeconds(regenerationSpeedTime);
         }
 
         // Сбрасываем ссылку на корутину после завершения регенерации
@@ -87,8 +88,7 @@ public class Health : MonoBehaviour
 
     public void IncreaseMaxHealth(int HP) 
     {
-        MaxHealth += HP;
-        Healthbar.SetMaxHealth(MaxHealth);
-    
+        maxHealth += HP;
+        healthBar.SetMaxHealth(maxHealth);
     }
 }

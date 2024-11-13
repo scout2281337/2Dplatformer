@@ -7,3 +7,8 @@ public interface IPushable
     void Push(Vector2 forceVector, float forceStrength);
 }
 
+public interface IDamagable
+{
+    void TakeDamage(float damage);
+}
+

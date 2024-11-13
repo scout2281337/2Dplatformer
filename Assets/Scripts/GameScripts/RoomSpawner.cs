@@ -12,7 +12,7 @@ public class RoomSpawner : MonoBehaviour
     public Transform[] spawnPoints;
 
     private float timePassed;
-    private bool hasSpawned = false; // Локальный флаг для каждой комнаты
+    private bool hasSpawned = false;
 
     private void Update()
     {
@@ -21,14 +21,15 @@ public class RoomSpawner : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        if (hasSpawned) return; // Проверка на уже заспавненных врагов в комнате
+        if (hasSpawned)
+            return;
 
         for (int i = 0; i < numberOfEnemies; i++)
         {
             SpawnEnemy();
         }
 
-        hasSpawned = true; // Устанавливаем флаг после спавна врагов
+        hasSpawned = true;
     }
 
     private void SpawnEnemy()
@@ -62,24 +63,6 @@ public class RoomSpawner : MonoBehaviour
             {
                 destinationSetter.target = player.transform;
             }
-        }
-    }
-
-    // Изменяем метод для проверки триггера в дочерних объектах
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && !hasSpawned)
-        {
-            SpawnEnemies(); // Спавним врагов, если это ещё не было сделано
-        }
-    }
-
-    // Метод для проверки столкновения на дочернем объекте
-    private void OnTriggerEnterChild2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && !hasSpawned)
-        {
-            SpawnEnemies(); // Спавним врагов, если это ещё не было сделано
         }
     }
 }

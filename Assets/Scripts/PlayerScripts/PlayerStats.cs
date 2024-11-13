@@ -32,12 +32,12 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        // Инициализация перков
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         allPerks.Add(new Perk("Increase Health", "Increase max health by 20", IncreaseHealth));
         allPerks.Add(new Perk("Increase Attack", "Increase attack by 10%", IncreaseAttack));
         allPerks.Add(new Perk("Regeneration", "Increase regeneration speed", EnableRegeneration));
         //allPerks.Add(new Perk("Invincible", "Invincible for 2 seconds after hit", EnableInvincible));
-        // Можно добавить больше перков
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         pm = GetComponent<PlayerMovement>();
         health = GetComponent<Health>();
     }
@@ -117,7 +117,6 @@ public class PlayerStats : MonoBehaviour
         CloseMenu();
     }
 
-    // Примеры эффектов перков
     private void IncreaseHealth()
     {
         Debug.Log("Increased Health by 20");
@@ -127,19 +126,15 @@ public class PlayerStats : MonoBehaviour
     private void IncreaseAttack()
     {
         Debug.Log("Increased Attack by 10%");
-        // Логика для увеличения атаки
-
     }
     private void EnableInvincible()
     {
         Debug.Log("Inviincible for 2 seconds after hit");
-        
-
     }
 
     private void EnableRegeneration()
     {
         Debug.Log("Health Regeneration enabled");
-        health.RegenerationSpeedTime /= 1.5f;
+        health.regenerationSpeedTime /= 1.5f;
     }
 }

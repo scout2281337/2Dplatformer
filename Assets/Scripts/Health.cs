@@ -84,4 +84,11 @@ public class Health : MonoBehaviour
         // Сбрасываем ссылку на корутину после завершения регенерации
         healingCoroutine = null;
     }
+
+    public void IncreaseMaxHealth(int HP) 
+    {
+        MaxHealth += HP;
+        Healthbar.SetMaxHealth(MaxHealth);
+    
+    }
 }

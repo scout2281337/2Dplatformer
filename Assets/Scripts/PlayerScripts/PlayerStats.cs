@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     public Slider xpBar;
     public TextMeshProUGUI tmptext;
     public GameObject SkillMenu;
-    
+    public int HealthPoint = 20;
     
     [Header("TEXT")]
     public TextMeshProUGUI Skill1;
@@ -36,7 +36,7 @@ public class PlayerStats : MonoBehaviour
         allPerks.Add(new Perk("Increase Health", "Increase max health by 20", IncreaseHealth));
         allPerks.Add(new Perk("Increase Attack", "Increase attack by 10%", IncreaseAttack));
         allPerks.Add(new Perk("Regeneration", "Increase regeneration speed", EnableRegeneration));
-        //allPerks.Add(new Perk("Invincible", "Inviincible for 2 seconds after hit", EnableInvincible));
+        //allPerks.Add(new Perk("Invincible", "Invincible for 2 seconds after hit", EnableInvincible));
         // Можно добавить больше перков
         pm = GetComponent<PlayerMovement>();
         health = GetComponent<Health>();
@@ -121,7 +121,7 @@ public class PlayerStats : MonoBehaviour
     private void IncreaseHealth()
     {
         Debug.Log("Increased Health by 20");
-        // Логика для увеличения здоровья
+        health.IncreaseMaxHealth(HealthPoint);
     }
 
     private void IncreaseAttack()

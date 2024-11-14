@@ -40,6 +40,7 @@ public class PlayerStats : MonoBehaviour
         // ����� �������� ������ ������
         pm = GetComponent<PlayerMovement>();
         health = GetComponent<Health>();
+        xpBar.maxValue = xpToNextLevel;
     }
 
     private void Update()

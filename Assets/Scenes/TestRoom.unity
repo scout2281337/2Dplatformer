@@ -522,6 +522,10 @@ PrefabInstance:
       propertyPath: SkillMenu
       value: 
       objectReference: {fileID: 2070255766}
+    - target: {fileID: 3966801777668697263, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
+      propertyPath: xpToNextLevel
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 4236205072743034997, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6228,14 +6232,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8223606867907374170, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8223606867907374170, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 8223606867907374170, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.81

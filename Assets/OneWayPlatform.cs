@@ -10,8 +10,8 @@ public class OneWayPlatform : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player"); // Найти игрока по тегу
-        playerCollider = player?.GetComponent<CapsuleCollider2D>();
+        player = PlayerManager.instance.player; // Найти игрока по тегу
+        playerCollider = player.GetComponent<CapsuleCollider2D>();
         platformCollider = GetComponent<BoxCollider2D>();
     }
 

@@ -6,10 +6,12 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IDamagable
 {
     public float maxHealth = 100f;
-    public int xpGain = 100;
     public float currentHealth;
+    [SerializeField] private int xpGain = 100;
+    [SerializeField] private float steamGain;
 
-    public HealthBar healthBar;
+    [SerializeField] private GameObject steamPickUp;
+    [SerializeField] private HealthBar healthBar;
 
     private void Start()
     {
@@ -30,7 +32,15 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     private void Die()
     {
         PlayerManager.instance.AddXpToPlayer(xpGain);
+        SpawnSteamPickUp();
 
         Destroy(gameObject);
+    }
+
+    private void SpawnSteamPickUp()
+    {
+        GameObject newSteamPickUp = Instantiate(steamPickUp, transform.position, Quaternion.identity);
+        if (newSteamPickUp.TryGetComponent<SteamPickUp>(out SteamPickUp newSteamScript))
+            newSteamScript.steamAmount = steamGain;
     }
 }

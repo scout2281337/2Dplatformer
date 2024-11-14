@@ -24,23 +24,26 @@ public class CameraManager : Singleton<CameraManager>
 
     private void Update()
     {
-        // Clampin camera positions so that it wont go trought a room
+        // Clamping camera positions so that it wont go through a room
         transform.position = new Vector2(
             Mathf.Clamp(player.transform.position.x, minViewPos.x, maxViewPos.x),
             Mathf.Clamp(player.transform.position.y, minViewPos.y, maxViewPos.y));
     }
 
+    /// <summary>
+    /// Changes cameras focus on different room
+    /// </summary>
     public void NewRoomView(Vector2Int size, Vector2 position)
     {
-        // Geting the corners of the room
-        Vector2 leftBotom = position - new Vector2(gridSize, gridSize) * size / 2;
+        // Getting the corners of the room
+        Vector2 leftBottom = position - new Vector2(gridSize, gridSize) * size / 2;
         Vector2 rightTop = position + new Vector2(gridSize, gridSize) * size / 2;
 
         // Adding camera offset
-        minViewPos = leftBotom + cameraSize / 2;
+        minViewPos = leftBottom + cameraSize / 2;
         maxViewPos = rightTop - cameraSize / 2;
 
-        // Sentering camera in x, because camera is wider than room of size 1 by x
+        // Centering camera in x, because camera is wider than room of size 1 by x
         if (size.x == 1)
         {
             minViewPos.x = position.x;

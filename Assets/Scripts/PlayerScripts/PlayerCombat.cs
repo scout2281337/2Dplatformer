@@ -109,7 +109,8 @@ public class PlayerCombat : SoundManager
 
     public void RestoreSteam(float steam)
     {
-        if (steamCurrent >= steamMax) return;
+        if (steamCurrent >= steamMax) 
+            return;
 
         steamCurrent += steam;
         steamCurrent = Mathf.Clamp(steamCurrent, 0, steamMax);

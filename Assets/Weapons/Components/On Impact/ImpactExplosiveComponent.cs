@@ -39,20 +39,19 @@ public class ImpactExplosiveComponent : BaseImpactComponent
 
     private void DamageEnemy(Collider2D collision)
     {
-        if (!collision.TryGetComponent<EnemyHealth>(out var enemyHealth))
+        if (!EnemyManager.Instance.enemyIDamageable.TryGetValue(collision.gameObject, out IDamageable idamageable))
             return;
 
-        enemyHealth.TakeDamage((int)explosionDamage);
+        idamageable.TakeDamage(explosionDamage);
     }
 
     private void Push(Collider2D collision, Transform transform)
     {
-        if (!collision.TryGetComponent<IPushable>(out var pushable))
+        if (!collision.gameObject == PlayerManager.Instance.player)
             return;
         
         Vector2 pushVector = (collision.transform.position - transform.position).normalized;
-        pushable.Push(pushVector, explosionForce);
-        
+        PlayerManager.Instance.playerMovement.Push(pushVector, explosionForce);
     }
 
     public override float SetRandomStats(float min, float max)

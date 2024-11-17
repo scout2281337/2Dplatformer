@@ -2,11 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    public float regenerationSpeedTime = 1;
-    private int currentHealth;
-    [SerializeField] private int maxHealth = 100;
+    public float regenerationAmount = 1;
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float maxHealth = 100;
 
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private GameObject deathPanel;
@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
         healingCoroutine = StartCoroutine(Healing());
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (isInvincible)
             return;
@@ -77,16 +77,18 @@ public class Health : MonoBehaviour
     {
         while (currentHealth < maxHealth)
         {
-            currentHealth++;
+            currentHealth += regenerationAmount;
+            Mathf.Clamp(currentHealth, 0, maxHealth);
+
             healthBar.SetHealth(currentHealth);
-            yield return new WaitForSeconds(regenerationSpeedTime);
+            yield return new WaitForSeconds(1);
         }
 
         // Сбрасываем ссылку на корутину после завершения регенерации
         healingCoroutine = null;
     }
 
-    public void IncreaseMaxHealth(int HP) 
+    public void IncreaseMaxHealth(float HP) 
     {
         maxHealth += HP;
         healthBar.SetMaxHealth(maxHealth);

@@ -12,6 +12,6 @@ public class HubEnterTrigger : MonoBehaviour
             return;
 
         // Sends room information to camera manager
-        CameraManager.instance.NewRoomView(roomSize, transform.position);
+        CameraManager.Instance.NewRoomView(roomSize, transform.position);
     }
 }

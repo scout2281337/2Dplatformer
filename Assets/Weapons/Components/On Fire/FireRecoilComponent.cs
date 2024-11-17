@@ -6,9 +6,9 @@ using UnityEngine;
 public class FireRecoilComponent : BaseFireComponent
 {
     [SerializeField] private float recoilForce;
-    public override void WeaponFire(PlayerMovement playerMovement, Vector2 projectileDiraction)
+    public override void WeaponFire(Vector2 projectileDirection)
     {
-        playerMovement.Push(-projectileDiraction, recoilForce);
+        PlayerManager.Instance.playerMovement.Push(-projectileDirection, recoilForce);
     }
 
     public override float SetRandomStats(float min, float max)

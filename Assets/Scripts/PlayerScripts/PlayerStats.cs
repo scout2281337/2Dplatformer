@@ -26,7 +26,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("ForSkills")]
     private PlayerMovement pm;
-    private Health health;
+    private PlayerHealth health;
     // List of all perks
     private List<Perk> allPerks = new List<Perk>();
 
@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour
         //allPerks.Add(new Perk("Invincible", "Invincible for 2 seconds after hit", EnableInvincible));
         // ����� �������� ������ ������
         pm = GetComponent<PlayerMovement>();
-        health = GetComponent<Health>();
+        health = GetComponent<PlayerHealth>();
         xpBar.maxValue = xpToNextLevel;
     }
 
@@ -136,6 +136,6 @@ public class PlayerStats : MonoBehaviour
     private void EnableRegeneration()
     {
         Debug.Log("Health Regeneration enabled");
-        health.regenerationSpeedTime /= 1.5f;
+        health.regenerationAmount /= 1.5f;
     }
 }

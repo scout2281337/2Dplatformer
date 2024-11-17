@@ -11,7 +11,7 @@ public class AttackLogic : MonoBehaviour
     {
         if ( collision.gameObject.tag == "Player") 
         {
-            Health playerHealth = collision.gameObject.GetComponent<Health>();
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(Damage);

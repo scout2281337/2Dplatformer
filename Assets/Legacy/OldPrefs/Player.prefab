@@ -433,12 +433,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8621883539737778079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d236fa864e156f4c8e65f38f854737e, type: 3}
+  m_Script: {fileID: 11500000, guid: 489ea1427d9a2614e8ae48f701e10909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  Currenthealth: 0
-  Healthbar: {fileID: 0}
+  regenerationSpeedTime: 1
+  currentHealth: 0
+  maxHealth: 100
+  healthBar: {fileID: 0}
+  deathPanel: {fileID: 0}
+  invincibilityDuration: 1
 --- !u!114 &3966801777668697263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +460,7 @@ MonoBehaviour:
   xpBar: {fileID: 0}
   tmptext: {fileID: 0}
   SkillMenu: {fileID: 0}
+  HealthPoint: 20
   Skill1: {fileID: 0}
   Skill2: {fileID: 0}
   Skill3: {fileID: 0}

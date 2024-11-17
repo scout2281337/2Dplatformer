@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class BaseFireComponent : BaseWeaponComponent
 {
-    public abstract void WeaponFire(PlayerMovement playerMovement, Vector2 projectileDiraction);
+    public abstract void WeaponFire(Vector2 projectileDirection);
 }

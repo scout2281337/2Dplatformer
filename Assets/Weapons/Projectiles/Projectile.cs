@@ -10,27 +10,25 @@ public class Projectile : MonoBehaviour
     public Rigidbody2D rb;
     private WeaponStats_SO weaponStats;
     private Vector2 projectileDirection;
-    private PlayerMovement playerMovement;
 
-    public void SetProjectile(WeaponStats_SO newWeaponStats, Vector2 direction, PlayerMovement newPlayer)
+    public void SetProjectile(WeaponStats_SO newWeaponStats, Vector2 direction)
     {
         weaponStats = newWeaponStats;
         projectileDirection = direction;
-        playerMovement = newPlayer;
 
         float rotZ = Mathf.Atan2(projectileDirection.y, projectileDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
         rb.velocity = projectileDirection.normalized * weaponStats.projectileSpeed;
 
-        foreach (BaseFireComponent component in weaponStats.fireComponents.Cast<BaseFireComponent>())
+        foreach (BaseFireComponent component in weaponStats.fireComponents)
         {
-            component.WeaponFire(playerMovement, projectileDirection);
+            component.WeaponFire(projectileDirection);
         }
     }
 
     public void FixedUpdate()
     {
-        foreach (BaseActiveComponent component in weaponStats.activeComponents.Cast<BaseActiveComponent>())
+        foreach (BaseActiveComponent component in weaponStats.activeComponents)
         {
             component.ActiveProjectile();
         }
@@ -38,7 +36,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        foreach (BaseImpactComponent component in weaponStats.impactComponents.Cast<BaseImpactComponent>())
+        foreach (BaseImpactComponent component in weaponStats.impactComponents)
         {
             component.ProjectileImpact(other.gameObject, transform);
         }

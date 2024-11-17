@@ -5,16 +5,17 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour, IInteractable
 {
     public TextMeshPro textMeshPro;
-    public Action OnAddWeapon;
+
+    public event Action OnWeaponTaken;
 
     private void Start()
     {
         SetWeaponHandler(transform.parent.gameObject);
     }
 
-    public void SetWeaponHandler(GameObject Weapon)
+    private void SetWeaponHandler(GameObject Weapon)
     {
-        string name = Weapon.GetComponent<Weapon>().weaponStats.WeaponName;
+        string name = Weapon.GetComponent<Weapon>()?.weaponStats.WeaponName;
         textMeshPro.text = name;
     }
 
@@ -24,11 +25,11 @@ public class WeaponHandler : MonoBehaviour, IInteractable
         {
             gameObject.SetActive(false);
 
-            OnAddWeapon?.Invoke();
+            OnWeaponTaken?.Invoke();
         }
     }
 
-    void IInteractable.Interact(GameObject player)
+    public void Interact(GameObject player)
     {
         AddWeaponToPlayer(player);
     }

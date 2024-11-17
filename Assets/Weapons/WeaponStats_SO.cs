@@ -33,9 +33,7 @@ public class WeaponStats_SO : ScriptableObject
         newWeaponStats.activeComponents = new();
         newWeaponStats.impactComponents = new();
 
-
         // Copy and clone each component
-        
         newWeaponStats.shotTypeComponent = (BaseShotTypeComponent)shotTypeComponent.CloneComponent();
 
         for (int i = 0; i < fireComponents.Count; i++)

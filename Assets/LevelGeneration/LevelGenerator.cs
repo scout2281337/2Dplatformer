@@ -7,21 +7,19 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    #region vars
-    public int gridSize;
-    public int pathLength;
-    public int iterationNumber;
+    [SerializeField] private int gridSize;
+    [SerializeField] private int pathLength;
+    [SerializeField] private int iterationNumber;
 
-    public GameObject[] roomSmall = new GameObject[1];
-    public GameObject[] roomTall = new GameObject[1];
-    public GameObject[] roomLong = new GameObject[1];
-    public GameObject[] roomBig = new GameObject[1];
+    [SerializeField] private GameObject[] roomSmall = new GameObject[1];
+    [SerializeField] private GameObject[] roomTall = new GameObject[1];
+    [SerializeField] private GameObject[] roomLong = new GameObject[1];
+    [SerializeField] private GameObject[] roomBig = new GameObject[1];
     private GameObject[][] rooms = new GameObject[4][];
 
 
-    public GameObject wall;
+    [SerializeField] private GameObject wall;
     private HashSet<Vector2Int> takenRooms = new HashSet<Vector2Int> {Vector2Int.zero};
-    #endregion
 
     private void Start()
     {
@@ -30,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
         rooms[2] = roomLong;
         rooms[3] = roomBig;
 
-        GenrateLevel();
+        GenerateLevel();
         GenerateWalls();
     }
 
@@ -59,24 +57,12 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void GenrateLevel()
+    private void GenerateLevel()
     {
-        HashSet<Vector2Int> hashGrid = WalkMenGenerator(new Vector2Int(0, 0), iterationNumber, pathLength); // Generates vector2int grid for rooms to take
-        List<Vector2Int> sortedGrid = new List<Vector2Int>(hashGrid); // Makes a list out of the Hashset
+        // Generates vector2int grid for rooms to take
+        HashSet<Vector2Int> hashGrid = WalkMenGenerator(new Vector2Int(0, 0), iterationNumber, pathLength);
 
-        // Sort by x first, then by y
-        sortedGrid.Sort((a, b) =>
-        {
-            int compareY = a.y.CompareTo(b.y);  // Compare by y first
-            if (compareY == 0)
-            {
-                // If y values are the same, compare x
-                return a.x.CompareTo(b.x);
-            }
-            return compareY;
-        });
-
-        foreach (Vector2Int v in sortedGrid)
+        foreach (Vector2Int v in hashGrid)
         {
             if (takenRooms.Contains(v)) continue;
 
@@ -96,7 +82,7 @@ public class LevelGenerator : MonoBehaviour
 
             for (int j = 0; j < length; j++)
             {
-                currentPosition += GetRandomDiraction();
+                currentPosition += GetRandomDirection();
                 path.Add(currentPosition);
             }
         }
@@ -104,27 +90,27 @@ public class LevelGenerator : MonoBehaviour
         return path;
     }
 
-    private Vector2Int GetRandomDiraction()
+    private Vector2Int GetRandomDirection()
     {
-        Vector2Int diraction = new Vector2Int();
+        Vector2Int direction = new Vector2Int();
         switch (UnityEngine.Random.Range(0, 4))
         {
             case 0:
-                diraction = new Vector2Int(1, 0);
+                direction = new Vector2Int(1, 0);
                 break;
             case 1:
-                diraction = new Vector2Int(0, 1);
+                direction = new Vector2Int(0, 1);
                 break;
             case 2:
-                diraction = new Vector2Int(-1, 0);
+                direction = new Vector2Int(-1, 0);
                 break;
             case 3:
-                diraction = new Vector2Int(0, -1);
+                direction = new Vector2Int(0, -1);
                 break;
 
         }
 
-        return diraction;
+        return direction;
     }
 
     private GameObject GetRandomRoom(Vector2Int position)
@@ -133,12 +119,9 @@ public class LevelGenerator : MonoBehaviour
         takenRooms.Add(position);  // Mark this position as taken
 
         // Check if the room can be placed without intersections
-        switch (UnityEngine.Random.Range(0, 4))
+        switch (UnityEngine.Random.Range(0, 3))
         {
-            case 0: // 1x1 room
-                break;
-
-            case 1: // 1x2 room
+            case 0: // 1x2 room
                 if (!takenRooms.Contains(position + Vector2Int.up))
                 {
                     room = rooms[1][UnityEngine.Random.Range(0, rooms[1].Length)];
@@ -146,7 +129,7 @@ public class LevelGenerator : MonoBehaviour
                 }
                 break;
 
-            case 2: // 2x1 room
+            case 1: // 2x1 room
                 if (!takenRooms.Contains(position + Vector2Int.right))
                 {
                     room = rooms[2][UnityEngine.Random.Range(0, rooms[2].Length)];
@@ -154,7 +137,7 @@ public class LevelGenerator : MonoBehaviour
                 }
                 break;
 
-            case 3: // 2x2 room
+            case 2: // 2x2 room
                 if (!takenRooms.Contains(position + Vector2Int.up) &&
                     !takenRooms.Contains(position + Vector2Int.right) &&
                     !takenRooms.Contains(position + Vector2Int.right + Vector2Int.up))

@@ -54,7 +54,7 @@ public class InventoryPanelManager : MonoBehaviour
     #region Slots sprite handling
     void UpdateSlotSprite(int slotIndex, Sprite newSprite)
     {
-        _slots[slotIndex].UpdateSlotSprite( newSprite);
+        _slots[slotIndex].UpdateSlotSprite(newSprite);
     }
 
     void DeleteSlotSprite(int slotIndex)

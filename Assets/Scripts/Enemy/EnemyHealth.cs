@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamagable
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     public float maxHealth = 100f;
     public float currentHealth;
@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        PlayerManager.instance.AddXpToPlayer(xpGain);
+        PlayerManager.Instance.AddXpToPlayer(xpGain);
         SpawnSteamPickUp();
 
         Destroy(gameObject);

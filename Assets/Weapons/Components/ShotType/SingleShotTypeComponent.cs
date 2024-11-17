@@ -7,7 +7,7 @@ public class SingleShotTypeComponent : BaseShotTypeComponent
 {
     public float inaccuracy;
 
-    public override void Shoot(Vector2 direction, Vector3 position, WeaponStats_SO weaponStats, PlayerMovement playerMovement)
+    public override void Shoot(Vector2 direction, Vector3 position, WeaponStats_SO weaponStats)
     {
         // Calculate a random angle offset within the range of -inaccuracy to +inaccuracy
         float angleOffset = Random.Range(-inaccuracy, inaccuracy);
@@ -17,7 +17,7 @@ public class SingleShotTypeComponent : BaseShotTypeComponent
 
         // Spawn and set up the projectile with the inaccurate direction
         GameObject projectile = Instantiate(weaponStats.projectileType, position, Quaternion.identity);
-        projectile.GetComponent<Projectile>()?.SetProjectile(weaponStats, inaccurateDirection, playerMovement);
+        projectile.GetComponent<Projectile>()?.SetProjectile(weaponStats, inaccurateDirection);
     }
 
     public override BaseWeaponComponent CloneComponent()

@@ -16,6 +16,6 @@ public class RoomEnterTrigger : MonoBehaviour
             return;
         
         roomSpawner.SpawnEnemies();
-        CameraManager.instance.NewRoomView(roomSize, transform.position);
+        CameraManager.Instance.NewRoomView(roomSize, transform.position);
     }
 }

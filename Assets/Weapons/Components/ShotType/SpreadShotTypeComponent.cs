@@ -25,7 +25,7 @@ public class SpreadShotTypeComponent : BaseShotTypeComponent
         return GetAvarageModifier();
     }
 
-    public override void Shoot(Vector2 direction, Vector3 position, WeaponStats_SO weaponStats, PlayerMovement playerMovement)
+    public override void Shoot(Vector2 direction, Vector3 position, WeaponStats_SO weaponStats)
     {
 
         // Calculate the base angle from the shooting direction
@@ -49,7 +49,7 @@ public class SpreadShotTypeComponent : BaseShotTypeComponent
             Vector2 pelletDirection = new Vector2(projectileDirX, projectileDirY).normalized;
 
             GameObject projectile = Instantiate(weaponStats.projectileType, position, Quaternion.identity);
-            projectile.GetComponent<Projectile>()?.SetProjectile(weaponStats, pelletDirection, playerMovement);
+            projectile.GetComponent<Projectile>()?.SetProjectile(weaponStats, pelletDirection);
         }
     }
 }

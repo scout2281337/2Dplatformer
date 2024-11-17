@@ -27,14 +27,14 @@ public class Weapon : MonoBehaviour
         DecreaseHeat(100 * Time.deltaTime);
     }
 
-    public virtual bool WeaponAttack(Vector2 diraction, PlayerMovement playerMovement)
+    public virtual bool WeaponAttack(Vector2 direction)
     {
         if (isJamed)
             return false;
         if (Time.time < lastTimeShot + weaponStats.fireRate)
             return false;
         
-        weaponStats.shotTypeComponent.Shoot(diraction, transform.position, weaponStats, playerMovement);
+        weaponStats.shotTypeComponent.Shoot(direction, transform.position, weaponStats);
         lastTimeShot = Time.time;
         AddHeat();
 

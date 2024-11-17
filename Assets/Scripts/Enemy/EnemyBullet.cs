@@ -5,39 +5,22 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public GameObject explosionPrefab; 
-    public int damage = 10; 
-
-    void Update()
-    {
-        transform.Rotate(0, 0, 1);
-    }
+    public float damage = 10;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject == PlayerManager.Instance.player)
         {
-            // Попадание в игрока
-            Health playerHealth = other.GetComponent<Health>();
-
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damage); 
-            }
-
-            Explode(); 
+            PlayerManager.Instance.playerHealth.TakeDamage(damage);
         }
-        else if (other.gameObject.layer == 6)
-        {
-            Explode(); 
-        }
+
+        Explode();
     }
 
     private void Explode()
     {
-        
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-        
         Destroy(gameObject);
     }
 }

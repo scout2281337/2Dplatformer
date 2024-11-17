@@ -69,7 +69,7 @@ public class WeaponSpawner : MonoBehaviour
 
         SetBaseWeaponStats(costMods, newStats);
 
-        weaponHandler.OnAddWeapon += WeaponDetach;
+        weaponHandler.OnWeaponTaken += WeaponDetach;
 
         return newStats;
     }
@@ -91,7 +91,7 @@ public class WeaponSpawner : MonoBehaviour
 
     private void WeaponDetach()
     {
-        weaponHandler.OnAddWeapon -= WeaponDetach;
+        weaponHandler.OnWeaponTaken -= WeaponDetach;
         weaponObject = null;
     }
 }

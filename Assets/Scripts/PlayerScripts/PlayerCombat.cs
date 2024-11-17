@@ -70,7 +70,7 @@ public class PlayerCombat : SoundManager
             return;
 
         // Weapon use
-        if (!weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector, gameObject.GetComponent<PlayerMovement>()))
+        if (!weaponInventory[currentWeaponIndex].GetComponent<Weapon>().WeaponAttack(directionVector))
             return;
 
         steamCurrent -= weaponSteamCost;
@@ -81,22 +81,18 @@ public class PlayerCombat : SoundManager
         // Detect objects within a 2D circle
         Collider2D[] objectsInCircle = Physics2D.OverlapCircleAll(transform.position, 1);
 
-        if (objectsInCircle.Length > 0)
+        if (objectsInCircle.Length == 0)
+            return;
+
+        foreach (Collider2D col in objectsInCircle)
         {
-            foreach (Collider2D col in objectsInCircle)
+            if (col.gameObject.TryGetComponent<IInteractable>(out var interactable))
             {
-                IInteractable interactable = col.gameObject.GetComponent<IInteractable>();
-                if (interactable != null)
-                {
-                    interactable.Interact(gameObject);
-                    break;
-                }
+                interactable.Interact(gameObject);
+                break;
             }
         }
-        else
-        {
-            Debug.Log("No objects detected.");
-        }
+        
     }
 
     private void AimAtMouse()

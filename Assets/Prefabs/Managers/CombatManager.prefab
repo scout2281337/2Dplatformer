@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7890814771525380291}
   - component: {fileID: 2630719933387317539}
   m_Layer: 0
-  m_Name: EnemyManager
+  m_Name: CombatManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6843757094070917276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 226ebca7cd27fec4283c4602a306aa9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 155371fe7400f23478656531b560d10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

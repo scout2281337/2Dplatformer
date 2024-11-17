@@ -54,7 +54,7 @@ public class RoomSpawner : MonoBehaviour
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
         GameObject spawnedEnemy = Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
-        EnemyManager.Instance.AddEnemy(spawnedEnemy);
+        CombatManager.Instance.AddObject(spawnedEnemy);
 
         if (spawnedEnemy.TryGetComponent<AIDestinationSetter>(out var destinationSetter))
         {

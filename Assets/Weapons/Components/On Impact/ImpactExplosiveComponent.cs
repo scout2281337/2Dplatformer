@@ -39,7 +39,7 @@ public class ImpactExplosiveComponent : BaseImpactComponent
 
     private void DamageEnemy(Collider2D collision)
     {
-        if (!EnemyManager.Instance.enemyIDamageable.TryGetValue(collision.gameObject, out IDamageable idamageable))
+        if (!CombatManager.Instance.idamageable.TryGetValue(collision.gameObject, out IDamageable idamageable))
             return;
 
         idamageable.TakeDamage(explosionDamage);

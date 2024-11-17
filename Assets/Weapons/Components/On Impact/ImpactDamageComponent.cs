@@ -8,7 +8,7 @@ public class ImpactDamageComponent : BaseImpactComponent
 
     public override void ProjectileImpact(GameObject other, Transform t)
     {
-        if (EnemyManager.Instance.enemyIDamageable.TryGetValue(other, out IDamageable idamageable))
+        if (CombatManager.Instance.idamageable.TryGetValue(other, out IDamageable idamageable))
             idamageable.TakeDamage(damage);
     }
 

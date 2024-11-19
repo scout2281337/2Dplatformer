@@ -4,5 +4,18 @@ using UnityEngine;
 
 public abstract class BaseActiveComponent : BaseWeaponComponent
 {
-    public abstract void ActiveProjectile();
+    [SerializeField] protected int ActivationFrequency;
+    protected int ActivationsNum;
+
+    public virtual bool ActiveProjectile(Vector2 position)
+    {
+        ActivationsNum++;
+        if (ActivationsNum == ActivationFrequency)
+        {
+            ActivationsNum = 0;
+            return true;
+        }
+
+        return false;
+    }
 }

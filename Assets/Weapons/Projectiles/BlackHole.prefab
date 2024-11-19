@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1637937350344163789}
   - component: {fileID: -5260541084750695636}
   m_Layer: 10
-  m_Name: Rocket
+  m_Name: BlackHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +30,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1319624665327517787}
+  - {fileID: 9011708847825397461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &-6674175952689313539
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -6674175952689313539}
---- !u!1 &1165584436004925133
+--- !u!1 &3194762137634695567
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,8 +118,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1319624665327517787}
-  - component: {fileID: 2756549092747210498}
+  - component: {fileID: 9011708847825397461}
+  - component: {fileID: 495223290906514711}
   m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
@@ -127,28 +127,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1319624665327517787
+--- !u!4 &9011708847825397461
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165584436004925133}
+  m_GameObject: {fileID: 3194762137634695567}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6492098730449085084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2756549092747210498
+--- !u!212 &495223290906514711
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165584436004925133}
+  m_GameObject: {fileID: 3194762137634695567}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -183,8 +183,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 00351859830e2de42972db817e9dc4bf, type: 3}
+  m_Color: {r: 0.5396226, g: 0.03563538, b: 0.265757, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca80af369e74ada4d92efdc0167aa303, type: 3}
+  m_Name: Rooms_SO
+  m_EditorClassIdentifier: 
+  smallRoom:
+  - {fileID: 7711290182059080197, guid: 1f6c6ae053c7dad498d3dcf0c3cca58c, type: 3}
+  - {fileID: 7711290182059080197, guid: e818f4a25bd50b046b46ac3c6cde37af, type: 3}
+  tallRoom:
+  - {fileID: 7819669971196886726, guid: 7dbe57a16e836f945875accc1b98f14f, type: 3}
+  - {fileID: 7819669971196886726, guid: 90809a82006946a4cbbd86fd97fcdaf1, type: 3}
+  longRoom:
+  - {fileID: 3294986469282402709, guid: 9ebda9aadd3959b4a88ea45cd6089d7f, type: 3}
+  - {fileID: 3294986469282402709, guid: a4a55986b749f7348bc66f5f5bf845a6, type: 3}
+  bigRoom:
+  - {fileID: 4095826272436476311, guid: 20de18a165bf4ed4ab1a195712a0346f, type: 3}
+  bossRoom:
+  - {fileID: 1357336830172746321, guid: 910db0ae97af46f4c8c223e200d027a6, type: 3}
+  walls:
+  - {fileID: 3458023264603601946, guid: bc46e67b2e2a03340878fa1289de4d20, type: 3}

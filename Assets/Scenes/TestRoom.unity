@@ -6414,33 +6414,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5647555608281564952, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 751cc3f1e417625448ed329952a0f92c, type: 2}
-    - target: {fileID: 5647555608281564952, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
-      propertyPath: m_UsedByEffector
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429537466598726924, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 6769238185474251264, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6769238185474251264, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
-      propertyPath: m_TagString
-      value: OneWayPlatform
-      objectReference: {fileID: 0}
     - target: {fileID: 7682698302144779704, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6769238185474251264, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}

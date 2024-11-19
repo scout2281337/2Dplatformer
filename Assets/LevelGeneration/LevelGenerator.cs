@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -11,22 +9,17 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int pathLength;
     [SerializeField] private int iterationNumber;
 
-    [SerializeField] private GameObject[] roomSmall = new GameObject[1];
-    [SerializeField] private GameObject[] roomTall = new GameObject[1];
-    [SerializeField] private GameObject[] roomLong = new GameObject[1];
-    [SerializeField] private GameObject[] roomBig = new GameObject[1];
-    private GameObject[][] rooms = new GameObject[4][];
-
-
-    [SerializeField] private GameObject wall;
+    [SerializeField] private Rooms_SO rooms_SO;
+    private GameObject[][] rooms = new GameObject[5][];
     private HashSet<Vector2Int> takenRooms = new HashSet<Vector2Int> {Vector2Int.zero};
 
     private void Start()
     {
-        rooms[0] = roomSmall;
-        rooms[1] = roomTall;
-        rooms[2] = roomLong;
-        rooms[3] = roomBig;
+        rooms[0] = rooms_SO.smallRoom;
+        rooms[1] = rooms_SO.tallRoom;
+        rooms[2] = rooms_SO.longRoom;
+        rooms[3] = rooms_SO.bigRoom;
+        rooms[4] = rooms_SO.bossRoom;
 
         GenerateLevel();
         GenerateWalls();
@@ -40,19 +33,19 @@ public class LevelGenerator : MonoBehaviour
 
             if (!takenRooms.Contains(v + Vector2Int.down))
             {
-                Instantiate(wall, wallPosition, Quaternion.identity, transform);
+                Instantiate(rooms_SO.walls[0], wallPosition, Quaternion.identity, transform);
             }
             if (!takenRooms.Contains(v + Vector2Int.right))
             {
-                Instantiate(wall, wallPosition, Quaternion.Euler(new Vector3(0, 0, 90)), transform);
+                Instantiate(rooms_SO.walls[0], wallPosition, Quaternion.Euler(new Vector3(0, 0, 90)), transform);
             }
             if (!takenRooms.Contains(v + Vector2Int.left))
             {
-                Instantiate(wall, wallPosition, Quaternion.Euler(new Vector3(0, 0, -90)), transform);
+                Instantiate(rooms_SO.walls[0], wallPosition, Quaternion.Euler(new Vector3(0, 0, -90)), transform);
             }
             if (!takenRooms.Contains(v + Vector2Int.up))
             {
-                Instantiate(wall, wallPosition, Quaternion.Euler(new Vector3(0, 0, 180)), transform);
+                Instantiate(rooms_SO.walls[0], wallPosition, Quaternion.Euler(new Vector3(0, 0, 180)), transform);
             }
         }
     }
@@ -62,57 +55,76 @@ public class LevelGenerator : MonoBehaviour
         // Generates vector2int grid for rooms to take
         HashSet<Vector2Int> hashGrid = WalkMenGenerator(new Vector2Int(0, 0), iterationNumber, pathLength);
 
+        // Boss room generation
+        Vector2Int farthestRoom = Vector2Int.zero;
         foreach (Vector2Int v in hashGrid)
         {
-            if (takenRooms.Contains(v)) continue;
+            if (farthestRoom.magnitude < v.magnitude)
+                farthestRoom = v;
+        }
+        Vector3 bossRoomPosition = new Vector3(farthestRoom.x * gridSize, farthestRoom.y * gridSize, 0);
+        Instantiate(GetBossRoom(farthestRoom), bossRoomPosition, Quaternion.identity, transform);
+
+        // All other room generation
+        foreach (Vector2Int v in hashGrid)
+        {
+            if (takenRooms.Contains(v))
+                continue;
 
             Vector3 roomPosition = new Vector3(v.x * gridSize, v.y * gridSize, 0);
 
-            GameObject newRoom = Instantiate(GetRandomRoom(v), roomPosition, Quaternion.identity, transform);
+            Instantiate(GetRandomRoom(v), roomPosition, Quaternion.identity, transform);
         }
     }
+
+    /// <summary>
+    /// Generates a set of vector2int coordinates, so that rooms can be placed in these coordinates
+    /// </summary>
     private HashSet<Vector2Int> WalkMenGenerator (Vector2Int startPosition, int iterationAmount, int length)
+{
+    HashSet < Vector2Int > path = new HashSet < Vector2Int >();
+    Vector2Int currentPosition = startPosition;
+
+    for (int i = 0; i < iterationAmount; i++)
     {
-        HashSet < Vector2Int > path = new HashSet < Vector2Int >();
-        Vector2Int currentPosition = startPosition;
+        currentPosition = startPosition;
 
-        for (int i = 0; i < iterationAmount; i++)
+        for (int j = 0; j < length; j++)
         {
-            currentPosition = startPosition;
-
-            for (int j = 0; j < length; j++)
-            {
-                currentPosition += GetRandomDirection();
-                path.Add(currentPosition);
-            }
+            currentPosition += GetRandomDirection();
+            path.Add(currentPosition);
         }
-
-        return path;
     }
+
+    return path;
+}
 
     private Vector2Int GetRandomDirection()
+{
+    Vector2Int direction = new Vector2Int();
+    switch (UnityEngine.Random.Range(0, 4))
     {
-        Vector2Int direction = new Vector2Int();
-        switch (UnityEngine.Random.Range(0, 4))
-        {
-            case 0:
-                direction = new Vector2Int(1, 0);
-                break;
-            case 1:
-                direction = new Vector2Int(0, 1);
-                break;
-            case 2:
-                direction = new Vector2Int(-1, 0);
-                break;
-            case 3:
-                direction = new Vector2Int(0, -1);
-                break;
+        case 0:
+            direction = new Vector2Int(1, 0);
+            break;
+        case 1:
+            direction = new Vector2Int(0, 1);
+            break;
+        case 2:
+            direction = new Vector2Int(-1, 0);
+            break;
+        case 3:
+            direction = new Vector2Int(0, -1);
+            break;
 
-        }
-
-        return direction;
     }
 
+    return direction;
+}
+
+    /// <summary>
+    /// Gets a random room from rooms_SO, and checks so it doesn't intersect takenRooms
+    /// </summary>
     private GameObject GetRandomRoom(Vector2Int position)
     {
         GameObject room = rooms[0][UnityEngine.Random.Range(0, rooms[0].Length)];
@@ -151,5 +163,15 @@ public class LevelGenerator : MonoBehaviour
         }
 
         return room;
+    }
+
+    private GameObject GetBossRoom(Vector2Int position)
+    {
+        takenRooms.Add(position);
+        takenRooms.Add(position + Vector2Int.up);
+        takenRooms.Add(position + Vector2Int.right);
+        takenRooms.Add(position + Vector2Int.right + Vector2Int.up);
+
+        return rooms[4][UnityEngine.Random.Range(0, rooms[4].Length)];
     }
 }

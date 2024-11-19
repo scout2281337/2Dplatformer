@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
     {
         foreach (BaseActiveComponent component in weaponStats.activeComponents)
         {
-            component.ActiveProjectile();
+            component.ActiveProjectile(transform.position);
         }
     }
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CombatManager : Singleton<CombatManager>
 {
-    public Dictionary<GameObject, IDamageable> idamageable = new();
+    public Dictionary<GameObject, IDamageable> idamageableDict = new();
 
     public void AddObject(GameObject obj)
     {
         if(obj.TryGetComponent<IDamageable>(out IDamageable damageable))
         {
-            idamageable.Add(obj, damageable);
+            idamageableDict.Add(obj, damageable);
         }
     }
 }

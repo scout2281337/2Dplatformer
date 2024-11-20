@@ -15,14 +15,19 @@ MonoBehaviour:
   smallRoom:
   - {fileID: 7711290182059080197, guid: 1f6c6ae053c7dad498d3dcf0c3cca58c, type: 3}
   - {fileID: 7711290182059080197, guid: e818f4a25bd50b046b46ac3c6cde37af, type: 3}
+  - {fileID: 7711290182059080197, guid: 9c21987b6eeaa44419fd7a02dfd88f75, type: 3}
+  - {fileID: 7711290182059080197, guid: 0553130b2b721824faf29ca59b646a2a, type: 3}
   tallRoom:
   - {fileID: 7819669971196886726, guid: 7dbe57a16e836f945875accc1b98f14f, type: 3}
   - {fileID: 7819669971196886726, guid: 90809a82006946a4cbbd86fd97fcdaf1, type: 3}
+  - {fileID: 7819669971196886726, guid: ecd9244502cfb0c4aa95e37013c86c81, type: 3}
   longRoom:
   - {fileID: 3294986469282402709, guid: 9ebda9aadd3959b4a88ea45cd6089d7f, type: 3}
   - {fileID: 3294986469282402709, guid: a4a55986b749f7348bc66f5f5bf845a6, type: 3}
+  - {fileID: 3294986469282402709, guid: cbeacc78fe26d364c985480d09ff5c29, type: 3}
   bigRoom:
   - {fileID: 4095826272436476311, guid: 20de18a165bf4ed4ab1a195712a0346f, type: 3}
+  - {fileID: 4095826272436476311, guid: a752117727c162c42b3ed780b38b453a, type: 3}
   bossRoom:
   - {fileID: 1357336830172746321, guid: 910db0ae97af46f4c8c223e200d027a6, type: 3}
   walls:

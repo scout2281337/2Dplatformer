@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 59, y: 29}
+  m_Size: {x: 55, y: 23}
   m_EdgeRadius: 0
 --- !u!114 &268607365255862268
 MonoBehaviour:
@@ -18603,12 +18603,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyEnemies:
   - {fileID: 4051275358530856366, guid: 1f6d09a462f7cac48ab3e1a679fa04b8, type: 3}
+  - {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
   mediumEnemies:
   - {fileID: 4051275358530856366, guid: 1f6d09a462f7cac48ab3e1a679fa04b8, type: 3}
+  - {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
   hardEnemies:
   - {fileID: 4051275358530856366, guid: 1f6d09a462f7cac48ab3e1a679fa04b8, type: 3}
+  - {fileID: 9012576969150781326, guid: dc1fa1853a266ea4bb0fbd8cc5b9791e, type: 3}
   numberOfEnemies: 3
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1079743797333213252
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,38 +24,33 @@ public class RoomSpawner : MonoBehaviour
         if (hasSpawned)
             return;
 
-        for (int i = 0; i < numberOfEnemies; i++)
+        // Получение стратегии на основе сложности
+        var factory = new EnemySpawnStrategyFactory();
+        float difficultyFactor = timePassed / 60f;
+        var strategy = factory.GetStrategy(difficultyFactor);
+
+        // Спавн врагов в каждой точке
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
-            SpawnEnemy();
+            if (i >= numberOfEnemies) break;
+
+            GameObject enemyToSpawn = strategy.SelectEnemy(easyEnemies, mediumEnemies, hardEnemies);
+            Transform spawnPoint = spawnPoints[i];
+
+            SpawnEnemyAtPoint(enemyToSpawn, spawnPoint);
         }
 
         hasSpawned = true;
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemyAtPoint(GameObject enemyToSpawn, Transform spawnPoint)
     {
-        GameObject[] selectedArray;
-        float difficultyFactor = timePassed / 60f;
-
-        if (difficultyFactor < 1)
-        {
-            selectedArray = easyEnemies;
-        }
-        else if (difficultyFactor < 2)
-        {
-            selectedArray = mediumEnemies;
-        }
-        else
-        {
-            selectedArray = hardEnemies;
-        }
-
-        GameObject enemyToSpawn = selectedArray[Random.Range(0, selectedArray.Length)];
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
         GameObject spawnedEnemy = Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
+
+        // Добавляем врага в CombatManager
         CombatManager.Instance.AddObject(spawnedEnemy);
 
+        // Устанавливаем цель для врага
         if (spawnedEnemy.TryGetComponent<AIDestinationSetter>(out var destinationSetter))
         {
             destinationSetter.target = PlayerManager.Instance.player.transform;

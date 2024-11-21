@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8048296266732372044}
   - component: {fileID: 4791617415248490394}
-  m_Layer: 3
+  m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7312285887698122318}
   - component: {fileID: 6858752154989895955}
   - component: {fileID: 3041235069781612692}
-  m_Layer: 3
+  m_Layer: 16
   m_Name: OneWayPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9624,10 +9624,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2306516463915994752}
     m_Modifications:
-    - target: {fileID: 7187446037644626761, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8223606867907374170, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9671,10 +9667,6 @@ PrefabInstance:
     - target: {fileID: 8569077824089598806, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
       propertyPath: m_Name
       value: OneWayPlatform
-      objectReference: {fileID: 0}
-    - target: {fileID: 8569077824089598806, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8386899114834599103}
   - component: {fileID: 8364232404515014883}
   - component: {fileID: 4602005544895208457}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3403835863387668949}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 574819538728614784}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: MainHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 8766651620723566837}
   - component: {fileID: 6498806014859955906}
   - component: {fileID: 3966801777668697263}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6468343837083870399}
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   groundCheckRadius: 0.1
 --- !u!114 &8766651620723566837
 MonoBehaviour:
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489ea1427d9a2614e8ae48f701e10909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regenerationSpeedTime: 1
+  regenerationAmount: 1
   currentHealth: 0
   maxHealth: 100
   healthBar: {fileID: 0}

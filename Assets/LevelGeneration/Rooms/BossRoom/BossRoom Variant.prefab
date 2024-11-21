@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358470020859451336, guid: 6fd9ba4a206e97146a1390352596777a, type: 3}
       propertyPath: m_Name
-      value: BossRoom
+      value: BossRoom Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

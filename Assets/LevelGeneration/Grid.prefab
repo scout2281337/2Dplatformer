@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5467082334868907303}
   - component: {fileID: 8520829091809894476}
   - component: {fileID: 6166864577362004128}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8578,6 +8578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hub
       objectReference: {fileID: 0}
+    - target: {fileID: 1768226010046320366, guid: 6a5020e7242d60b49b0d811d693a4a55, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2306516463915994752, guid: 6a5020e7242d60b49b0d811d693a4a55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10410,6 +10414,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[120].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 3220958741762191491, guid: 6a5020e7242d60b49b0d811d693a4a55, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7445157381751877656, guid: 6a5020e7242d60b49b0d811d693a4a55, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -10417,6 +10425,10 @@ PrefabInstance:
     - target: {fileID: 7445157381751877656, guid: 6a5020e7242d60b49b0d811d693a4a55, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017995149546987306, guid: 6a5020e7242d60b49b0d811d693a4a55, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

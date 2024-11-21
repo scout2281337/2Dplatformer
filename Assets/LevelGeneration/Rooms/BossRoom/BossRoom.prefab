@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3967227006342429800}
   - component: {fileID: 2399578936549105170}
   - component: {fileID: 4461320746846927785}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34828,7 +34828,7 @@ GameObject:
   - component: {fileID: 6455119507491833873}
   - component: {fileID: 461934325467141286}
   - component: {fileID: 2643437219230361587}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: BossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36737,6 +36737,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5142085173657265045}
     m_Modifications:
+    - target: {fileID: 7187446037644626761, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8223606867907374170, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
@@ -36785,6 +36789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OneWayPlatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8569077824089598806, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36803,6 +36811,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5142085173657265045}
     m_Modifications:
+    - target: {fileID: 7187446037644626761, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8223606867907374170, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
@@ -36850,6 +36862,10 @@ PrefabInstance:
     - target: {fileID: 8569077824089598806, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
       propertyPath: m_Name
       value: OneWayPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569077824089598806, guid: 4e7a205d822ab0f4fb6aa2caaba2b466, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

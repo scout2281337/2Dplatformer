@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponName: Rocket Launcher
   fireRate: 1.5
-  projectileSpeed: 40
+  projectileSpeed: 25
   steamCost: 50
   heatGain: 70
   cost: 25

@@ -127,7 +127,7 @@ public class PlayerCombat : SoundManager
                 weaponInventory[i].transform.parent = hand.transform;
 
                 // Set the default position and rotation for the weapon in hand
-                weaponInventory[i].transform.localPosition = new Vector3(1, 0, 0);
+                weaponInventory[i].transform.localPosition = new Vector3(0.5f, 0, 0);
                 weaponInventory[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                 // Equips added weapon, so that player could instantly use it

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2134325523979669376}
   - component: {fileID: 2712853467118990576}
   - component: {fileID: 8022839848080197634}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: SteamPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3793370526844881367}
   - component: {fileID: 1752356440854654090}
-  m_Layer: 9
+  m_Layer: 14
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

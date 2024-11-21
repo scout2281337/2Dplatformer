@@ -12,19 +12,19 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Ground
-  - Enemy
   - Player
-  - Item
-  - Bullet
+  - PlayerBullet
+  - 
+  - Enemy
   - EnemyHitBox
+  - EnemyCriticalHitBox
   - EnemyBullet
   - 
-  - 
-  - 
+  - Item
+  - Sprite
   - 
   - 
   - 

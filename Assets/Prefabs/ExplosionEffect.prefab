@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6515626181819530211}
   - component: {fileID: -3464341704778888977}
   - component: {fileID: -740277850344449349}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790522176316524309}
   - component: {fileID: 6977907453223090312}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

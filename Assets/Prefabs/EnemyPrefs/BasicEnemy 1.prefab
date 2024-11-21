@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 965774536283122664}
   - component: {fileID: 722582156830688789}
   - component: {fileID: 2254557476233178814}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8048610091982583940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 6230321781729611582}
   - component: {fileID: 4185313780454213487}
   - component: {fileID: 537305794101931434}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1257922480169522188}
   - component: {fileID: 3272066320424999081}
   - component: {fileID: 5724361111798489612}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: BasicEnemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ MonoBehaviour:
   firePoint: {fileID: 8048610091982583940}
   fireRate: 0.2
   projectileSpeed: 10
-  NumberOfProjectiles: 0
+  numberOfProjectiles: 0
 --- !u!114 &5724361111798489612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,10 +405,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252a06742522b1b469f0621b8d5bb42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  ExpGain: 100
-  Currenthealth: 0
-  Healthbar: {fileID: 6263538361001797680}
+  maxHealth: 100
+  currentHealth: 0
+  xpGain: 100
+  steamGain: 0
+  steamPickUp: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &7198637977886509290
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6912026561146236585}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +453,7 @@ GameObject:
   - component: {fileID: 9134577161521260912}
   - component: {fileID: 4973051389966994978}
   - component: {fileID: 6263538361001797680}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +556,7 @@ GameObject:
   - component: {fileID: 2122364269229985847}
   - component: {fileID: 1467689736836857776}
   - component: {fileID: 2365981336807581112}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +663,7 @@ GameObject:
   - component: {fileID: 4021917699866463476}
   - component: {fileID: 6281386773888302142}
   - component: {fileID: 2906776340427491964}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

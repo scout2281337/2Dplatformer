@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7388745880817444796}
   - component: {fileID: 1567842295597931900}
   - component: {fileID: 7063620142580314659}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 2957904648376850179}
   - component: {fileID: 4305337840254157831}
   - component: {fileID: 3715607263640270560}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6344836977784760205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 7508659695438179477}
   - component: {fileID: -6126409157829162604}
   - component: {fileID: 2794834035789163802}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: BossEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -238,8 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  expGain: 100
   currentHealth: 0
+  xpGain: 100
+  steamGain: 0
+  steamPickUp: {fileID: 0}
   healthBar: {fileID: 7504959041773815367}
 --- !u!114 &4925832445164017435
 MonoBehaviour:
@@ -440,7 +442,7 @@ GameObject:
   - component: {fileID: 3800671291354574672}
   - component: {fileID: 6612291182993758888}
   - component: {fileID: 7504959041773815367}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +546,7 @@ GameObject:
   - component: {fileID: 6943064104157731673}
   - component: {fileID: 1520819825285930428}
   - component: {fileID: 8693361877823411791}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6629694052241111940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -695,7 +697,7 @@ GameObject:
   - component: {fileID: 6811715635867418653}
   - component: {fileID: 8721531156595436042}
   - component: {fileID: 5211590205382550098}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4763438045103220281}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

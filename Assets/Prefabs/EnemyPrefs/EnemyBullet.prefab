@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 455276151908638542}
   - component: {fileID: -9117125321297532666}
   - component: {fileID: 3744968484359799791}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: EnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755411715817697965}
   - component: {fileID: 7355362837221198442}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

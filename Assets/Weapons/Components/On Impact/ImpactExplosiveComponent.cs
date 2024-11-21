@@ -11,26 +11,26 @@ public class ImpactExplosiveComponent : BaseImpactComponent
     public float explosionForce;
 
     [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private LayerMask explosionLayerMask; // Specify layers for the explosion
+    [SerializeField] private LayerMask explosionLayerMask;
 
-    public override void ProjectileImpact(GameObject other, Transform transform)
+    public override void ProjectileImpact(GameObject collidedObject, Transform impactTransform)
     {
 
         // Instantiate explosion effect
-        GameObject explosionFX = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        GameObject explosionFX = Instantiate(explosionPrefab, impactTransform.position, Quaternion.identity);
         explosionFX.transform.localScale *= 2 * explosionRadius;
 
         // Use OverlapCircleAll with a layer mask
-        Collider2D[] explosionCollisions = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionLayerMask);
+        Collider2D[] explosionCollisions = Physics2D.OverlapCircleAll(impactTransform.position, explosionRadius, explosionLayerMask);
 
         // Proceed only if there are any collisions
-        if (explosionCollisions == null || explosionCollisions.Length == 0)
+        if (explosionCollisions.Length == 0)
             return;
 
         foreach (var collision in explosionCollisions)
         {
             // Apply explosion force
-            Push(collision, transform);
+            Push(collision, impactTransform.position);
 
             // Damage enemies
             DamageEnemy(collision);
@@ -45,13 +45,17 @@ public class ImpactExplosiveComponent : BaseImpactComponent
         idamageable.TakeDamage(explosionDamage);
     }
 
-    private void Push(Collider2D collision, Transform transform)
+    private void Push(Collider2D collision, Vector3 position)
     {
-        if (!collision.gameObject == PlayerManager.Instance.player)
+        if (collision.gameObject != PlayerManager.Instance.player)
             return;
-        
-        Vector2 pushVector = (collision.transform.position - transform.position).normalized;
+
+        Vector2 pushVector = (collision.transform.position - position).normalized;
         PlayerManager.Instance.playerMovement.Push(pushVector, explosionForce);
+
+        Debug.Log($"Player Position: {collision.transform.position}");
+        Debug.Log($"Explosion Position: {position}");
+        Debug.Log($"Push Vector: {pushVector}");
     }
 
     public override float SetRandomStats(float min, float max)

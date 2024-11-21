@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3210672608266563448}
   - component: {fileID: 4817571380158192880}
   - component: {fileID: 1365091330270990236}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Hub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,7 +1510,7 @@ GameObject:
   - component: {fileID: 4526167854758928101}
   - component: {fileID: 1440631076642900075}
   - component: {fileID: 2955130690655916683}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -241,7 +241,7 @@ MonoBehaviour:
   currentHealth: 0
   xpGain: 100
   steamGain: 0
-  steamPickUp: {fileID: 0}
+  steamPickUp: {fileID: 7010101427536572080, guid: b88e8491b49f38141bcb3ccc78f489cd, type: 3}
   healthBar: {fileID: 7504959041773815367}
 --- !u!114 &4925832445164017435
 MonoBehaviour:

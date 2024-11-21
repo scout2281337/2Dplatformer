@@ -2,11 +2,11 @@ public class EnemySpawnStrategyFactory
 {
     public IEnemySpawnStrategy GetStrategy(float difficultyFactor)
     {
-        if (difficultyFactor < 1)
+        if (difficultyFactor < 0.1)
         {
             return new EasyEnemyStrategy();
         }
-        else if (difficultyFactor < 2)
+        else if (difficultyFactor < 0.2)
         {
             return new MediumEnemyStrategy();
         }

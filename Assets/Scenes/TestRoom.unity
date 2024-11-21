@@ -623,6 +623,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6158157219355747422, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 6498806014859955906, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
       propertyPath: Healthbar
       value: 
@@ -642,6 +646,10 @@ PrefabInstance:
     - target: {fileID: 7707708883075913584, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
       propertyPath: groundMask.m_Bits
       value: 65544
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308383369954478142, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 8621883539737778079, guid: e4cc4d57522ebcc4c9ae00457aeb35ea, type: 3}
       propertyPath: m_Name

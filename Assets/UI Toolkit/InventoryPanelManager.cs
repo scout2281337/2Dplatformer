@@ -3,8 +3,8 @@ using UnityEngine.UIElements;
 
 public class InventoryPanelManager : MonoBehaviour
 {
-    public PlayerCombat playerCombat;
-    public Sprite noWeapon;
+    private PlayerCombat playerCombat;
+    [SerializeField] private Sprite noWeapon;
     private UIDocument _document;
     private Slot[] _slots = new Slot[3];
     private ProgressBar _progressBar;
@@ -23,6 +23,8 @@ public class InventoryPanelManager : MonoBehaviour
         _slots[2].SetSlot(_document.rootVisualElement.Q<VisualElement>("Slot2"));
 
         _progressBar = _document.rootVisualElement.Q<ProgressBar>();
+
+        playerCombat = PlayerManager.Instance.playerCombat;
 
         playerCombat.OnWeaponEquip += EquipWeapon;
         playerCombat.OnWeaponAdd += AddWeapon;

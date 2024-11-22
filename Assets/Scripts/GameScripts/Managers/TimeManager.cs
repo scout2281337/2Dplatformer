@@ -7,6 +7,11 @@ public class TimeManager : Singleton<TimeManager>
     public float timeDifficulty {  get; private set; }
     public bool isTimeActive { get; private set; }
 
+    private void Start()
+    {
+        ActivateTime();
+    }
+
     private void Update()
     {
         TimeUpdate();

@@ -25,7 +25,7 @@ public class RoomSpawner : MonoBehaviour
             return;
 
         // ѕолучение стратегии на основе сложности
-        var factory = new EnemySpawnStrategyFactory();
+        var factory = new LevelOneSpawnStrategy();
         float difficultyFactor = timePassed / 60f;
         var strategy = factory.GetStrategy(difficultyFactor);
 

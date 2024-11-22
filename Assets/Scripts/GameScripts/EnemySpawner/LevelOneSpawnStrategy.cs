@@ -1,4 +1,4 @@
-public class LevelOneSpawnStrategy
+public class EnemySpawnStrategy
 {
     public IEnemySpawnStrategy GetStrategy(float difficultyFactor)
     {

@@ -13,7 +13,7 @@ public class BossAttack : EnemyAttack
         attackStrategies.Add(new SingleShootStrategy());
         attackStrategies.Add(new RandomShootStrategy());
         attackStrategies.Add(new AllDirectionShootStrategy());
-        InvokeRepeating(nameof(Shoot), 0f, fireRate);
+        InvokeRepeating(nameof(Shoot), 0f, enemyScriptableObject.fireRate);
     }
 
     // Update is called once per frame
@@ -22,23 +22,23 @@ public class BossAttack : EnemyAttack
     {
         if (!canShoot) return;
 
-        if (enemyHealth.currentHealth >= 0.8 * enemyHealth.maxHealth)
+        if (enemyHealth.currentHealth >= 0.8 * enemyScriptableObject.maxHealth)
         {
-            projectileSpeed = 7f;
-            attackStrategies[0].ExecuteAttack(firePoint, projectilePrefab, player, projectileSpeed, numberOfProjectiles);
+            enemyScriptableObject.projectileSpeed = 7f;
+            attackStrategies[0].ExecuteAttack(firePoint, enemyScriptableObject.projectilePrefab, player, enemyScriptableObject.projectileSpeed, enemyScriptableObject.numberOfProjectiles);
         }
-        else if(enemyHealth.currentHealth >= 0.5 * enemyHealth.maxHealth) 
+        else if(enemyHealth.currentHealth >= 0.5 * enemyScriptableObject.maxHealth) 
         {
-            fireRate = 0.8f;
-            attackStrategies[1].ExecuteAttack(firePoint, projectilePrefab, player, projectileSpeed, numberOfProjectiles);
+            enemyScriptableObject.fireRate = 0.8f;
+            attackStrategies[1].ExecuteAttack(firePoint, enemyScriptableObject.projectilePrefab, player, enemyScriptableObject.projectileSpeed, enemyScriptableObject.numberOfProjectiles);
 
 
         }
         else 
         {
-            fireRate = 0.7f;
-            numberOfProjectiles = 8;
-            attackStrategies[2].ExecuteAttack(firePoint, projectilePrefab, player, projectileSpeed, numberOfProjectiles);
+            enemyScriptableObject.fireRate = 0.7f;
+            enemyScriptableObject.numberOfProjectiles = 8;
+            attackStrategies[2].ExecuteAttack(firePoint, enemyScriptableObject.projectilePrefab, player, enemyScriptableObject.projectileSpeed, enemyScriptableObject.numberOfProjectiles);
 
 
 

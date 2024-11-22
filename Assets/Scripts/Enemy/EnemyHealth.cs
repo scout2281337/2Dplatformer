@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    public float maxHealth = 100f;
+    [Header("Choose your Scriptable Object")]
+    public EnemyScriptableObject enemyScriptableObject;
+    
     public float currentHealth;
-    [SerializeField] private int xpGain = 100;
-    [SerializeField] private float steamGain;
-
     [SerializeField] private GameObject steamPickUp;
     [SerializeField] private HealthBar healthBar;
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        currentHealth = enemyScriptableObject.maxHealth;
+        healthBar.SetMaxHealth(enemyScriptableObject.maxHealth);
     }
 
     public void TakeDamage(float damage)
@@ -31,7 +30,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        PlayerManager.Instance.AddXpToPlayer(xpGain);
+        PlayerManager.Instance.AddXpToPlayer(enemyScriptableObject.xpGain);
         SpawnSteamPickUp();
 
         Destroy(gameObject);
@@ -41,6 +40,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     {
         GameObject newSteamPickUp = Instantiate(steamPickUp, transform.position, Quaternion.identity);
         if (newSteamPickUp.TryGetComponent<SteamPickUp>(out SteamPickUp newSteamScript))
-            newSteamScript.steamAmount = steamGain;
+            newSteamScript.steamAmount = enemyScriptableObject.steamGain;
     }
 }

@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public GameObject projectilePrefab;
-    public Transform firePoint;
-    public float fireRate = 1f;
-    public float projectileSpeed = 5f;
-    public int numberOfProjectiles;
+    public EnemyScriptableObject enemyScriptableObject;
+    
+    [SerializeField] protected Transform firePoint;
     protected Transform player;
     protected bool canShoot = false;
 
@@ -22,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
         //attackStrategies.Add(new AllDirectionShootStrategy());
 
         // Запускаем стрельбу по таймеру
-        InvokeRepeating(nameof(Shoot), 0f, fireRate);
+        InvokeRepeating(nameof(Shoot), 0f, enemyScriptableObject.fireRate);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -50,7 +48,7 @@ public class EnemyAttack : MonoBehaviour
         foreach (var strategy in attackStrategies)
         {
             // Выполняем каждую стратегию атаки
-            strategy.ExecuteAttack(firePoint, projectilePrefab, player, projectileSpeed, numberOfProjectiles);
+            strategy.ExecuteAttack(firePoint, enemyScriptableObject.projectilePrefab, player, enemyScriptableObject.projectileSpeed, enemyScriptableObject.numberOfProjectiles);
         }
     }
 }

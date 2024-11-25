@@ -17,8 +17,8 @@ public class TimerUI : MonoBehaviour
 
     private void Update()
     {
-        int minutes = (int)TimeManager.Instance.timeDifficulty / 60;
-        int seconds = (int)TimeManager.Instance.timeDifficulty % 60;
+        int minutes = (int)TimeManager.Instance.time / 60;
+        int seconds = (int)TimeManager.Instance.time % 60;
 
         if (seconds < 10)
             label.text = $"{minutes}:0{seconds}";

@@ -6,11 +6,11 @@ using UnityEngine;
 public class EnemyScriptableObject : ScriptableObject
 {
     [Header("Скрипт Атаки")]
-    public GameObject projectilePrefab;
     public float fireRate;
     public float projectileSpeed;
     public int numberOfProjectiles;
-    
+    public GameObject projectilePrefab;
+
     [Header("Скрипт Здоровья")]
     public float maxHealth;
     public float steamGain;

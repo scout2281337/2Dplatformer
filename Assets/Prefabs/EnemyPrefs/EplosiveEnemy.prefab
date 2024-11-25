@@ -488,10 +488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252a06742522b1b469f0621b8d5bb42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  enemyScriptableObject: {fileID: 11400000, guid: 9d280da55ddaa8d40bf0cc380b201f22, type: 2}
   currentHealth: 0
-  xpGain: 100
-  steamGain: 15
   steamPickUp: {fileID: 7010101427536572080, guid: b88e8491b49f38141bcb3ccc78f489cd, type: 3}
   healthBar: {fileID: 29824235355561843}
 --- !u!114 &6585073003231328396

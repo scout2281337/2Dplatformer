@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    [Header("Choose your Scriptable Object")]
+    [Header("Scriptable Object")]
     public EnemyScriptableObject enemyScriptableObject;
     
     public float currentHealth;
@@ -14,6 +14,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        CombatManager.Instance.AddEnemy(gameObject);
+
         currentHealth = enemyScriptableObject.maxHealth;
         healthBar.SetMaxHealth(enemyScriptableObject.maxHealth);
     }
@@ -31,6 +33,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         PlayerManager.Instance.AddXpToPlayer(enemyScriptableObject.xpGain);
+        CombatManager.Instance.RemoveEnemy(gameObject);
+
         SpawnSteamPickUp();
 
         Destroy(gameObject);

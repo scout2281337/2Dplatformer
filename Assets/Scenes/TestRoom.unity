@@ -475,6 +475,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2630719933387317539, guid: f1db4f0139ceeee4eb6cfdd740f000b0, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 736174584}
+    - target: {fileID: 2630719933387317539, guid: f1db4f0139ceeee4eb6cfdd740f000b0, type: 3}
+      propertyPath: rooms_SO
+      value: 
+      objectReference: {fileID: 11400000, guid: 927c81f58389c4244ae4885851b695de, type: 2}
     - target: {fileID: 6843757094070917276, guid: f1db4f0139ceeee4eb6cfdd740f000b0, type: 3}
       propertyPath: m_Name
       value: CombatManager
@@ -5862,6 +5870,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c019dd72c82eb654b82e1a95c7d82aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &736174584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7682698302144779704, guid: bf964c825c60dd64bb978758eefadaf8, type: 3}
+  m_PrefabInstance: {fileID: 855092659261485238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &824561732 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6808450937093682432, guid: 0d916046fcaacf24ba6140b7a46e713c, type: 3}

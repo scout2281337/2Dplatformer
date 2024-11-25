@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeManager : Singleton<TimeManager>    
 {
-    public float timeDifficulty {  get; private set; }
+    public float time {  get; private set; }
     public bool isTimeActive { get; private set; }
 
     private void Start()
@@ -22,7 +22,7 @@ public class TimeManager : Singleton<TimeManager>
         if (!isTimeActive)
             return;
 
-        timeDifficulty += Time.deltaTime;
+        time += Time.deltaTime;
     }
 
     public void StopTime()

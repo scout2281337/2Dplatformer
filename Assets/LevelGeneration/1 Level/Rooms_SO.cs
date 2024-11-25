@@ -12,5 +12,6 @@ public class Rooms_SO : ScriptableObject
     [SerializeField] public GameObject[] bigRoom;
     [SerializeField] public GameObject[] bossRoom;
     [SerializeField] public GameObject[] walls;
+    [SerializeField] public GameObject[] wallLock;
 
 }

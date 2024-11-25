@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca80af369e74ada4d92efdc0167aa303, type: 3}
-  m_Name: Rooms_SO
+  m_Name: Rooms_LVL1
   m_EditorClassIdentifier: 
   smallRoom:
   - {fileID: 7711290182059080197, guid: 1f6c6ae053c7dad498d3dcf0c3cca58c, type: 3}
@@ -32,3 +32,8 @@ MonoBehaviour:
   - {fileID: 1357336830172746321, guid: 910db0ae97af46f4c8c223e200d027a6, type: 3}
   walls:
   - {fileID: 3458023264603601946, guid: bc46e67b2e2a03340878fa1289de4d20, type: 3}
+  wallLock:
+  - {fileID: 3458023264603601946, guid: 013d4012fa773964280a88f2f4d73f2c, type: 3}
+  - {fileID: 3458023264603601946, guid: cb7cc183863af74418346388aaeb29c4, type: 3}
+  - {fileID: 3458023264603601946, guid: d4afde0c74966be4c9a09f66a225f91c, type: 3}
+  - {fileID: 3458023264603601946, guid: b978b97d62180a24a83aa396135785b8, type: 3}

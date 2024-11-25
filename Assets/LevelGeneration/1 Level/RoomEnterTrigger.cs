@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RoomEnterTrigger : MonoBehaviour
 {
+    private bool hasSpawned = false;
     private RoomSpawner roomSpawner;
     [SerializeField] private Vector2Int roomSize;
 
@@ -14,8 +15,15 @@ public class RoomEnterTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
             return;
-        
-        roomSpawner.SpawnEnemies();
+
         CameraManager.Instance.NewRoomView(roomSize, transform.position);
+
+        if (hasSpawned)
+            return;
+
+        roomSpawner.SpawnEnemies();
+        CombatManager.Instance.LockRoom(roomSize, transform.parent.position);
+
+        hasSpawned = true;
     }
 }

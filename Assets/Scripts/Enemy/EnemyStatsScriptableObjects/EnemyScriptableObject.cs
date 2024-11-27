@@ -15,4 +15,9 @@ public class EnemyScriptableObject : ScriptableObject
     public float maxHealth;
     public float steamGain;
     public int xpGain;
+
+    [Header("Скрипт передвижения")]
+    public float speed;
+    public LayerMask groundLayer;
+    public float checkDistance;
 }

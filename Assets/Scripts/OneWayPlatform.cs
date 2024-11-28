@@ -8,6 +8,8 @@ public class OneWayPlatform : MonoBehaviour
     private BoxCollider2D platformCollider;
     private bool isOnPlatform = false;
 
+    private Coroutine disableCollisionCoroutine; // Для хранения ссылки на корутину
+
     private void Start()
     {
         player = PlayerManager.Instance.player;
@@ -20,7 +22,11 @@ public class OneWayPlatform : MonoBehaviour
         // Если игрок на платформе и нажата клавиша, отключить коллайдер временно
         if (isOnPlatform && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
         {
-            StartCoroutine(DisableCollision());
+            if (disableCollisionCoroutine != null)
+            {
+                StopCoroutine(disableCollisionCoroutine); // Останавливаем текущую корутину, если она активна
+            }
+            disableCollisionCoroutine = StartCoroutine(DisableCollision());
         }
     }
 
@@ -54,5 +60,7 @@ public class OneWayPlatform : MonoBehaviour
         {
             Debug.LogWarning("Platform or player collider missing"); // Сообщение при отсутствии коллайдера
         }
+
+        disableCollisionCoroutine = null; // Сбрасываем ссылку на корутину после её завершения
     }
 }

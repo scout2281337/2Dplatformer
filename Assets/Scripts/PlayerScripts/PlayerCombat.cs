@@ -175,7 +175,8 @@ public class PlayerCombat : SoundManager
         for (int i = 0; i < weaponInventory.Length; i++)
         {
             // Checks if this slot has any weapon, player might not have all slots taken
-            if (weaponInventory[i] == null) continue;
+            if (weaponInventory[i] == null)
+                continue;
 
             if (i == index)
             {
@@ -193,5 +194,4 @@ public class PlayerCombat : SoundManager
             }
         }
     }
-
 }

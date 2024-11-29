@@ -11,6 +11,9 @@ public class CombatManager : Singleton<CombatManager>
 
     private GameObject wallLock;
 
+
+
+    #region IDamageable objects
     public void AddObject(GameObject obj)
     {
         if(obj.TryGetComponent<IDamageable>(out IDamageable damageable))
@@ -23,7 +26,9 @@ public class CombatManager : Singleton<CombatManager>
     {
         idamageableDict.Remove(obj);
     }
+    #endregion
 
+    #region Enemy list
     public void AddEnemy(GameObject enemy)
     {
         enemyList.Add(enemy);
@@ -40,7 +45,9 @@ public class CombatManager : Singleton<CombatManager>
 
         UnLockRoom();
     }
+    #endregion
 
+    #region Room locking
     public void LockRoom(Vector2Int roomSize, Vector2 position)
     {
         // Small room
@@ -73,4 +80,5 @@ public class CombatManager : Singleton<CombatManager>
     {
         Destroy(wallLock);
     }
+    #endregion
 }

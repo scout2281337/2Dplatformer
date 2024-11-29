@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class RoomEnterTrigger : MonoBehaviour
 {
+
+    [SerializeField] private Vector2Int roomSize;
+
     private bool hasSpawned = false;
     private RoomSpawner roomSpawner;
-    [SerializeField] private Vector2Int roomSize;
 
     private void Start()
     {

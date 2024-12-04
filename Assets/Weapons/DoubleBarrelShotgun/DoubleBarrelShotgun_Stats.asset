@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3473f2182bc8d64a94ffa5c82e02826, type: 3}
   m_Name: DoubleBarrelShotgun_Stats
   m_EditorClassIdentifier: 
-  WeaponName: Double Barrel Shotgun
+  weaponName: Double Barrel Shotgun
   fireRate: 0.8
   projectileSpeed: 40
   steamCost: 35

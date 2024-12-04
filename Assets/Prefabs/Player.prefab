@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 258299305511597613}
   - component: {fileID: 7707708883075913584}
   - component: {fileID: 8766651620723566837}
+  - component: {fileID: 5014002859838321383}
   - component: {fileID: 6498806014859955906}
   - component: {fileID: 3966801777668697263}
   m_Layer: 6
@@ -399,7 +400,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6468343837083870399}
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 65544
   groundCheckRadius: 0.1
 --- !u!114 &8766651620723566837
 MonoBehaviour:
@@ -424,6 +425,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentWeaponIndex: 0
+--- !u!114 &5014002859838321383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621883539737778079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6126ad6178fa39146a62ed4e362c6b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6498806014859955906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 1
   currentXP: 0
-  xpToNextLevel: 100
+  xpToNextLevel: 2000
   xpBar: {fileID: 0}
   tmptext: {fileID: 0}
   SkillMenu: {fileID: 0}

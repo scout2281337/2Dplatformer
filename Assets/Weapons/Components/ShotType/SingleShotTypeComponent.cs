@@ -34,4 +34,10 @@ public class SingleShotTypeComponent : BaseShotTypeComponent
 
         return GetAvarageModifier();
     }
+
+    public override string GetDesription()
+    {
+        return ("\nЕдиничный выстрел с отклонением" +
+                $"\n Разброс: {inaccuracy}");
+    }
 }

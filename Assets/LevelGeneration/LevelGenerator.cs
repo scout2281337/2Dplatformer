@@ -7,11 +7,10 @@ public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private int gridSize;
 
-    [SerializeField] private Rooms_SO rooms_SO;
     private HashSet<Vector2Int> avalableRooms = new();
     private HashSet<Vector2Int> takenRooms = new HashSet<Vector2Int> {Vector2Int.zero};
 
-    public void GenerateWalls()
+    public void GenerateWalls(Rooms_SO rooms_SO)
     {
         foreach(Vector2Int v in takenRooms)
         {
@@ -36,7 +35,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    public void GenerateRooms()
+    public void GenerateRooms(Rooms_SO rooms_SO)
     {
         foreach (Vector2Int v in avalableRooms)
         {
@@ -45,11 +44,11 @@ public class LevelGenerator : MonoBehaviour
 
             Vector3 roomPosition = new Vector3(v.x * gridSize, v.y * gridSize, 0);
 
-            Instantiate(GetRandomRoom(v), roomPosition, Quaternion.identity, transform);
+            Instantiate(GetRandomRoom(v, rooms_SO), roomPosition, Quaternion.identity, transform);
         }
     }
 
-    public void GenerateBossRoom()
+    public void GenerateBossRoom(Rooms_SO rooms_SO)
     {
         // Boss room generation
         Vector2Int farthestRoom = Vector2Int.zero;
@@ -59,7 +58,7 @@ public class LevelGenerator : MonoBehaviour
                 farthestRoom = v;
         }
         Vector3 bossRoomPosition = new Vector3(farthestRoom.x * gridSize, farthestRoom.y * gridSize, 0);
-        Instantiate(GetBossRoom(farthestRoom), bossRoomPosition, Quaternion.identity, transform);
+        Instantiate(GetBossRoom(farthestRoom, rooms_SO), bossRoomPosition, Quaternion.identity, transform);
     }
 
     /// <summary>
@@ -110,7 +109,7 @@ public class LevelGenerator : MonoBehaviour
     /// <summary>
     /// Gets a random room from rooms_SO, and checks so it doesn't intersect takenRooms
     /// </summary>
-    private GameObject GetRandomRoom(Vector2Int position)
+    private GameObject GetRandomRoom(Vector2Int position, Rooms_SO rooms_SO)
     {
         GameObject room = rooms_SO.smallRoom[UnityEngine.Random.Range(0, rooms_SO.smallRoom.Length)];
         takenRooms.Add(position);  // Mark this position as taken
@@ -150,7 +149,7 @@ public class LevelGenerator : MonoBehaviour
         return room;
     }
 
-    private GameObject GetBossRoom(Vector2Int position)
+    private GameObject GetBossRoom(Vector2Int position, Rooms_SO rooms_SO)
     {
         takenRooms.Add(position);
         takenRooms.Add(position + Vector2Int.up);

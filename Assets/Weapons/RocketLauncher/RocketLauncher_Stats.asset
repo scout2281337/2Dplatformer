@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3473f2182bc8d64a94ffa5c82e02826, type: 3}
   m_Name: RocketLauncher_Stats
   m_EditorClassIdentifier: 
-  WeaponName: Rocket Launcher
+  weaponName: Rocket Launcher
   fireRate: 1.5
   projectileSpeed: 25
   steamCost: 50

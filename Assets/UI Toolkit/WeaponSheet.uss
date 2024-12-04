@@ -1,0 +1,13 @@
+.Text {
+    font-size: 26px;
+}
+
+.Frame {
+}
+
+.Frame:disabled {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+    overflow: hidden;
+}

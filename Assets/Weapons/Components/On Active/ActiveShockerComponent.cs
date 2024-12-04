@@ -34,6 +34,13 @@ public class ActiveAttractorComponentds : BaseActiveComponent
         return newComponent;
     }
 
+    public override string GetDesription()
+    {
+        return ("\nНаносит урон врагам с определённой периодичностью" +
+                $"\n Урон: {damage}" +
+                $"\n Радиус: {radius}");
+    }
+
     public override float SetRandomStats(float min, float max)
     {
         damage += GetModifier(min, max);

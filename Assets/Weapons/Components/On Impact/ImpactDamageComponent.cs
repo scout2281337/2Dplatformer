@@ -26,4 +26,10 @@ public class ImpactDamageComponent : BaseImpactComponent
 
         return GetAvarageModifier();
     }
+
+    public override string GetDesription()
+    {
+        return ("\nНаносит урон при попадание" +
+                $"\n Урон: {damage}");
+    }
 }

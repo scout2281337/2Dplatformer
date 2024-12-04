@@ -5,15 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FireRecoil", menuName = "ScriptableObjects/Weapon/FireComponent/FireRecoil", order = 1)]
 public class FireRecoilComponent : BaseFireComponent
 {
-    [SerializeField] private float recoilForce;
+    [SerializeField] private float force;
+
     public override void WeaponFire(Vector2 projectileDirection)
     {
-        PlayerManager.Instance.playerMovement.Push(-projectileDirection, recoilForce);
+        PlayerManager.Instance.playerMovement.Push(-projectileDirection, force);
     }
 
     public override float SetRandomStats(float min, float max)
     {
-        recoilForce *= Mathf.Sqrt(GetModifier(min, max));
+        force *= Mathf.Sqrt(GetModifier(min, max));
 
         return GetAvarageModifier();
     }
@@ -21,8 +22,14 @@ public class FireRecoilComponent : BaseFireComponent
     public override BaseWeaponComponent CloneComponent()
     {
         FireRecoilComponent newComponent = ScriptableObject.CreateInstance<FireRecoilComponent>();
-        newComponent.recoilForce = recoilForce;
+        newComponent.force = force;
 
         return newComponent;
+    }
+
+    public override string GetDesription()
+    {
+        return ("\nОтталкивает игрока в противополжное направление" +
+                $"\n Сила: {force}");
     }
 }

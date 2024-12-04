@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436a79eb7c2b61948a02f4f7c7fe99c9, type: 3}
   m_Name: SpreadShotTypeComponent_Default
   m_EditorClassIdentifier: 
+  description: "\u0412\u044B\u0441\u0442\u0440\u0435\u0438\u0432\u0430\u0435\u0442
+    \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u043F\u043E\u0442\u0440\u043E\u043D\u043E\u0432
+    \u0432 \u043A\u043E\u043D\u0443\u0441\u0435"
   numberOfPellets: 3
   spreadAngle: 25

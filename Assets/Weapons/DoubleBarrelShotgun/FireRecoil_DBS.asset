@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec70457ef797e846b5b23a052090bc3, type: 3}
   m_Name: FireRecoil_DBS
   m_EditorClassIdentifier: 
-  recoilForce: 2
+  force: 2

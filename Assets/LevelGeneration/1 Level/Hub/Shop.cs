@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
 using UnityEngine;
 
-public class Shop : MonoBehaviour, IInteractable
+public class Shop : Interactable
 {
     [SerializeField] private float minModifier;
     [SerializeField] private float maxModifier;
@@ -17,7 +15,7 @@ public class Shop : MonoBehaviour, IInteractable
         RerollItems();
     }
 
-    public void Interact(GameObject player)
+    public override void Interact()
     {
         RerollItems();
     }

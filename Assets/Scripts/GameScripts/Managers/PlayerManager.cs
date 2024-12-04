@@ -8,6 +8,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject player { get; private set; }
     public PlayerMovement playerMovement {  get; private set; }
     public PlayerCombat playerCombat { get; private set; }
+    public PlayerInteraction playerInteraction { get; private set; }
     public PlayerHealth playerHealth { get; private set; }
     public PlayerStats playerStats { get; private set; }
 
@@ -29,6 +30,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
         playerMovement = player.GetComponent<PlayerMovement>();
         playerCombat = player.GetComponent<PlayerCombat>();
+        playerInteraction = player.GetComponent<PlayerInteraction>();
         playerHealth = player.GetComponent<PlayerHealth>();
         playerStats = player.GetComponent<PlayerStats>();
     }

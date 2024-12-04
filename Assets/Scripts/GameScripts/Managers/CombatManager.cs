@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class CombatManager : Singleton<CombatManager>
 {
-    public GameObject grid;
-    public Rooms_SO rooms_SO;
     public Dictionary<GameObject, IDamageable> idamageableDict = new();
+
     private List<GameObject> enemyList = new();
-
     private GameObject wallLock;
-
-
 
     #region IDamageable objects
     public void AddObject(GameObject obj)
@@ -53,22 +49,22 @@ public class CombatManager : Singleton<CombatManager>
         // Small room
         if (roomSize == new Vector2Int(1, 1))
         {
-            wallLock = Instantiate(rooms_SO.wallLock[0], position, Quaternion.identity, grid.transform);
+            wallLock = Instantiate(LevelDirector.Instance.rooms_SO.wallLock[0], position, Quaternion.identity, LevelDirector.Instance.levelGenerator.transform);
         }
         // Tall room
         else if (roomSize == new Vector2Int(1, 2))
         {
-            wallLock = Instantiate(rooms_SO.wallLock[1], position, Quaternion.identity, grid.transform);
+            wallLock = Instantiate(LevelDirector.Instance.rooms_SO.wallLock[1], position, Quaternion.identity, LevelDirector.Instance.levelGenerator.transform);
         }
         // Long room
         else if (roomSize == new Vector2Int(2, 1))
         {
-            wallLock = Instantiate(rooms_SO.wallLock[2], position, Quaternion.identity, grid.transform);
+            wallLock = Instantiate(LevelDirector.Instance.rooms_SO.wallLock[2], position, Quaternion.identity, LevelDirector.Instance.levelGenerator.transform);
         }
         // Big room
         else if (roomSize == new Vector2Int(2, 1))
         {
-            wallLock = Instantiate(rooms_SO.wallLock[3], position, Quaternion.identity, grid.transform);
+            wallLock = Instantiate(LevelDirector.Instance.rooms_SO.wallLock[3], position, Quaternion.identity, LevelDirector.Instance.levelGenerator.transform);
         }
         else
         {

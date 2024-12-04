@@ -36,6 +36,13 @@ public class ActiveAttractorComponent : BaseActiveComponent
         return newComponent;
     }
 
+    public override string GetDesription()
+    {
+        return ("\nПритягивает к себе игрока" +
+                $"\n Сила: {force}" +
+                $"\n Радиус: {radius}");
+    }
+
     public override float SetRandomStats(float min, float max)
     {
         force += GetModifier(min, max);

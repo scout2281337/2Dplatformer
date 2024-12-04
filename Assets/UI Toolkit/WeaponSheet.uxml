@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/WeaponSheet.uss?fileID=7433441132597879392&amp;guid=267b137157c958f479ca7316cd07045f&amp;type=3#WeaponSheet" />
+    <ui:VisualElement name="Frame" class="Frame" style="flex-grow: 0; width: 500px; align-self: center; background-color: rgb(209, 209, 209); margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgb(190, 92, 30); border-right-color: rgb(190, 92, 30); border-top-color: rgb(190, 92, 30); border-bottom-color: rgb(190, 92, 30);">
+        <ui:Label tabindex="-1" text="Name Name Name " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" class="Text" style="font-size: 38px; -unity-text-align: middle-center; -unity-font-style: bold; white-space: normal;" />
+        <ui:VisualElement name="Icon" style="flex-grow: 0; flex-shrink: 0; height: 400px;" />
+        <ui:VisualElement name="TextBlock" class="Text" style="flex-grow: 0;">
+            <ui:Label tabindex="-1" text="Main Stats: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainStats" style="white-space: normal;" />
+            <ui:Label tabindex="-1" text="Shot Type: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="ShotType" style="white-space: normal;" />
+            <ui:Label tabindex="-1" text="On Fire: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="OnFire" style="white-space: normal;" />
+            <ui:Label tabindex="-1" text="On Active: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="OnActive" style="white-space: normal;" />
+            <ui:Label tabindex="-1" text="On Impact: " parse-escape-sequences="true" display-tooltip-when-elided="true" name="OnImpact" style="white-space: normal;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -2,35 +2,39 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class WeaponHandler : MonoBehaviour, IInteractable
+public class WeaponHandler : Interactable
 {
-    public TextMeshPro textMeshPro;
-
     public event Action OnWeaponTaken;
+
+    [SerializeField] private TextMeshPro textMeshPro;
+
+    public Weapon weapon { get; private set; }
 
     private void Start()
     {
-        SetWeaponHandler(transform.parent.gameObject);
+        weapon = transform.parent.gameObject.GetComponent<Weapon>();
+        SetWeaponHandler(weapon);
     }
 
-    private void SetWeaponHandler(GameObject Weapon)
+    private void SetWeaponHandler(Weapon Weapon)
     {
-        string name = Weapon.GetComponent<Weapon>()?.weaponStats.WeaponName;
+        string name = Weapon.weaponStats.weaponName;
         textMeshPro.text = name;
     }
 
-    private void AddWeaponToPlayer(GameObject player)
+    private void AddWeaponToPlayer()
     {
-        if (player.GetComponent<PlayerCombat>().AddWeapon(transform.parent.gameObject))
-        {
-            gameObject.SetActive(false);
+        if (!PlayerManager.Instance.playerCombat.AddWeapon(transform.parent.gameObject))
+            return;
 
-            OnWeaponTaken?.Invoke();
-        }
+        OnWeaponTaken?.Invoke();
+
+        gameObject.SetActive(false);
     }
 
-    public void Interact(GameObject player)
+    public override void Interact()
     {
-        AddWeaponToPlayer(player);
+        base.Interact();
+        AddWeaponToPlayer();
     }
 }

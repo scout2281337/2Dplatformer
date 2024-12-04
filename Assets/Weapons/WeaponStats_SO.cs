@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponStats", menuName = "ScriptableObjects/Weapon/WeaponStats", order = 1)]
 public class WeaponStats_SO : ScriptableObject
 {
-    public string WeaponName;
+    public string weaponName;
     public float fireRate;
     public float projectileSpeed;
     public float steamCost;
@@ -21,7 +21,7 @@ public class WeaponStats_SO : ScriptableObject
         WeaponStats_SO newWeaponStats = ScriptableObject.CreateInstance<WeaponStats_SO>();
 
         // Copy primitive and reference type fields
-        newWeaponStats.WeaponName = WeaponName;
+        newWeaponStats.weaponName = weaponName;
         newWeaponStats.fireRate = fireRate;
         newWeaponStats.projectileSpeed = projectileSpeed;
         newWeaponStats.steamCost = steamCost;

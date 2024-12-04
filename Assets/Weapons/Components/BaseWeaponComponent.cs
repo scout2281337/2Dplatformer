@@ -18,6 +18,7 @@ public abstract class BaseWeaponComponent : ScriptableObject
     /// <returns>Avarage modifier of stats</returns>
     public abstract float SetRandomStats(float min, float max);
 
+    public abstract string GetDesription();
     /// <summary>
     /// Gets avare of all modifiers
     /// </summary>

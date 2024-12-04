@@ -17,6 +17,13 @@ public class SpreadShotTypeComponent : BaseShotTypeComponent
         return newComponent;
     }
 
+    public override string GetDesription()
+    {
+        return ("\nВыстреивает несколько потронов в конусе" +
+                $"\n Количество пуль: {numberOfPellets}" +
+                $"\n Разброс: {spreadAngle}");
+    }
+
     public override float SetRandomStats(float min, float max)
     {
         numberOfPellets += (int)GetModifier(min, max);

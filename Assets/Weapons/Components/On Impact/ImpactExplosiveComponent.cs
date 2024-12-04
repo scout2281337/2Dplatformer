@@ -77,4 +77,12 @@ public class ImpactExplosiveComponent : BaseImpactComponent
 
         return newComponent;
     }
+
+    public override string GetDesription()
+    {
+        return ("\nВзрывается и наносит урон врагам и отталкивает игрока" +
+                $"\n Урон: {explosionDamage}" +
+                $"\n Сила: {explosionForce}" +
+                $"\n Радиус: {explosionRadius}");
+    }
 }

@@ -7,11 +7,6 @@ public class TimeManager : Singleton<TimeManager>
     public float time {  get; private set; }
     public bool isTimeActive { get; private set; }
 
-    private void Start()
-    {
-        ActivateTime();
-    }
-
     private void Update()
     {
         TimeUpdate();
@@ -34,5 +29,4 @@ public class TimeManager : Singleton<TimeManager>
     {
         isTimeActive = true;
     }
-
 }

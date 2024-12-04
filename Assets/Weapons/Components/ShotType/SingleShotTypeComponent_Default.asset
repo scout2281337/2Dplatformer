@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51c426ea7025fa468af926aaff2d1eb, type: 3}
   m_Name: SingleShotTypeComponent_Default
   m_EditorClassIdentifier: 
+  description: "\u0415\u0434\u0438\u043D\u0438\u0447\u043D\u044B\u0439 \u0432\u044B\u0441\u0442\u0440\u0435\u043B
+    \u0441 \u043E\u0442\u043A\u043B\u043E\u043D\u0435\u043D\u0438\u0435\u043C"
   inaccuracy: 1

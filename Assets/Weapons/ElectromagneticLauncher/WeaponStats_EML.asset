@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3473f2182bc8d64a94ffa5c82e02826, type: 3}
   m_Name: WeaponStats_EML
   m_EditorClassIdentifier: 
-  WeaponName: ElectroMagneticLauncher
+  weaponName: Electro Magnetic Launcher
   fireRate: 1
   projectileSpeed: 4
   steamCost: 45

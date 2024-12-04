@@ -11,8 +11,8 @@ public class PlayerCombat : SoundManager
 
     [Header("Weapon")]
     public float steamMax = 100;
-    public float steamCurrent { get; private set; } = 100;
     public float steamRegen;
+    public float steamCurrent { get; private set; } = 100;
 
     public event Action<int, GameObject> OnWeaponAdd;
     public event Action<int, GameObject> OnWeaponDrop;
@@ -22,7 +22,6 @@ public class PlayerCombat : SoundManager
     public int currentWeaponIndex = 0;
 
     public event Action<int> OnWeaponEquip;
-
 
     void Update()
     {
@@ -51,11 +50,6 @@ public class PlayerCombat : SoundManager
         {
             EquipWeapon(2);  // Equip weapon 3
         }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-        }
     }
 
     private void UseWeapon()
@@ -74,25 +68,6 @@ public class PlayerCombat : SoundManager
             return;
 
         steamCurrent -= weaponSteamCost;
-    }
-
-    private void Interact()
-    {
-        // Detect objects within a 2D circle
-        Collider2D[] objectsInCircle = Physics2D.OverlapCircleAll(transform.position, 1);
-
-        if (objectsInCircle.Length == 0)
-            return;
-
-        foreach (Collider2D col in objectsInCircle)
-        {
-            if (col.gameObject.TryGetComponent<IInteractable>(out var interactable))
-            {
-                interactable.Interact(gameObject);
-                break;
-            }
-        }
-        
     }
 
     private void AimAtMouse()

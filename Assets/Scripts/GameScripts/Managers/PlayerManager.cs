@@ -28,12 +28,12 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         base.Awake();
 
-        //SetManager();
+        SetManager();
     }
 
     
-    // we dont need setmanger anymore
-    /*private void SetManager()
+    // we dont need setmanger anymore вот уже хз залупы € понаделал
+    private void SetManager()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
@@ -41,13 +41,14 @@ public class PlayerManager : Singleton<PlayerManager>
             Debug.LogError("PlayerManager could not find Player");
             return;
         }
-
+        /*
         playerMovement = player.GetComponent<PlayerMovement>();
         playerCombat = player.GetComponent<PlayerCombat>();
         playerInteraction = player.GetComponent<PlayerInteraction>();
         playerHealth = player.GetComponent<PlayerHealth>();
         playerStats = player.GetComponent<PlayerStats>();
-    }*/
+        */
+    }
 
     public void AddXpToPlayer(int xp)
     {

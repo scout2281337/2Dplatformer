@@ -4,7 +4,10 @@ using Zenject;
 public class LevelDirector : Singleton<LevelDirector>
 {
     public Rooms_SO rooms_SO;
-    private LevelGenerator levelGenerator;
+    public LevelGenerator levelGenerator;
+
+    
+
     [Inject]
     public void Init(LevelGenerator levelGenerator) 
     {

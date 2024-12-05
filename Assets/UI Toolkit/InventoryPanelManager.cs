@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using Zenject;
 
 public class InventoryPanelManager : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class InventoryPanelManager : MonoBehaviour
     private Slot[] slots = new Slot[3];
     private ProgressBar progressBar;
 
+    [Inject] 
+    public void Construct(PlayerCombat playerCombat) 
+    {
+        this.playerCombat = playerCombat;
+    
+    }
 
     private void Start()
     {
@@ -25,7 +32,7 @@ public class InventoryPanelManager : MonoBehaviour
 
         progressBar = document.rootVisualElement.Q<ProgressBar>();
 
-        playerCombat = PlayerManager.Instance.playerCombat;
+        //playerCombat = PlayerManager.Instance.playerCombat;
 
         playerCombat.OnWeaponEquip += EquipWeapon;
         playerCombat.OnWeaponAdd += AddWeapon;

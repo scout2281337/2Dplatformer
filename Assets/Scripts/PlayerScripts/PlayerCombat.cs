@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerCombat : SoundManager
+public class PlayerCombat : MonoBehaviour
 {
     [Header("Aiming")]
     public Camera cam;

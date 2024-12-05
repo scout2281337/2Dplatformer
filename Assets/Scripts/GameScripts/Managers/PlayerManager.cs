@@ -1,25 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using Zenject;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
     public GameObject player { get; private set; }
-    public PlayerMovement playerMovement {  get; private set; }
-    public PlayerCombat playerCombat { get; private set; }
-    public PlayerInteraction playerInteraction { get; private set; }
-    public PlayerHealth playerHealth { get; private set; }
-    public PlayerStats playerStats { get; private set; }
+    public PlayerMovement playerMovement;
+    public PlayerCombat playerCombat;
+    public PlayerInteraction playerInteraction;
+    public PlayerHealth playerHealth;
+    public PlayerStats playerStats; 
+
+
+
+
+    [Inject] 
+    public void Constructor(PlayerMovement playerMovement, PlayerCombat playerCombat, PlayerInteraction playerInteraction, PlayerHealth playerHealth, PlayerStats playerStats) 
+    {
+        this.playerMovement = playerMovement;
+        this.playerCombat = playerCombat;
+        this.playerInteraction = playerInteraction;
+        this.playerHealth = playerHealth;
+        this.playerStats = playerStats;
+
+    }
 
     protected override void Awake()
     {
         base.Awake();
 
-        SetManager();
+        //SetManager();
     }
 
-    private void SetManager()
+    
+    // we dont need setmanger anymore
+    /*private void SetManager()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
@@ -33,7 +47,7 @@ public class PlayerManager : Singleton<PlayerManager>
         playerInteraction = player.GetComponent<PlayerInteraction>();
         playerHealth = player.GetComponent<PlayerHealth>();
         playerStats = player.GetComponent<PlayerStats>();
-    }
+    }*/
 
     public void AddXpToPlayer(int xp)
     {

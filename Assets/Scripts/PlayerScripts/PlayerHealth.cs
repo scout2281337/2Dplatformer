@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -18,12 +19,15 @@ public class PlayerHealth : MonoBehaviour
 
     // Переменная для отслеживания корутины регенерации
     private Coroutine healingCoroutine;
-
+    [Inject]
+    public void Init(PlayerMovement playerMovement) 
+    {
+        this.playerMovement = playerMovement;
+    }
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        playerMovement = GetComponent<PlayerMovement>();
         healingCoroutine = StartCoroutine(Healing());
     }
 

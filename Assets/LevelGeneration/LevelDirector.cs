@@ -1,11 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class LevelDirector : Singleton<LevelDirector>
 {
     public Rooms_SO rooms_SO;
-    public LevelGenerator levelGenerator;
+    private LevelGenerator levelGenerator;
+    [Inject]
+    public void Init(LevelGenerator levelGenerator) 
+    {
+        this.levelGenerator = levelGenerator;
+    
+    }
 
     [SerializeField] private int iterationNumber;
     [SerializeField] private int pathLength;

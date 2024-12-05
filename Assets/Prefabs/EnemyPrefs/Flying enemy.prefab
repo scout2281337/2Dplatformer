@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b8af8080caca14aa074de285b98f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyScriptableObject: {fileID: 0}
+  enemyScriptableObject: {fileID: 11400000, guid: 9d280da55ddaa8d40bf0cc380b201f22, type: 2}
   firePoint: {fileID: 6344836977784760205}
 --- !u!58 &-6126409157829162604
 CircleCollider2D:

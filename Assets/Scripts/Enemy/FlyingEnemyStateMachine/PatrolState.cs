@@ -37,7 +37,7 @@ public class PatrolState : IEnemyState
         enemy.Move(direction);
 
         // Если игрок находится в радиусе действия, переходим в режим преследования
-        if (Vector3.Distance(enemy.transform.position, enemy.player.position) < 5f) // Примерный радиус
+        if (Vector3.Distance(enemy.transform.position, enemy.playerTransform.position) < 5f) // Примерный радиус
         {
             enemy.SwitchState(new ChaseState(enemy));
         }

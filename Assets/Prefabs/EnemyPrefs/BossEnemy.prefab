@@ -237,10 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252a06742522b1b469f0621b8d5bb42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  enemyScriptableObject: {fileID: 11400000, guid: 2fe3653ad4d985441ad43c37625f3c4e, type: 2}
   currentHealth: 0
-  xpGain: 100
-  steamGain: 0
   steamPickUp: {fileID: 7010101427536572080, guid: b88e8491b49f38141bcb3ccc78f489cd, type: 3}
   healthBar: {fileID: 7504959041773815367}
 --- !u!114 &4925832445164017435
@@ -374,11 +372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b8af8080caca14aa074de285b98f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8302104495389313648, guid: bd32b3a98fe7cdf43a64574938219245, type: 3}
+  enemyScriptableObject: {fileID: 11400000, guid: 2fe3653ad4d985441ad43c37625f3c4e, type: 2}
   firePoint: {fileID: 6629694052241111940}
-  fireRate: 0.7
-  projectileSpeed: 5
-  numberOfProjectiles: 3
 --- !u!58 &-6126409157829162604
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -426,11 +421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dce214f97ae257448bad003bae81b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8302104495389313648, guid: bd32b3a98fe7cdf43a64574938219245, type: 3}
+  enemyScriptableObject: {fileID: 11400000, guid: 2fe3653ad4d985441ad43c37625f3c4e, type: 2}
   firePoint: {fileID: 6629694052241111940}
-  fireRate: 1
-  projectileSpeed: 3
-  numberOfProjectiles: 3
 --- !u!1 &5463074702886076725
 GameObject:
   m_ObjectHideFlags: 0

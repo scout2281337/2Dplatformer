@@ -1,17 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class AttackLogic : MonoBehaviour
 {
-    public GameObject explosionPrefab;
-    public int Damage;
-
+    [SerializeField] private int Damage;
+    [SerializeField] private GameObject explosionPrefab;
+    private PlayerHealth playerHealth;
+    [Inject] 
+    public void Constructor(PlayerHealth playerHealth) 
+    {
+        this.playerHealth = playerHealth;
+    
+    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ( collision.gameObject.tag == "Player") 
+        if ( collision.gameObject.CompareTag("Player")) 
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(Damage);

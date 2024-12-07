@@ -1,11 +1,12 @@
 using UnityEngine;
+using Zenject;
 
 public class EnemyMovement : MonoBehaviour
 {
 
 
-    public EnemyScriptableObject basicEnemy;
-    public Animator anim;
+    [SerializeField] private EnemyScriptableObject basicEnemy;
+    [SerializeField] private Animator anim;
 
     
     private IEnemyState currentState; // Текущее состояние
@@ -13,15 +14,22 @@ public class EnemyMovement : MonoBehaviour
     
     public Transform groundCheck;
     public GameObject sprite;
-    public Transform player;
+    private GameObject player;
+    public Transform playerTransform;
 
+    [Inject]
+    public void Constructor(GameObject player) 
+    {
+        this.player = player;      
+    
+    }
 
     private void Start()
     {
         // Пример поиска дочернего объекта по имени
         groundCheck = transform.Find("GroundCheck");
         sprite = transform.Find("spriteOfenemy").gameObject;
-        player = transform.Find("Player");
+        playerTransform = player.transform; 
 
         rb = GetComponent<Rigidbody2D>();
         SwitchState(new PatrolState(this)); // Начинаем с состояния патрулирования

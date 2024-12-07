@@ -34,7 +34,7 @@ public class ChaseState : IEnemyState
         }
 
         // Преследуем игрока
-        Vector3 direction = new Vector3(enemy.player.position.x - enemy.transform.position.x, 0, 0).normalized;
+        Vector3 direction = new Vector3(enemy.playerTransform.position.x - enemy.transform.position.x, 0, 0).normalized;
         enemy.Move(direction);
 
         // Поворот персонажа в зависимости от направления

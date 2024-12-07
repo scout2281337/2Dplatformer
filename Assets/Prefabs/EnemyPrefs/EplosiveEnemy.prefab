@@ -588,10 +588,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -623,8 +623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a10b4c626afd24ba86f0f5a0df90d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}
   Damage: 30
+  explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}
 --- !u!1 &9214907983360495655
 GameObject:
   m_ObjectHideFlags: 0

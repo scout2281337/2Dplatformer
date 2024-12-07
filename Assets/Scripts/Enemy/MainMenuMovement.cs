@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class MainMenuMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     public Transform pointA; // Точка A
@@ -23,8 +23,13 @@ public class EnemyPatrol : MonoBehaviour
 
     void Update()
     {
-        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x)); // Запуск анимации
-        // Перемещение
+        // Лог для отладки скорости
+        //Debug.Log(rb.velocity.x);
+
+        // Передача скорости в анимацию
+        anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+
+        // Перемещение к точке
         MoveToTarget();
 
         // Прыжок через определенное время
@@ -33,8 +38,11 @@ public class EnemyPatrol : MonoBehaviour
 
     private void MoveToTarget()
     {
-        // Двигаемся к текущей цели
-        transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, moveSpeed * Time.deltaTime);
+        // Рассчитываем направление к целевой точке
+        Vector2 direction = (targetPoint.position - transform.position).normalized;
+
+        // Устанавливаем горизонтальную скорость
+        rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
 
         // Проверяем, достигли ли точки
         if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f)

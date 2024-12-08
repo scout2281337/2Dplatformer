@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         SpawnSteamPickUp();
 
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private void SpawnSteamPickUp()

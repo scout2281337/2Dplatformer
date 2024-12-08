@@ -62,7 +62,7 @@ public class CombatManager : Singleton<CombatManager>
             wallLock = Instantiate(LevelDirector.Instance.rooms_SO.wallLock[2], position, Quaternion.identity, LevelDirector.Instance.levelGenerator.transform);
         }
         // Big room
-        else if (roomSize == new Vector2Int(2, 1))
+        else if (roomSize == new Vector2Int(2, 2))
         {
             wallLock = Instantiate(LevelDirector.Instance.rooms_SO.wallLock[3], position, Quaternion.identity, LevelDirector.Instance.levelGenerator.transform);
         }

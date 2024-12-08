@@ -29,7 +29,6 @@ public class EnemyAttack : MonoBehaviour
         {
             player = collision.transform;
             canShoot = true;
-            Debug.Log("игрока видно");
         }
     }
 
@@ -43,7 +42,8 @@ public class EnemyAttack : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        if (!canShoot) return;
+        if (!canShoot)
+            return;
 
         foreach (var strategy in attackStrategies)
         {

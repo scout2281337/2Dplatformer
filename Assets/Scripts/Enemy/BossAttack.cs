@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class BossAttack : EnemyAttack
 {
-    private EnemyHealth enemyHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
 
     private List<IAttackStrategy> attackStrategies = new List<IAttackStrategy>();
     void Start()
     {
-        enemyHealth = GetComponent<EnemyHealth>();
         attackStrategies.Add(new SingleShootStrategy());
         attackStrategies.Add(new RandomShootStrategy());
         attackStrategies.Add(new AllDirectionShootStrategy());
@@ -31,17 +30,12 @@ public class BossAttack : EnemyAttack
         {
             enemyScriptableObject.fireRate = 0.8f;
             attackStrategies[1].ExecuteAttack(firePoint, enemyScriptableObject.projectilePrefab, player, enemyScriptableObject.projectileSpeed, enemyScriptableObject.numberOfProjectiles);
-
-
         }
         else 
         {
             enemyScriptableObject.fireRate = 0.7f;
             enemyScriptableObject.numberOfProjectiles = 8;
             attackStrategies[2].ExecuteAttack(firePoint, enemyScriptableObject.projectilePrefab, player, enemyScriptableObject.projectileSpeed, enemyScriptableObject.numberOfProjectiles);
-
-
-
         }
         
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using Zenject;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -27,6 +28,16 @@ public class PlayerStats : MonoBehaviour
     [Header("ForSkills")]
     private PlayerMovement pm;
     private PlayerHealth health;
+
+    [Inject]
+    public void Construct(PlayerMovement playerMovement, PlayerHealth playerHealth) 
+    {
+        pm = playerMovement;
+        health = playerHealth;
+    
+    
+    }
+
     // List of all perks
     private List<Perk> allPerks = new List<Perk>();
 
@@ -38,8 +49,7 @@ public class PlayerStats : MonoBehaviour
         allPerks.Add(new Perk("Regeneration", "Increase regeneration speed", EnableRegeneration));
         //allPerks.Add(new Perk("Invincible", "Invincible for 2 seconds after hit", EnableInvincible));
         // ����� �������� ������ ������
-        pm = GetComponent<PlayerMovement>();
-        health = GetComponent<PlayerHealth>();
+        
         xpBar.maxValue = xpToNextLevel;
     }
 

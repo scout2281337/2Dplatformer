@@ -2148,7 +2148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Zov kontracta
+  m_text: dungeonz
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fffd76042a3a387428b3f9297d006c5c, type: 2}
   m_sharedMaterial: {fileID: 7321545364777143553, guid: fffd76042a3a387428b3f9297d006c5c, type: 2}
@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.6
+  m_fontSize: 61.6
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1

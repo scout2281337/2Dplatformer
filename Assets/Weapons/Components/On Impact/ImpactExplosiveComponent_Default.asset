@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d22c3b93d6316e4e8b162886fad616e, type: 3}
   m_Name: ImpactExplosiveComponent_Default
   m_EditorClassIdentifier: 
-  description: "\u0412\u0437\u0440\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u0438
-    \u043D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D \u0432\u0440\u0430\u0433\u0430\u043C
-    \u0438 \u043E\u0442\u0442\u0430\u043B\u043A\u0438\u0432\u0430\u0435\u0442 \u0438\u0433\u0440\u043E\u043A\u0430"
   explosionDamage: 30
   explosionRadius: 1
   explosionForce: 10
   explosionPrefab: {fileID: 1066805590682706863, guid: 2b2aaacb2d31a384c84de0f04f6addb1, type: 3}
   explosionLayerMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 1088

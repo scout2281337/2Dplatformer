@@ -52,10 +52,6 @@ public class ImpactExplosiveComponent : BaseImpactComponent
 
         Vector2 pushVector = (collision.transform.position - position).normalized;
         PlayerManager.Instance.playerMovement.Push(pushVector, explosionForce);
-
-        Debug.Log($"Player Position: {collision.transform.position}");
-        Debug.Log($"Explosion Position: {position}");
-        Debug.Log($"Push Vector: {pushVector}");
     }
 
     public override float SetRandomStats(float min, float max)

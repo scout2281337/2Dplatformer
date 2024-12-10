@@ -15,3 +15,6 @@ MonoBehaviour:
   ActivationFrequency: 10
   damage: 5
   radius: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 3136

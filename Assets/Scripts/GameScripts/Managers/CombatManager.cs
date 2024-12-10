@@ -10,12 +10,16 @@ public class CombatManager : Singleton<CombatManager>
     private GameObject wallLock;
 
     #region IDamageable objects
-    public void AddObject(GameObject obj)
+    //public void AddObject(GameObject obj)
+    //{
+    //    if(obj.TryGetComponent<IDamageable>(out IDamageable damageable))
+    //    {
+    //        idamageableDict.Add(obj, damageable);
+    //    }
+    //}
+    public void AddObject(GameObject obj, IDamageable damageable)
     {
-        if(obj.TryGetComponent<IDamageable>(out IDamageable damageable))
-        {
-            idamageableDict.Add(obj, damageable);
-        }
+        idamageableDict.Add(obj, damageable); 
     }
 
     public void RemoveObject(GameObject obj)
@@ -25,10 +29,10 @@ public class CombatManager : Singleton<CombatManager>
     #endregion
 
     #region Enemy list
-    public void AddEnemy(GameObject enemy)
+    public void AddEnemy(GameObject enemy, IDamageable damageable)
     {
         enemyList.Add(enemy);
-        AddObject(enemy);
+        AddObject(enemy, damageable);
     }
 
     public void RemoveEnemy(GameObject enemy)

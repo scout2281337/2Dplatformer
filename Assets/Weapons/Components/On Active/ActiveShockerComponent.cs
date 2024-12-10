@@ -9,12 +9,14 @@ public class ActiveAttractorComponentds : BaseActiveComponent
     public float damage;
     public float radius;
 
+    public LayerMask layerMask;
+
     public override bool ActiveProjectile(Vector2 position)
     {
         if(!base.ActiveProjectile(position))
             return false;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius, layerMask);
         foreach (Collider2D collider in colliders)
         {
             if(CombatManager.Instance.idamageableDict.TryGetValue(collider.gameObject, out IDamageable damageable))

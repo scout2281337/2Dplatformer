@@ -3,24 +3,15 @@ using Zenject;
 
 public class AttackLogic : MonoBehaviour
 {
-    [SerializeField] private int Damage;
+    [SerializeField] private int damage;
     [SerializeField] private GameObject explosionPrefab;
-    private PlayerHealth playerHealth;
-
-    [Inject] 
-    public void Constructor(PlayerHealth playerHealth) 
-    {
-        this.playerHealth = playerHealth;
-    }
+    [SerializeField] private GameObject hitBox;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) 
         {
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(Damage);
-            }
+            PlayerManager.Instance.playerHealth.TakeDamage(damage);
 
             Explode();
         }
@@ -29,7 +20,7 @@ public class AttackLogic : MonoBehaviour
     private void Explode()
     {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        CombatManager.Instance.RemoveEnemy(gameObject);
+        CombatManager.Instance.RemoveEnemy(hitBox);
         Destroy(gameObject);
     }
 }

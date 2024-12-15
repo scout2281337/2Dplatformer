@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        CombatManager.Instance.AddEnemy(transform.parent.gameObject, this);
+        CombatManager.Instance.AddEnemy(gameObject, this);
 
         currentHealth = enemyScriptableObject.maxHealth;
         healthBar.SetMaxHealth(enemyScriptableObject.maxHealth);
@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         PlayerManager.Instance.AddXpToPlayer(enemyScriptableObject.xpGain);
-        CombatManager.Instance.RemoveEnemy(transform.parent.gameObject);
+        CombatManager.Instance.RemoveEnemy(gameObject);
 
         SpawnSteamPickUp();
 
